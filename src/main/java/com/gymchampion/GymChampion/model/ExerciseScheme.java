@@ -13,22 +13,22 @@ public class ExerciseScheme {
     private int exerciseSchemeId;
 
     @Column(name = "exercise_scheme_name", nullable = false, length = 20)
-    private String exerciseName;
+    private String exerciseSchemeName;
 
-    @OneToMany(mappedBy = "exerciseScheme")
+    @OneToMany(mappedBy = "exerciseScheme", cascade = CascadeType.REMOVE)
     private List<Exercise> exercises;
 
     public ExerciseScheme() {}
 
-    public ExerciseScheme(String exerciseName) { this.exerciseName = exerciseName; }
+    public ExerciseScheme(String exerciseSchemeName) { this.exerciseSchemeName = exerciseSchemeName; }
 
     public int getExerciseSchemeId() { return this.exerciseSchemeId; }
 
     public void setExerciseSchemeId(int exerciseSchemeId) { this.exerciseSchemeId = exerciseSchemeId; }
 
-    public String getExerciseName() { return this.exerciseName; }
+    public String getExerciseName() { return this.exerciseSchemeName; }
 
-    public void setExerciseName(String exerciseName) { this.exerciseName = exerciseName; }
+    public void setExerciseName(String exerciseName) { this.exerciseSchemeName = exerciseName; }
 
     public List<Exercise> getExercises() { return this.exercises; }
 

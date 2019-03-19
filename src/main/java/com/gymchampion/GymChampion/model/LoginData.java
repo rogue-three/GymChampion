@@ -14,7 +14,7 @@ public class LoginData {
     @Column(name = "password", nullable = false, length = 20)
     private String password;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.REMOVE)
     @JoinColumn(name = "user_login")
     private User user;
 

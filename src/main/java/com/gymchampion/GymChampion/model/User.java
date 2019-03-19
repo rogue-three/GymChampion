@@ -33,7 +33,7 @@ public class User {
     @OneToMany(mappedBy = "user")
     private List<Session> sessions;
 
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.REMOVE)
     @JoinTable(
             name = "gym_user_training",
             joinColumns = { @JoinColumn(name = "user_login") },

@@ -15,7 +15,7 @@ public class BodyPart {
     @Column(name = "body_part_name", nullable = false, length = 20)
     private String bodyPartName;
 
-    @OneToMany(mappedBy = "bodyPart")
+    @OneToMany(mappedBy = "bodyPart", cascade = CascadeType.REMOVE)
     private List<Exercise> exercises;
 
     public BodyPart() {}
