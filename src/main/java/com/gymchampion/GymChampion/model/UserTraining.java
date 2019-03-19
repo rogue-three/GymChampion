@@ -14,7 +14,7 @@ public class UserTraining {
     @ManyToOne(targetEntity = User.class)
     private User userLogin;
 
-   
+
     @ManyToOne(targetEntity = Training.class)
     private Training trainingId;
 
