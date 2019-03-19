@@ -24,6 +24,9 @@ public class Exercise {
     @OneToMany(mappedBy = "exercise")
     private List<SetScheme> setSchemes;
 
+    @ManyToOne
+    private BodyPart bodyPart;
+
     public Exercise() {}
 
     public Exercise(String exerciseName, int maxReps, double maxWeight) {
@@ -51,4 +54,8 @@ public class Exercise {
     public List<SetScheme> getSetSchemes() { return this.setSchemes; }
 
     public void setSetSchemes(List<SetScheme> setSchemes) { this.setSchemes = setSchemes; }
+
+    public BodyPart getBodyPart() { return this.bodyPart; }
+
+    public void setBodyPart(BodyPart bodyPart) { this.bodyPart = bodyPart; }
 }
