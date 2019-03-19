@@ -12,14 +12,17 @@ public class SetScheme {
     @GeneratedValue
     private int setSchemeId;
 
-    @Column(name = "reps")
+    @Column(name = "reps", nullable = false)
     private int reps;
 
-    @Column(name = "weight")
+    @Column(name = "weight", nullable = false)
     private double weight;
 
     @ManyToMany(mappedBy = "setSchemes")
     private List<Training> trainings;
+
+    @ManyToOne
+    private Exercise exercise;
 
     public SetScheme() {}
 
@@ -43,4 +46,8 @@ public class SetScheme {
     public List<Training> getTrainings() { return this.trainings; }
 
     public void setTrainings(List<Training> trainings) { this.trainings = trainings; }
+
+    public Exercise getExercise() { return this.exercise; }
+
+    public void setExercise(Exercise exercise) { this.exercise = exercise; }
 }
