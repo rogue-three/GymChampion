@@ -9,6 +9,14 @@ import javax.persistence.Table;
 @Table(name = "body_part")
 public class BodyPart {
 
+    public BodyPart(int id, String name) {
+        this.id = id;
+        this.name = name;
+    }
+
+    public BodyPart() {
+    }
+
     @Id
     @Column(name = "body_part_id")
     private int id;
