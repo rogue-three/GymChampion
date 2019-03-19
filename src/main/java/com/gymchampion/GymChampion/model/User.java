@@ -8,29 +8,31 @@ import java.util.Date;
 public class User {
 
     @Id
+    @Column(length = 15)
     private String login;
 
     @Column(length = 30)
     private String nickname;
 
-    @Column(name = "birthday_date")
-    private Date birthdayDate;
+    @Column(name = "birth_date")
+    private Date birthDate;
 
-    @ManyToOne//(targetEntity = Gender.class)
-    private Gender gender;
-
+    @Column(name = "weight")
     private double weight;
 
+    @Column(name = "archivized")
     private boolean archivized;
+
+    @ManyToOne
+    private Gender gender;
 
     public User() {
     }
 
-    public User(String login, String nickname, Date birthdayDate, Gender gender, double weight, boolean archivized) {
+    public User(String login, String nickname, Date birthdayDate, double weight, boolean archivized) {
         this.login = login;
         this.nickname = nickname;
-        this.birthdayDate = birthdayDate;
-        this.gender = gender;
+        this.birthDate = birthdayDate;
         this.weight = weight;
         this.archivized = archivized;
     }
@@ -44,7 +46,7 @@ public class User {
     }
 
     public String getNickname() {
-        return nickname;
+        return this.nickname;
     }
 
     public void setNickname(String nickname) {
@@ -52,23 +54,15 @@ public class User {
     }
 
     public Date getBirthdayDate() {
-        return birthdayDate;
+        return this.birthDate;
     }
 
     public void setBirthdayDate(Date birthdayDate) {
-        this.birthdayDate = birthdayDate;
-    }
-
-    public Gender getGender() {
-        return gender;
-    }
-
-    public void setGender(Gender gender) {
-        this.gender = gender;
+        this.birthDate = birthdayDate;
     }
 
     public double getWeight() {
-        return weight;
+        return this.weight;
     }
 
     public void setWeight(double weight) {
@@ -76,11 +70,19 @@ public class User {
     }
 
     public boolean isArchivized() {
-        return archivized;
+        return this.archivized;
     }
 
     public void setArchivized(boolean archivized) {
         this.archivized = archivized;
+    }
+
+    public Gender getGender() {
+        return this.gender;
+    }
+
+    public void setGender(Gender gender) {
+        this.gender = gender;
     }
 }
 
