@@ -1,7 +1,5 @@
 package com.gymchampion.GymChampion.model;
 
-import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
-
 import javax.persistence.*;
 
 @Entity
