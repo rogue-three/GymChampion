@@ -17,4 +17,23 @@ public class Gender {
     private String sex;
 
 
+    public Gender(String sex) {
+        this.sex = sex;
+    }
+
+    public int getGenderId() {
+        return genderId;
+    }
+
+    public void setGenderId(int genderId) {
+        this.genderId = genderId;
+    }
+
+    public String getSex() {
+        return sex;
+    }
+
+    public void setSex(String sex) {
+        this.sex = sex;
+    }
 }
