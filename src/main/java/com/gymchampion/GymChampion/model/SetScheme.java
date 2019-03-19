@@ -22,6 +22,7 @@ public class SetScheme {
     private List<Training> trainings;
 
     @ManyToOne
+    @JoinColumn(name = "exercise_id")
     private Exercise exercise;
 
     public SetScheme() {}

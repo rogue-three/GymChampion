@@ -11,10 +11,11 @@ public class LoginData {
     @GeneratedValue
     private int loginId;
 
-    @Column(name = "password", nullable = false)
+    @Column(name = "password", nullable = false, length = 20)
     private String password;
 
     @OneToOne
+    @JoinColumn(name = "user_login")
     private User user;
 
     public LoginData() {}

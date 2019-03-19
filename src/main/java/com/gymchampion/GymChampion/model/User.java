@@ -10,7 +10,7 @@ import java.util.List;
 public class User {
 
     @Id
-    @Column(name = "login", length = 15, unique = true)
+    @Column(name = "user_login", length = 15, unique = true)
     private String login;
 
     @Column(name = "nickname", length = 30)
@@ -26,12 +26,14 @@ public class User {
     private boolean archivized;
 
     @ManyToOne
+    @JoinColumn(name = "gender_id")
     private Gender gender;
 
     @OneToMany(mappedBy = "user")
     private List<Session> sessions;
 
     @ManyToMany
+    @JoinColumn(name = "training_id")
     private List<Training> trainings = new ArrayList<>();
 
     public User() {}

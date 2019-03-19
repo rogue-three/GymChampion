@@ -27,6 +27,7 @@ public class Training {
     private List<User> users = new ArrayList<>();
 
     @ManyToMany
+    @JoinColumn(name = "set_scheme_id")
     private List<SetScheme> setSchemes;
 
     public Training() {}

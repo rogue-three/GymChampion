@@ -25,12 +25,15 @@ public class Exercise {
     private List<SetScheme> setSchemes;
 
     @ManyToOne
+    @JoinColumn(name = "body_part_id")
     private BodyPart bodyPart;
 
     @ManyToOne
+    @JoinColumn(name = "equipment_id")
     private Equipment equipment;
 
     @ManyToOne
+    @JoinColumn(name = "exercise_scheme_id")
     private ExerciseScheme exerciseScheme;
 
     public Exercise() {}

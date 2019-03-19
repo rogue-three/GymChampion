@@ -22,6 +22,7 @@ public class Session {
     private boolean active;
 
     @ManyToOne
+    @JoinColumn(name = "user_login")
     private User user;
 
     public Session() {}
