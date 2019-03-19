@@ -27,6 +27,9 @@ public class Exercise {
     @ManyToOne
     private BodyPart bodyPart;
 
+    @ManyToOne
+    private Equipment equipment;
+
     public Exercise() {}
 
     public Exercise(String exerciseName, int maxReps, double maxWeight) {
@@ -58,4 +61,8 @@ public class Exercise {
     public BodyPart getBodyPart() { return this.bodyPart; }
 
     public void setBodyPart(BodyPart bodyPart) { this.bodyPart = bodyPart; }
+
+    public Equipment getEquipment() { return this.equipment; }
+
+    public void setEquipment(Equipment equipment) { this.equipment = equipment; }
 }

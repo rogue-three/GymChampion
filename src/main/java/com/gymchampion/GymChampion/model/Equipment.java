@@ -1,7 +1,7 @@
 package com.gymchampion.GymChampion.model;
 
-
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "equipment")
@@ -12,18 +12,20 @@ public class Equipment {
     @GeneratedValue
     private int equipmentId;
 
-    @Column(name = "equipment_name", length = 50, nullable = false)
+    @Column(name = "equipment_name", length = 30, nullable = false)
     private String equipmentName;
 
-    public Equipment() {
-    }
+    @OneToMany(mappedBy = "equipment")
+    private List<Exercise> exercises;
+
+    public Equipment() {}
 
     public Equipment(String equipmentName) {
         this.equipmentName = equipmentName;
     }
 
     public int getEquipmentId() {
-        return equipmentId;
+        return this.equipmentId;
     }
 
     public void setEquipmentId(int equipmentId) {
@@ -31,10 +33,14 @@ public class Equipment {
     }
 
     public String getEquipmentName() {
-        return equipmentName;
+        return this.equipmentName;
     }
 
     public void setEquipmentName(String equipmentName) {
         this.equipmentName = equipmentName;
     }
+
+    public List<Exercise> getExercises() { return this.exercises; }
+
+    public void setExercises(List<Exercise> exercises) { this.exercises = exercises; }
 }
