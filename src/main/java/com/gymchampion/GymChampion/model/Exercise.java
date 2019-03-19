@@ -30,6 +30,9 @@ public class Exercise {
     @ManyToOne
     private Equipment equipment;
 
+    @ManyToOne
+    private ExerciseScheme exerciseScheme;
+
     public Exercise() {}
 
     public Exercise(String exerciseName, int maxReps, double maxWeight) {
@@ -65,4 +68,8 @@ public class Exercise {
     public Equipment getEquipment() { return this.equipment; }
 
     public void setEquipment(Equipment equipment) { this.equipment = equipment; }
+
+    public ExerciseScheme getExerciseScheme() { return this.exerciseScheme; }
+
+    public void setExerciseScheme(ExerciseScheme exerciseScheme) { this.exerciseScheme = exerciseScheme; }
 }
