@@ -26,6 +26,9 @@ public class Training {
     @ManyToMany(mappedBy = "trainings")
     private List<User> users = new ArrayList<>();
 
+    @ManyToMany
+    private List<SetScheme> setSchemes;
+
     public Training() {}
 
     public Training(Date trainingDate, double userWeight, boolean archivized) {
@@ -53,4 +56,8 @@ public class Training {
     public List<User> getUsers() { return this.users; }
 
     public void setUsers(List<User> users) { this.users = users; }
+
+    public List<SetScheme> getSetSchemes() { return this.setSchemes; }
+
+    public void setSetSchemes(List<SetScheme> setSchemes) { this.setSchemes = setSchemes; }
 }

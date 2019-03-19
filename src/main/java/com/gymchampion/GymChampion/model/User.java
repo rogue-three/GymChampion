@@ -33,7 +33,7 @@ public class User {
 
     @ManyToMany
     private List<Training> trainings = new ArrayList<>();
-    
+
     public User() {}
 
     public User(String login, String nickname, Date birthdayDate, double weight, boolean archivized) {
