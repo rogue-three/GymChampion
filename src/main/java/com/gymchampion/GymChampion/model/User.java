@@ -26,8 +26,7 @@ public class User {
     @ManyToOne
     private Gender gender;
 
-    public User() {
-    }
+    public User() {}
 
     public User(String login, String nickname, Date birthdayDate, double weight, boolean archivized) {
         this.login = login;

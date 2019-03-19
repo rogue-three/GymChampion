@@ -46,7 +46,7 @@ public class Gender {
         return this.users;
     }
 
-    public void setUser(List<User> user) {
+    public void setUsers(List<User> users) {
         this.users = users;
     }
 }

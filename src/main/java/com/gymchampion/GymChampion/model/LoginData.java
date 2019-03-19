@@ -9,44 +9,40 @@ import javax.persistence.*;
 public class LoginData {
 
     @Id
+    @Column(name = "login_id")
     @GeneratedValue
     private int loginId;
 
-    @OneToOne(targetEntity = User.class)
-    private User login;
-
-    @Column(nullable = false)
+    @Column(name = "password", nullable = false)
     private String password;
 
-    public LoginData() {
-    }
+    @OneToOne
+    private User user;
 
-    public LoginData(String User, String password) {
-        this.login = login;
+    public LoginData() {}
+
+    public LoginData(int loginId, String password) {
+        this.loginId = loginId;
         this.password = password;
     }
 
     public int getLoginId() {
-        return loginId;
+        return this.loginId;
     }
 
     public void setLoginId(int loginId) {
         this.loginId = loginId;
     }
 
-    public User getLogin() {
-        return login;
-    }
-
-    public void setLogin(User login) {
-        this.login = login;
-    }
-
     public String getPassword() {
-        return password;
+        return this.password;
     }
 
     public void setPassword(String password) {
         this.password = password;
     }
+
+    public User getUser() { return this.user; }
+
+    public void setUser(User user) { this.user = user; }
 }
