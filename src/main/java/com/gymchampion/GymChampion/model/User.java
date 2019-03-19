@@ -33,7 +33,11 @@ public class User {
     private List<Session> sessions;
 
     @ManyToMany
-    @JoinColumn(name = "training_id")
+    @JoinTable(
+            name = "gym_user_training",
+            joinColumns = { @JoinColumn(name = "user_login") },
+            inverseJoinColumns = { @JoinColumn(name = "training_id") }
+    )
     private List<Training> trainings = new ArrayList<>();
 
     public User() {}
