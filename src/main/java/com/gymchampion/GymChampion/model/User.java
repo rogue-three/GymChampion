@@ -1,6 +1,7 @@
 package com.gymchampion.GymChampion.model;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -30,6 +31,9 @@ public class User {
     @OneToMany(mappedBy = "user")
     private List<Session> sessions;
 
+    @ManyToMany
+    private List<Training> trainings = new ArrayList<>();
+    
     public User() {}
 
     public User(String login, String nickname, Date birthdayDate, double weight, boolean archivized) {
@@ -91,6 +95,10 @@ public class User {
     public List<Session> getSessions() { return this.sessions; }
 
     public void setSessions(List<Session> sessions) { this.sessions = sessions; }
+
+    public List<Training> getTrainings() { return this.trainings; }
+
+    public void setTrainings(List<Training> trainings) { this.trainings = trainings; }
 }
 
 
