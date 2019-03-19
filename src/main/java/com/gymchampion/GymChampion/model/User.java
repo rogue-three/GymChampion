@@ -2,16 +2,17 @@ package com.gymchampion.GymChampion.model;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "gym_user")
 public class User {
 
     @Id
-    @Column(length = 15)
+    @Column(name = "login", length = 15, unique = true)
     private String login;
 
-    @Column(length = 30)
+    @Column(name = "nickname", length = 30)
     private String nickname;
 
     @Column(name = "birth_date")
@@ -25,6 +26,9 @@ public class User {
 
     @ManyToOne
     private Gender gender;
+
+    @OneToMany(mappedBy = "user")
+    private List<Session> sessions;
 
     public User() {}
 
@@ -52,11 +56,11 @@ public class User {
         this.nickname = nickname;
     }
 
-    public Date getBirthdayDate() {
+    public Date getBirthDate() {
         return this.birthDate;
     }
 
-    public void setBirthdayDate(Date birthdayDate) {
+    public void setBirthDate(Date birthdayDate) {
         this.birthDate = birthdayDate;
     }
 
@@ -83,6 +87,10 @@ public class User {
     public void setGender(Gender gender) {
         this.gender = gender;
     }
+
+    public List<Session> getSessions() { return this.sessions; }
+
+    public void setSessions(List<Session> sessions) { this.sessions = sessions; }
 }
 
 

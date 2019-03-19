@@ -1,6 +1,5 @@
 package com.gymchampion.GymChampion.model;
 
-
 import javax.persistence.*;
 import java.util.Date;
 
@@ -8,14 +7,10 @@ import java.util.Date;
 @Table(name = "session")
 public class Session {
 
-
     @Id
-    @GeneratedValue
     @Column(name = "session_id")
+    @GeneratedValue
     private int sessionId;
-
-    @ManyToOne
-    private User login;
 
     @Column(name = "session_key", nullable = false)
     private String sessionKey;
@@ -23,37 +18,32 @@ public class Session {
     @Column(name = "login_date", nullable = false)
     private Date loginDate;
 
-    @Column(nullable = false)
+    @Column(name = "active", nullable = false)
     private boolean active;
 
-    public Session() {
-    }
+    @ManyToOne
+    private User user;
 
-    public Session(User login, String sessionId, Date loginDate, boolean active) {
-        this.login = login;
-        this.sessionKey = sessionId;
+    public Session() {}
+
+    public Session(String sessionKey, Date loginDate, boolean active) {
+        this.sessionKey = sessionKey;
         this.loginDate = loginDate;
         this.active = active;
     }
 
-    public User getLogin() {
-        return login;
+    public int getSessionId() {
+        return this.sessionId;
     }
 
-    public void setLogin(User login) {
-        this.login = login;
-    }
+    public void setSessionId(int sessionId) { this.sessionId = sessionId; }
 
-    public String getSessionId() {
-        return sessionKey;
-    }
+    public String getSessionKey() { return this.sessionKey; }
 
-    public void setSessionId(String sessionId) {
-        this.sessionKey = sessionId;
-    }
+    public void setSessionKey(String sessionKey) { this.sessionKey = sessionKey; }
 
     public Date getLoginDate() {
-        return loginDate;
+        return this.loginDate;
     }
 
     public void setLoginDate(Date loginDate) {
@@ -61,10 +51,14 @@ public class Session {
     }
 
     public boolean isActive() {
-        return active;
+        return this.active;
     }
 
     public void setActive(boolean active) {
         this.active = active;
     }
+
+    public User getUser() { return this.user; }
+
+    public void setUser(User user) { this.user = user; }
 }
