@@ -17,6 +17,7 @@ public class User {
     private String nickname;
 
     @Column(name = "birth_date")
+    @Temporal(TemporalType.DATE)
     private Date birthDate;
 
     @Column(name = "weight")

@@ -16,6 +16,7 @@ public class Session {
     private String sessionKey;
 
     @Column(name = "login_date", nullable = false)
+    @Temporal(TemporalType.TIMESTAMP)
     private Date loginDate;
 
     @Column(name = "active", nullable = false)

@@ -15,6 +15,7 @@ public class Training {
     private int trainingId;
 
     @Column(name = "training_date", nullable = false)
+    @Temporal(TemporalType.TIMESTAMP)
     private Date trainingDate;
 
     @Column(name = "user_weight")
