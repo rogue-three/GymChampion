@@ -4,13 +4,21 @@ package com.gymchampion.GymChampion.model;
 import javax.persistence.*;
 import java.util.Date;
 
+@Entity
+@Table(name = "session")
 public class Session {
 
-    @ManyToOne
-    private String login;
 
-    @Column(name = "session_id", nullable = false)
-    private String sessionId;
+    @Id
+    @GeneratedValue
+    @Column(name = "session_id")
+    private int sessionId;
+
+    @ManyToOne
+    private User login;
+
+    @Column(name = "session_key", nullable = false)
+    private String sessionKey;
 
     @Column(name = "login_date", nullable = false)
     private Date loginDate;
@@ -21,27 +29,27 @@ public class Session {
     public Session() {
     }
 
-    public Session(String login, String sessionId, Date loginDate, boolean active) {
+    public Session(User login, String sessionId, Date loginDate, boolean active) {
         this.login = login;
-        this.sessionId = sessionId;
+        this.sessionKey = sessionId;
         this.loginDate = loginDate;
         this.active = active;
     }
 
-    public String getLogin() {
+    public User getLogin() {
         return login;
     }
 
-    public void setLogin(String login) {
+    public void setLogin(User login) {
         this.login = login;
     }
 
     public String getSessionId() {
-        return sessionId;
+        return sessionKey;
     }
 
     public void setSessionId(String sessionId) {
-        this.sessionId = sessionId;
+        this.sessionKey = sessionId;
     }
 
     public Date getLoginDate() {

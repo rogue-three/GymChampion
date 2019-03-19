@@ -2,20 +2,18 @@ package com.gymchampion.GymChampion.model;
 
 import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
+@Table(name = "login_data")
 public class LoginData {
 
     @Id
     @GeneratedValue
     private int loginId;
 
-    @Column(unique = true)
-    private String login;
+    @OneToOne(targetEntity = User.class)
+    private User login;
 
     @Column(nullable = false)
     private String password;
@@ -23,7 +21,7 @@ public class LoginData {
     public LoginData() {
     }
 
-    public LoginData(String login, String password) {
+    public LoginData(String User, String password) {
         this.login = login;
         this.password = password;
     }
@@ -36,11 +34,11 @@ public class LoginData {
         this.loginId = loginId;
     }
 
-    public String getLogin() {
+    public User getLogin() {
         return login;
     }
 
-    public void setLogin(String login) {
+    public void setLogin(User login) {
         this.login = login;
     }
 

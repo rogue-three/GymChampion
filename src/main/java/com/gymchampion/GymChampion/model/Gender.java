@@ -1,21 +1,24 @@
 package com.gymchampion.GymChampion.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
+@Table(name="gender")
 public class Gender {
 
+
     @Id
-    @GeneratedValue
     @Column(name = "gender_id")
+    @GeneratedValue
     private int genderId;
 
-    @Column(nullable = false)
+    @Column(nullable = false, length = 15)
     private String sex;
 
+    @OneToMany(mappedBy = "gender")
+    private List<User> user = new ArrayList<>();
 
     public Gender(String sex) {
         this.sex = sex;
