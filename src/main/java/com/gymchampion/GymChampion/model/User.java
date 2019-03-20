@@ -23,7 +23,7 @@ public class User {
     @Column(name = "weight")
     private double weight;
 
-    @Column(name = "archivized")
+    @Column(name = "archivized", columnDefinition = "false")
     private boolean archivized;
 
     @ManyToOne
