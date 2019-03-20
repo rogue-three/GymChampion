@@ -4,8 +4,16 @@ import com.gymchampion.GymChampion.model.*;
 import com.gymchampion.GymChampion.repository.*;
 import org.springframework.stereotype.Component;
 
+import java.util.Date;
+
 @Component
 public class DBConstantsInitializer {
+
+    private ExerciseScheme upperBodyExScheme = new ExerciseScheme("upper body");
+    private ExerciseScheme lowerBodyExScheme = new ExerciseScheme("lower body");
+
+    private Gender maleGender = new Gender("male");
+    private Gender femaleGender = new Gender("female");
 
     private Equipment barbellEquipment = new Equipment("barbell");
     private Equipment noEquipmentEquipment = new Equipment("no equipment");
@@ -16,20 +24,21 @@ public class DBConstantsInitializer {
     private BodyPart hamstringsBodyPart = new BodyPart("hamstrings");
     private BodyPart backBodyPart = new BodyPart("back");
 
-    private ExerciseScheme upperBodyExScheme = new ExerciseScheme("upper body");
-    private ExerciseScheme lowerBodyExScheme = new ExerciseScheme("lower body");
-
     public DBConstantsInitializer(GenderRepository genderRepository,
                                   ExerciseSchemeRepository exerciseSchemeRepository,
                                   EquipmentRepository equipmentRepository,
                                   BodyPartRepository bodyPartRepository,
-                                  ExerciseRepository exerciseRepository) {
+                                  ExerciseRepository exerciseRepository,
+                                  UserRepository userRepository,
+                                  TrainingRepository trainingRepository) {
 
         initializeExerciseSchemeTableContent(exerciseSchemeRepository);
         initializeGenderTableContent(genderRepository);
         initializeEquipmentTableContent(equipmentRepository);
         initializeBodyPartTableContent(bodyPartRepository);
         initializeExerciseTableContent(exerciseRepository);
+        initializeUsers(userRepository);
+        initializeTraining(trainingRepository);
     }
 
     private void initializeExerciseSchemeTableContent(ExerciseSchemeRepository exerciseSchemeRepository) {
@@ -38,8 +47,8 @@ public class DBConstantsInitializer {
     }
 
     private void initializeGenderTableContent(GenderRepository genderRepository){
-        genderRepository.save(new Gender("male"));
-        genderRepository.save(new Gender("female"));
+        genderRepository.save(maleGender);
+        genderRepository.save(femaleGender);
     }
 
     private void initializeEquipmentTableContent(EquipmentRepository equipmentRepository ){
@@ -89,6 +98,32 @@ public class DBConstantsInitializer {
         pullUps.setBodyPart(backBodyPart);
         pullUps.setExerciseScheme(upperBodyExScheme);
         exerciseRepository.save(pullUps);
+    }
+
+    private void initializeUsers(UserRepository userRepository) {
+        User mihuUser = new User("Mihu", "the mihu", 88.5, false);
+        mihuUser.setBirthDate(new Date(75, 8, 10));
+        mihuUser.setGender(maleGender);
+        userRepository.save(mihuUser);
+
+        User krzychuUser = new User("Krzychu", "duży krzychu", 85, false);
+        krzychuUser.setBirthDate(new Date(90, 3, 12));
+        krzychuUser.setGender(maleGender);
+        userRepository.save(krzychuUser);
+
+        User jodlaUser = new User("Jodla", "scrum maestro", 75, true);
+        jodlaUser.setBirthDate(new Date(87, 5, 21));
+        jodlaUser.setGender(maleGender);
+        userRepository.save(jodlaUser);
+
+        User zosiaUser = new User("Zosia", "zocha", 62, false);
+        zosiaUser.setBirthDate(new Date(91, 11, 11));
+        zosiaUser.setGender(femaleGender);
+        userRepository.save(zosiaUser);
+    }
+
+    private void initializeTraining(TrainingRepository trainingRepository) {
+
     }
 
 

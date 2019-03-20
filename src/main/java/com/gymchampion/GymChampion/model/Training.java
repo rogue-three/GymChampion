@@ -43,6 +43,11 @@ public class Training {
         this.userWeight = userWeight;
     }
 
+    public Training(double userWeight, boolean archivized) {
+        this.userWeight = userWeight;
+        this.archivized = archivized;
+    }
+
     public int getTrainingId() { return this.trainingId; }
 
     public void setTrainingId(int trainingId) { this.trainingId = trainingId; }
