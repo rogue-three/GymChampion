@@ -1,13 +1,7 @@
 package com.gymchampion.GymChampion.service;
 
-import com.gymchampion.GymChampion.model.BodyPart;
-import com.gymchampion.GymChampion.model.Equipment;
-import com.gymchampion.GymChampion.model.Exercise;
-import com.gymchampion.GymChampion.model.Gender;
-import com.gymchampion.GymChampion.repository.BodyPartRepository;
-import com.gymchampion.GymChampion.repository.EquipmentRepository;
-import com.gymchampion.GymChampion.repository.ExerciseRepository;
-import com.gymchampion.GymChampion.repository.GenderRepository;
+import com.gymchampion.GymChampion.model.*;
+import com.gymchampion.GymChampion.repository.*;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -15,17 +9,29 @@ public class DBConstantsInitializer {
 
     private Equipment barbellEquipment = new Equipment("barbell");
 
+    private BodyPart chestBodyPart = new BodyPart("chest");
+    private BodyPart quadsBodyPart = new BodyPart("quads");
+
+    private ExerciseScheme upperBodyExScheme = new ExerciseScheme("upper body");
+    private ExerciseScheme lowerBodyExScheme = new ExerciseScheme("lower body");
+
     public DBConstantsInitializer(GenderRepository genderRepository,
+                                  ExerciseSchemeRepository exerciseSchemeRepository,
                                   EquipmentRepository equipmentRepository,
                                   BodyPartRepository bodyPartRepository,
                                   ExerciseRepository exerciseRepository) {
 
+        initializeExerciseSchemeTableContent(exerciseSchemeRepository);
         initializeGenderTableContent(genderRepository);
         initializeEquipmentTableContent(equipmentRepository);
         initializeBodyPartTableContent(bodyPartRepository);
-
+        initializeExerciseTableContent(exerciseRepository);
     }
 
+    private void initializeExerciseSchemeTableContent(ExerciseSchemeRepository exerciseSchemeRepository) {
+        exerciseSchemeRepository.save(upperBodyExScheme);
+        exerciseSchemeRepository.save(lowerBodyExScheme);
+    }
 
     private void initializeGenderTableContent(GenderRepository genderRepository){
         genderRepository.save(new Gender("male"));
@@ -42,19 +48,24 @@ public class DBConstantsInitializer {
     private void initializeBodyPartTableContent(BodyPartRepository bodyPartRepository) {
         bodyPartRepository.save(new BodyPart("shoulders"));
         bodyPartRepository.save(new BodyPart("back"));
-        bodyPartRepository.save(new BodyPart("chest"));
-        bodyPartRepository.save(new BodyPart("quads"));
+        bodyPartRepository.save(chestBodyPart);
+        bodyPartRepository.save(quadsBodyPart);
         bodyPartRepository.save(new BodyPart("hams"));
         bodyPartRepository.save(new BodyPart("arms"));
         bodyPartRepository.save(new BodyPart("calves"));
     }
 
     private void initializeExerciseTableContent(ExerciseRepository exerciseRepository) {
-        Exercise barbellBenchPress = new Exercise("barbellBenchPress", 500, 500d);
+        Exercise barbellBenchPress = new Exercise("barbell bench press", 500, 500d);
         barbellBenchPress.setEquipment(barbellEquipment);
-        barbellBenchPress.setBodyPart();
-        barbellBenchPress.setExerciseScheme();
+        barbellBenchPress.setBodyPart(chestBodyPart);
+        barbellBenchPress.setExerciseScheme(upperBodyExScheme);
+        exerciseRepository.save(barbellBenchPress);
 
+        Exercise squats = new Exercise("squats", 500, 300d);
+        barbellBenchPress.setEquipment(barbellEquipment);
+        barbellBenchPress.setBodyPart(quadsBodyPart);
+        barbellBenchPress.setExerciseScheme(lowerBodyExScheme);
         exerciseRepository.save(barbellBenchPress);
     }
 
