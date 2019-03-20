@@ -33,15 +33,15 @@ public class Exercise {
     private double maxWeight;
 
     @OneToOne
-    @Column(name = "body_part", nullable = false)
+//    @Column(name = "body_part", nullable = false)
     private BodyPart bodyPart;
 
     @OneToOne
-    @Column(name = "equipment", nullable = false)
+//    @Column(name = "equipment", nullable = false)
     private Equipment equipment;
 
     @OneToOne
-    @Column(name = "exercise_scheme", nullable = false)
+//    @Column(name = "exercise_scheme", nullable = false)
     private ExerciseScheme exerciseScheme;
 
     public int getExerciseId() {

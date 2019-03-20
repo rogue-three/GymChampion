@@ -24,4 +24,20 @@ public class ExerciseScheme {
     // scheme name is UpperBody and LowerBody
     @Column(nullable = false)
     private String schemeName;
+
+    public int getExerciseSchemeId() {
+        return exerciseSchemeId;
+    }
+
+    public void setExerciseSchemeId(int exerciseSchemeId) {
+        this.exerciseSchemeId = exerciseSchemeId;
+    }
+
+    public String getSchemeName() {
+        return schemeName;
+    }
+
+    public void setSchemeName(String schemeName) {
+        this.schemeName = schemeName;
+    }
 }
