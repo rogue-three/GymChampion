@@ -1,5 +1,7 @@
 package com.gymchampion.GymChampion.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -9,13 +11,14 @@ public class BodyPart {
 
     @Id
     @Column(name = "body_part_id")
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int bodyPartId;
 
     @Column(name = "body_part_name", nullable = false, length = 20)
     private String bodyPartName;
 
     @OneToMany(mappedBy = "bodyPart", cascade = CascadeType.ALL)
+    @JsonIgnore
     private List<Exercise> exercises;
 
     public BodyPart() {}

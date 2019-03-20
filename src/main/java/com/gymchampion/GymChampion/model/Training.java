@@ -11,7 +11,7 @@ public class Training {
 
     @Id
     @Column(name = "training_id")
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int trainingId;
 
     @Column(name = "training_date", nullable = false)

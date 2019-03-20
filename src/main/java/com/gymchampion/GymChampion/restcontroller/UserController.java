@@ -33,22 +33,22 @@ public class UserController {
         return this.userService.getUser(login);
     }
 
-    @PutMapping("/nickname/")
+    @PutMapping("/nickname")
     public void setUserNickname(@RequestBody User user) {
         this.userService.setUserNickname(user);
     }
 
-    @PutMapping("/birthdate/")
+    @PutMapping("/birthdate")
     public void setUserBirthdate(@RequestBody User user) {
         this.userService.setUserBirthdate(user);
     }
 
-    @PutMapping("/gender/")
+    @PutMapping("/gender")
     public void setUserGender(@RequestBody User user) {
         this.userService.setUserGender(user);
     }
 
-    @PutMapping("/weight/")
+    @PutMapping("/weight")
     public void setUserWeight(@RequestBody User user) {
         this.userService.setUserWeight(user);
     }

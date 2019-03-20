@@ -1,5 +1,7 @@
 package com.gymchampion.GymChampion.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Date;
@@ -23,7 +25,7 @@ public class User {
     @Column(name = "weight")
     private double weight;
 
-    @Column(name = "archivized", columnDefinition = "false")
+    @Column(name = "archivized")
     private boolean archivized;
 
     @ManyToOne

@@ -1,5 +1,7 @@
 package com.gymchampion.GymChampion.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -9,7 +11,7 @@ public class Exercise {
 
     @Id
     @Column(name = "exercise_id")
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int exerciseId;
 
     @Column(name = "exercise_name", length = 20, unique = true, nullable = false)
@@ -22,6 +24,7 @@ public class Exercise {
     private double maxWeight;
 
     @OneToMany(mappedBy = "exercise")
+    @JsonIgnore
     private List<SetScheme> setSchemes;
 
     @ManyToOne

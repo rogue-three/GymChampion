@@ -8,7 +8,7 @@ public class LoginData {
 
     @Id
     @Column(name = "login_id")
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int loginId;
 
     @Column(name = "password", nullable = false, length = 20)
