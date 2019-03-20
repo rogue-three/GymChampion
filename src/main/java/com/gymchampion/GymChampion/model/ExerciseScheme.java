@@ -9,7 +9,7 @@ public class ExerciseScheme {
 
     @Id
     @Column(name = "exercise_scheme_id")
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int exerciseSchemeId;
 
     @Column(name = "exercise_scheme_name", nullable = false, length = 20)

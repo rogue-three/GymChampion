@@ -9,7 +9,7 @@ public class BodyPart {
 
     @Id
     @Column(name = "body_part_id")
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int bodyPartId;
 
     @Column(name = "body_part_name", nullable = false, length = 20)

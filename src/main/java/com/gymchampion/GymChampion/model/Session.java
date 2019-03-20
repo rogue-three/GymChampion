@@ -9,7 +9,7 @@ public class Session {
 
     @Id
     @Column(name = "session_id")
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int sessionId;
 
     @Column(name = "session_key", nullable = false)

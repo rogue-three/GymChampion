@@ -9,7 +9,7 @@ public class SetScheme {
 
     @Id
     @Column(name = "set_scheme_id")
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int setSchemeId;
 
     @Column(name = "reps", nullable = false)

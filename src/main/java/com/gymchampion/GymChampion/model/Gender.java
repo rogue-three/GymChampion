@@ -10,7 +10,7 @@ public class Gender {
 
     @Id
     @Column(name = "gender_id")
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int genderId;
 
     @Column(name="sex", nullable = false, length = 15)
