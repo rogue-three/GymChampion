@@ -111,7 +111,7 @@ public class DBConstantsInitializer {
         krzychuUser.setGender(maleGender);
         userRepository.save(krzychuUser);
 
-        User jodlaUser = new User("Jodla", "scrum maestro", 75, true);
+        User jodlaUser = new User("Jodla", "scrum maestro", 75, false);
         jodlaUser.setBirthDate(new Date(87, 5, 21));
         jodlaUser.setGender(maleGender);
         userRepository.save(jodlaUser);
@@ -121,9 +121,63 @@ public class DBConstantsInitializer {
         zosiaUser.setGender(femaleGender);
         userRepository.save(zosiaUser);
     }
-
+//TODO change data format to timestamp
     private void initializeTraining(TrainingRepository trainingRepository) {
+        Training tr001 = new Training(false);
+        tr001.setTrainingDate(new Date(2019, 2, 20));
+        trainingRepository.save(tr001);
 
+        Training tr002 = new Training(false);
+        tr002.setTrainingDate(new Date(2019, 2, 22));
+        trainingRepository.save(tr002);
+
+        Training tr003 = new Training(false);
+        tr003.setTrainingDate(new Date(2019, 2, 24));
+        trainingRepository.save(tr003);
+
+        Training tr004 = new Training(false);
+        tr004.setTrainingDate(new Date(2019, 2, 25));
+        trainingRepository.save(tr004);
+
+        Training tr005 = new Training(false);
+        tr005.setTrainingDate(new Date(2019, 2, 26));
+        trainingRepository.save(tr005);
+
+        Training tr006 = new Training(false);
+        tr006.setTrainingDate(new Date(2019, 1, 12));
+        trainingRepository.save(tr006);
+
+        Training tr007 = new Training(false);
+        tr007.setTrainingDate(new Date(2019, 1, 13));
+        trainingRepository.save(tr007);
+
+        Training tr008 = new Training(false);
+        tr008.setTrainingDate(new Date(2019, 1, 14));
+        trainingRepository.save(tr008);
+
+        Training tr009 = new Training(false);
+        tr009.setTrainingDate(new Date(2019, 1, 20));
+        trainingRepository.save(tr009);
+
+        Training tr010 = new Training(false);
+        tr010.setTrainingDate(new Date(2019, 3, 11));
+        trainingRepository.save(tr010);
+
+        Training tr011 = new Training(false);
+        tr011.setTrainingDate(new Date(2019, 3, 12));
+        trainingRepository.save(tr011);
+
+        Training tr012 = new Training(false);
+        tr012.setTrainingDate(new Date(2019, 3, 13));
+        trainingRepository.save(tr012);
+
+        Training tr013 = new Training(false);
+        tr013.setTrainingDate(new Date(2019, 3, 14));
+        trainingRepository.save(tr013);
+
+        Training tr014 = new Training(false);
+        tr014.setTrainingDate(new Date(2019, 3, 15));
+        trainingRepository.save(tr014);
     }
 
 

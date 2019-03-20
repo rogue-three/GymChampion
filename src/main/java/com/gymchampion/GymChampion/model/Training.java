@@ -43,8 +43,7 @@ public class Training {
         this.userWeight = userWeight;
     }
 
-    public Training(double userWeight, boolean archivized) {
-        this.userWeight = userWeight;
+    public Training(boolean archivized) {
         this.archivized = archivized;
     }
 
