@@ -15,7 +15,7 @@ public class Equipment {
     @Column(name = "equipment_name", length = 30, nullable = false)
     private String equipmentName;
 
-    @OneToMany(mappedBy = "equipment", cascade = CascadeType.REMOVE)
+    @OneToMany(mappedBy = "equipment", cascade = CascadeType.ALL)
     private List<Exercise> exercises;
 
     public Equipment() {}

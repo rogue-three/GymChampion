@@ -27,7 +27,7 @@ public class Training {
     @ManyToMany(mappedBy = "trainings")
     private List<User> users = new ArrayList<>();
 
-    @ManyToMany(cascade = CascadeType.REMOVE)
+    @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
             name = "training_set_scheme",
             joinColumns = { @JoinColumn(name = "training_id") },

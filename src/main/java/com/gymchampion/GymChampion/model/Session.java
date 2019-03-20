@@ -22,7 +22,7 @@ public class Session {
     @Column(name = "active", nullable = false)
     private boolean active;
 
-    @ManyToOne(cascade = CascadeType.REMOVE)
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_login")
     private User user;
 
