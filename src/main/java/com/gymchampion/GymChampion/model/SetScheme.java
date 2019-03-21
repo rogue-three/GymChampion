@@ -9,7 +9,7 @@ public class SetScheme {
 
     @Id
     @Column(name = "set_scheme_id")
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int setSchemeId;
 
     @Column(name = "reps", nullable = false)
@@ -18,8 +18,9 @@ public class SetScheme {
     @Column(name = "weight", nullable = false)
     private double weight;
 
-    @ManyToMany(mappedBy = "setSchemes")
-    private List<Training> trainings;
+    @ManyToOne
+    @JoinColumn(name = "training_id")
+    private Training training;
 
     @ManyToOne
     @JoinColumn(name = "exercise_id")
@@ -44,9 +45,9 @@ public class SetScheme {
 
     public void setWeight(double weight) { this.weight = weight; }
 
-    public List<Training> getTrainings() { return this.trainings; }
+    public Training getTraining() { return this.training; }
 
-    public void setTrainings(List<Training> trainings) { this.trainings = trainings; }
+    public void setTraining(Training training) { this.training = training; }
 
     public Exercise getExercise() { return this.exercise; }
 

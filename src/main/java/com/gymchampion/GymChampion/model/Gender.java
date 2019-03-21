@@ -1,5 +1,7 @@
 package com.gymchampion.GymChampion.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -10,13 +12,14 @@ public class Gender {
 
     @Id
     @Column(name = "gender_id")
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int genderId;
 
     @Column(name="sex", nullable = false, length = 15)
     private String sex;
 
     @OneToMany(mappedBy = "gender")
+    @JsonIgnore
     private List<User> users = new ArrayList<>();
 
     public Gender() {}

@@ -1,5 +1,7 @@
 package com.gymchampion.GymChampion.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Date;
@@ -33,12 +35,7 @@ public class User {
     @OneToMany(mappedBy = "user")
     private List<Session> sessions;
 
-    @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(
-            name = "gym_user_training",
-            joinColumns = { @JoinColumn(name = "user_login") },
-            inverseJoinColumns = { @JoinColumn(name = "training_id") }
-    )
+    @OneToMany(mappedBy = "user")
     private List<Training> trainings = new ArrayList<>();
 
     public User() {}
