@@ -32,7 +32,7 @@ public class LoginDataController {
     }
 
     @DeleteMapping
-    public LoginData removeLoginData(@RequestBody LoginData loginData) {
-        return this.loginDataService.removeLoginData(loginData);
+    public void removeLoginData(@RequestBody LoginData loginData) {
+        this.loginDataService.removeLoginData(loginData);
     }
 }
