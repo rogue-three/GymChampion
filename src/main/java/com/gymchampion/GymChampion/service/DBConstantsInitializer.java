@@ -9,14 +9,14 @@ import java.util.Date;
 @Component
 public class DBConstantsInitializer {
 
-    private ExerciseScheme upperBodyExScheme = new ExerciseScheme("upper body");
-    private ExerciseScheme lowerBodyExScheme = new ExerciseScheme("lower body");
+    private ExerciseScheme upperBodyExScheme = new ExerciseScheme("upper_body");
+    private ExerciseScheme lowerBodyExScheme = new ExerciseScheme("lower_body");
 
     private Gender maleGender = new Gender("male");
     private Gender femaleGender = new Gender("female");
 
     private Equipment barbellEquipment = new Equipment("barbell");
-    private Equipment noEquipmentEquipment = new Equipment("no equipment");
+    private Equipment noEquipmentEquipment = new Equipment("no_equipment");
 
     private BodyPart chestBodyPart = new BodyPart("chest");
     private BodyPart quadsBodyPart = new BodyPart("quads");
@@ -97,7 +97,7 @@ public class DBConstantsInitializer {
     }
 
     private void initializeExerciseTableContent(ExerciseRepository exerciseRepository) {
-        barbellBenchPress = new Exercise("barbell bench press", 500, 500d);
+        barbellBenchPress = new Exercise("barbell_bench_press", 500, 500d);
         barbellBenchPress.setEquipment(barbellEquipment);
         barbellBenchPress.setBodyPart(chestBodyPart);
         barbellBenchPress.setExerciseScheme(upperBodyExScheme);
@@ -109,19 +109,19 @@ public class DBConstantsInitializer {
         squats.setExerciseScheme(lowerBodyExScheme);
         exerciseRepository.save(squats);
 
-        militaryPress = new Exercise("military press", 500, 300d);
+        militaryPress = new Exercise("military_press", 500, 300d);
         militaryPress.setEquipment(barbellEquipment);
         militaryPress.setBodyPart(shouldersBodyPart);
         militaryPress.setExerciseScheme(upperBodyExScheme);
         exerciseRepository.save(militaryPress);
 
-        deadLift = new Exercise("dead lift", 500, 800d);
+        deadLift = new Exercise("dead_lift", 500, 800d);
         deadLift.setEquipment(barbellEquipment);
         deadLift.setBodyPart(hamstringsBodyPart);
         deadLift.setExerciseScheme(lowerBodyExScheme);
         exerciseRepository.save(deadLift);
 
-        pullUps = new Exercise("pull ups", 200, 200d);
+        pullUps = new Exercise("pull_ups", 200, 200d);
         pullUps.setEquipment(noEquipmentEquipment);
         pullUps.setBodyPart(backBodyPart);
         pullUps.setExerciseScheme(upperBodyExScheme);
@@ -129,17 +129,17 @@ public class DBConstantsInitializer {
     }
 
     private void initializeUsers(UserRepository userRepository) {
-        mihuUser = new User("Mihu", "the mihu", 88.5, false);
+        mihuUser = new User("Mihu", "the_mihu", 88.5, false);
         mihuUser.setBirthDate(new Date(176892927000L));
         mihuUser.setGender(maleGender);
         userRepository.save(mihuUser);
 
-        krzychuUser = new User("Krzychu", "duży krzychu", 85, false);
+        krzychuUser = new User("Krzychu", "duży_krzychu", 85, false);
         krzychuUser.setBirthDate(new Date(655721727000L));
         krzychuUser.setGender(maleGender);
         userRepository.save(krzychuUser);
 
-        jodlaUser = new User("Jodla", "scrum maestro", 75, false);
+        jodlaUser = new User("Jodla", "scrum_maestro", 75, false);
         jodlaUser.setBirthDate(new Date(536748927000L));
         jodlaUser.setGender(maleGender);
         userRepository.save(jodlaUser);
@@ -324,8 +324,7 @@ public class DBConstantsInitializer {
         set4Tr1KrzychuChest.setTraining(tr005);
         set4Tr1KrzychuChest.setExercise(barbellBenchPress);
         setSchemeRepository.save(set4Tr1KrzychuChest);
-
-
+        
         // Krzychu training 2
         SetScheme set1Tr2KrzychuBack = new SetScheme(7, 0);
         set1Tr2KrzychuBack.setTraining(tr006);
@@ -341,7 +340,6 @@ public class DBConstantsInitializer {
         set1Tr2KrzychuQuads.setTraining(tr006);
         set1Tr2KrzychuQuads.setExercise(squats);
         setSchemeRepository.save(set1Tr2KrzychuQuads);
-
 
         // Krzychu training 3
         SetScheme set1Tr3KrzychuChest = new SetScheme(10, 70);
@@ -363,7 +361,6 @@ public class DBConstantsInitializer {
         set4Tr3KrzychuChest.setTraining(tr007);
         set4Tr3KrzychuChest.setExercise(barbellBenchPress);
         setSchemeRepository.save(set4Tr3KrzychuChest);
-
 
     }
 
