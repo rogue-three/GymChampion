@@ -1,5 +1,6 @@
 package com.gymchampion.GymChampion.restcontroller;
 
+import com.gymchampion.GymChampion.model.SetScheme;
 import com.gymchampion.GymChampion.model.Training;
 import com.gymchampion.GymChampion.service.TrainingService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,5 +52,10 @@ public class TrainingController {
     @PutMapping("/user_weight/{id}")
     public void setTrainingUserWeight(@RequestBody Training training, @PathVariable("id") int id) {
         this.trainingService.setTrainingUserWeight(training, id);
+    }
+
+    @PutMapping("/set_schemes/{id}")
+    public void setTrainingSetSchemes(@RequestBody Training training, @PathVariable("id") int id) {
+        this.trainingService.setTrainingSetSchemes(training, id);
     }
 }

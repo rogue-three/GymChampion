@@ -1,5 +1,6 @@
 package com.gymchampion.GymChampion.service;
 
+import com.gymchampion.GymChampion.model.SetScheme;
 import com.gymchampion.GymChampion.model.Training;
 import com.gymchampion.GymChampion.repository.TrainingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,6 +53,14 @@ public class TrainingService {
         Optional<Training> optionalTraining = this.trainingRepository.findById(id);
         if (optionalTraining.isPresent()) {
             training.setUserWeight(optionalTraining.get().getUserWeight());
+        }
+        this.trainingRepository.save(training);
+    }
+
+    public void setTrainingSetSchemes(Training training, int id) {
+        Optional<Training> optionalTraining = this.trainingRepository.findById(id);
+        if (optionalTraining.isPresent()) {
+            training.getSetSchemes().addAll(optionalTraining.get().getSetSchemes());
         }
         this.trainingRepository.save(training);
     }
