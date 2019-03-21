@@ -1,6 +1,5 @@
 package com.gymchampion.GymChampion.restcontroller;
 
-import com.gymchampion.GymChampion.model.SetScheme;
 import com.gymchampion.GymChampion.model.Training;
 import com.gymchampion.GymChampion.service.TrainingService;
 import org.springframework.beans.factory.annotation.Autowired;
