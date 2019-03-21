@@ -266,9 +266,105 @@ public class DBConstantsInitializer {
 
 
         // MIHU training 3
+        SetScheme set1Tr3MihuChest = new SetScheme(10, 55);
+        set1Tr3MihuChest.setTraining(tr003);
+        set1Tr3MihuChest.setExercise(barbellBenchPress);
+        setSchemeRepository.save(set1Tr3MihuChest);
 
+        SetScheme set2Tr3MihuChest = new SetScheme(10, 70);
+        set2Tr3MihuChest.setTraining(tr003);
+        set2Tr3MihuChest.setExercise(barbellBenchPress);
+        setSchemeRepository.save(set2Tr3MihuChest);
+
+        SetScheme set3Tr3MihuChest = new SetScheme(9, 85);
+        set3Tr3MihuChest.setTraining(tr003);
+        set3Tr3MihuChest.setExercise(barbellBenchPress);
+        setSchemeRepository.save(set3Tr3MihuChest);
+
+        SetScheme set4Tr3MihuChest = new SetScheme(3, 95);
+        set4Tr3MihuChest.setTraining(tr003);
+        set4Tr3MihuChest.setExercise(barbellBenchPress);
+        setSchemeRepository.save(set4Tr3MihuChest);
 
         // MIHU training 4
+        SetScheme set1Tr4MihuBack = new SetScheme(15, 0);
+        set1Tr4MihuBack.setTraining(tr004);
+        set1Tr4MihuBack.setExercise(pullUps);
+        setSchemeRepository.save(set1Tr4MihuBack);
+
+        SetScheme set2Tr4MihuShoulders = new SetScheme(10, 30);
+        set2Tr4MihuShoulders.setTraining(tr004);
+        set2Tr4MihuShoulders.setExercise(militaryPress);
+        setSchemeRepository.save(set2Tr4MihuShoulders);
+
+        SetScheme set1Tr4MihuQuads = new SetScheme(5, 100);
+        set1Tr4MihuQuads.setTraining(tr004);
+        set1Tr4MihuQuads.setExercise(squats);
+        setSchemeRepository.save(set1Tr4MihuQuads);
+
+
+
+        // Krzychu training 1
+        SetScheme set1Tr1KrzychuChest = new SetScheme(10, 55);
+        set1Tr1KrzychuChest.setTraining(tr005);
+        set1Tr1KrzychuChest.setExercise(barbellBenchPress);
+        setSchemeRepository.save(set1Tr1KrzychuChest);
+
+        SetScheme set2Tr1KrzychuChest = new SetScheme(8, 90);
+        set2Tr1KrzychuChest.setTraining(tr005);
+        set2Tr1KrzychuChest.setExercise(barbellBenchPress);
+        setSchemeRepository.save(set2Tr1KrzychuChest);
+
+        SetScheme set3Tr1KrzychuChest = new SetScheme(3, 120);
+        set3Tr1KrzychuChest.setTraining(tr005);
+        set3Tr1KrzychuChest.setExercise(barbellBenchPress);
+        setSchemeRepository.save(set3Tr1KrzychuChest);
+
+        SetScheme set4Tr1KrzychuChest = new SetScheme(15, 60);
+        set4Tr1KrzychuChest.setTraining(tr005);
+        set4Tr1KrzychuChest.setExercise(barbellBenchPress);
+        setSchemeRepository.save(set4Tr1KrzychuChest);
+
+
+        // Krzychu training 2
+        SetScheme set1Tr2KrzychuBack = new SetScheme(7, 0);
+        set1Tr2KrzychuBack.setTraining(tr006);
+        set1Tr2KrzychuBack.setExercise(pullUps);
+        setSchemeRepository.save(set1Tr2KrzychuBack);
+
+        SetScheme set2Tr2KrzychuBack = new SetScheme(8, 0);
+        set2Tr2KrzychuBack.setTraining(tr006);
+        set2Tr2KrzychuBack.setExercise(pullUps);
+        setSchemeRepository.save(set2Tr2KrzychuBack);
+
+        SetScheme set1Tr2KrzychuQuads = new SetScheme(10, 120);
+        set1Tr2KrzychuQuads.setTraining(tr006);
+        set1Tr2KrzychuQuads.setExercise(squats);
+        setSchemeRepository.save(set1Tr2KrzychuQuads);
+
+
+        // Krzychu training 3
+        SetScheme set1Tr3KrzychuChest = new SetScheme(10, 70);
+        set1Tr3KrzychuChest.setTraining(tr007);
+        set1Tr3KrzychuChest.setExercise(barbellBenchPress);
+        setSchemeRepository.save(set1Tr3KrzychuChest);
+
+        SetScheme set2Tr3KrzychuChest = new SetScheme(3, 100);
+        set2Tr3KrzychuChest.setTraining(tr007);
+        set2Tr3KrzychuChest.setExercise(barbellBenchPress);
+        setSchemeRepository.save(set2Tr3KrzychuChest);
+
+        SetScheme set3Tr3KrzychuChest = new SetScheme(1, 135);
+        set3Tr3KrzychuChest.setTraining(tr007);
+        set3Tr3KrzychuChest.setExercise(barbellBenchPress);
+        setSchemeRepository.save(set3Tr3KrzychuChest);
+
+        SetScheme set4Tr3KrzychuChest = new SetScheme(5, 95);
+        set4Tr3KrzychuChest.setTraining(tr007);
+        set4Tr3KrzychuChest.setExercise(barbellBenchPress);
+        setSchemeRepository.save(set4Tr3KrzychuChest);
+
+
     }
 
 }
