@@ -19,8 +19,8 @@ public class UserController {
     }
 
     @PostMapping
-    public void addUser(@RequestBody User user) {
-        this.userService.addUser(user);
+    public User addUser(@RequestBody User user) {
+        return this.userService.addUser(user);
     }
 
     @GetMapping
@@ -34,28 +34,28 @@ public class UserController {
     }
 
     @PutMapping("/nickname")
-    public void setUserNickname(@RequestBody User user) {
-        this.userService.setUserNickname(user);
+    public User setUserNickname(@RequestBody User user) {
+        return this.userService.setUserNickname(user);
     }
 
     @PutMapping("/birthdate")
-    public void setUserBirthdate(@RequestBody User user) {
-        this.userService.setUserBirthdate(user);
+    public User setUserBirthdate(@RequestBody User user) {
+        return this.userService.setUserBirthdate(user);
     }
 
     @PutMapping("/gender")
-    public void setUserGender(@RequestBody User user) {
-        this.userService.setUserGender(user);
+    public User setUserGender(@RequestBody User user) {
+        return this.userService.setUserGender(user);
     }
 
     @PutMapping("/weight")
-    public void setUserWeight(@RequestBody User user) {
-        this.userService.setUserWeight(user);
+    public User setUserWeight(@RequestBody User user) {
+        return this.userService.setUserWeight(user);
     }
 
     @PutMapping("/archivize/{login}")
-    public void archivizeUser(@PathVariable("login") String login) {
-        this.userService.archivizeUser(login);
+    public User archivizeUser(@PathVariable("login") String login) {
+        return this.userService.archivizeUser(login);
     }
 
     @GetMapping("/active")
