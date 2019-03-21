@@ -1,6 +1,5 @@
 package com.gymchampion.GymChampion.restcontroller;
 
-import com.gymchampion.GymChampion.model.Exercise;
 import com.gymchampion.GymChampion.service.SetSchemeService;
 import com.gymchampion.GymChampion.model.SetScheme;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,13 +27,11 @@ public class SetSchemeController {
     @PostMapping
     public SetScheme saveScheme(@RequestBody SetScheme scheme) {
         return setSchemeService.addSchemeToRepository(scheme);
-
     }
 
     @GetMapping("/{training_id}")
     public List<SetScheme> getSchemeByTrainingId(@PathVariable("training_id") int trainingId) {
         return  setSchemeService.getSchemeByTrainingId(trainingId);
-
     }
 
     @GetMapping("/max/{login}/{exerciseId}")
