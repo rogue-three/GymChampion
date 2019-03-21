@@ -102,82 +102,83 @@ public class DBConstantsInitializer {
 
     private void initializeUsers(UserRepository userRepository) {
         User mihuUser = new User("Mihu", "the mihu", 88.5, false);
-        mihuUser.setBirthDate(new Date(75, 8, 10));
+        mihuUser.setBirthDate(new Date(176892927000L));
         mihuUser.setGender(maleGender);
         userRepository.save(mihuUser);
 
         User krzychuUser = new User("Krzychu", "duży krzychu", 85, false);
-        krzychuUser.setBirthDate(new Date(90, 3, 12));
+        krzychuUser.setBirthDate(new Date(655721727000L));
         krzychuUser.setGender(maleGender);
         userRepository.save(krzychuUser);
 
         User jodlaUser = new User("Jodla", "scrum maestro", 75, false);
-        jodlaUser.setBirthDate(new Date(87, 5, 21));
+        jodlaUser.setBirthDate(new Date(536748927000L));
         jodlaUser.setGender(maleGender);
         userRepository.save(jodlaUser);
 
         User zosiaUser = new User("Zosia", "zocha", 62, false);
-        zosiaUser.setBirthDate(new Date(91, 11, 11));
+        zosiaUser.setBirthDate(new Date(794566527000L));
         zosiaUser.setGender(femaleGender);
         userRepository.save(zosiaUser);
     }
 //TODO change data format to timestamp
     private void initializeTraining(TrainingRepository trainingRepository) {
         Training tr001 = new Training(false);
-        tr001.setTrainingDate(new Date(2019, 2, 20));
+        tr001.setTrainingDate(new Date(1546512327000L));
+
         trainingRepository.save(tr001);
 
 
         Training tr002 = new Training(false);
-        tr002.setTrainingDate(new Date(2019, 2, 22));
+        tr002.setTrainingDate(new Date(1547124927000L));
         trainingRepository.save(tr002);
 
         Training tr003 = new Training(false);
-        tr003.setTrainingDate(new Date(2019, 2, 24));
+        tr003.setTrainingDate(new Date(1547300727000L));
         trainingRepository.save(tr003);
 
         Training tr004 = new Training(false);
-        tr004.setTrainingDate(new Date(2019, 2, 25));
+        tr004.setTrainingDate(new Date(1547981127000L));
         trainingRepository.save(tr004);
 
         Training tr005 = new Training(false);
-        tr005.setTrainingDate(new Date(2019, 2, 26));
+        tr005.setTrainingDate(new Date(1547289927000L));
         trainingRepository.save(tr005);
 
         Training tr006 = new Training(false);
-        tr006.setTrainingDate(new Date(2019, 1, 12));
+        tr006.setTrainingDate(new Date(1547549127000L));
         trainingRepository.save(tr006);
 
         Training tr007 = new Training(false);
-        tr007.setTrainingDate(new Date(2019, 1, 13));
+        tr007.setTrainingDate(new Date(1550141127000L));
         trainingRepository.save(tr007);
 
         Training tr008 = new Training(false);
-        tr008.setTrainingDate(new Date(2019, 1, 14));
+        tr008.setTrainingDate(new Date(1549795527000L));
         trainingRepository.save(tr008);
 
         Training tr009 = new Training(false);
-        tr009.setTrainingDate(new Date(2019, 1, 20));
+        tr009.setTrainingDate(new Date(1547124927000L));
         trainingRepository.save(tr009);
 
         Training tr010 = new Training(false);
-        tr010.setTrainingDate(new Date(2019, 3, 11));
+        tr010.setTrainingDate(new Date(1550141127000L));
         trainingRepository.save(tr010);
 
         Training tr011 = new Training(false);
-        tr011.setTrainingDate(new Date(2019, 3, 12));
+        tr011.setTrainingDate(new Date(1549968327000L));
         trainingRepository.save(tr011);
 
         Training tr012 = new Training(false);
-        tr012.setTrainingDate(new Date(2019, 3, 13));
+        tr012.setTrainingDate(new Date(1547127927000L));
         trainingRepository.save(tr012);
 
         Training tr013 = new Training(false);
-        tr013.setTrainingDate(new Date(2019, 3, 14));
+        tr013.setTrainingDate(new Date(1547981127000L));
         trainingRepository.save(tr013);
 
         Training tr014 = new Training(false);
-        tr014.setTrainingDate(new Date(2019, 3, 15));
+        tr014.setTrainingDate(new Date(1549795527000L));
         trainingRepository.save(tr014);
     }
 
