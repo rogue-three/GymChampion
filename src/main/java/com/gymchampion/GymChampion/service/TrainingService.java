@@ -48,6 +48,14 @@ public class TrainingService {
         return this.trainingRepository.findTrainingsByUserLogin(login);
     }
 
+    public void setTrainingUserWeight(Training training, int id) {
+        Optional<Training> optionalTraining = this.trainingRepository.findById(id);
+        if (optionalTraining.isPresent()) {
+            training.setUserWeight(optionalTraining.get().getUserWeight());
+        }
+        this.trainingRepository.save(training);
+    }
+
 
 
 }

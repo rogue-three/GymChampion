@@ -47,4 +47,9 @@ public class TrainingController {
     public List<Training> getTrainingsByUserLogin(@PathVariable("login") String login) {
         return this.trainingService.getTrainingsByUserLogin(login);
     }
+
+    @PutMapping("/user_weight/{id}")
+    public void setTrainingUserWeight(@RequestBody Training training, @PathVariable("id") int id) {
+        this.trainingService.setTrainingUserWeight(training, id);
+    }
 }
