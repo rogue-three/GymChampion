@@ -20,7 +20,10 @@ public class TrainingService {
 
     public void addTraining(Training training) {
         double userWeight = training.getUser().getWeight();
-        training.setUserWeight(userWeight);
+
+        if (userWeight != 0.0) {
+            training.setUserWeight(userWeight);
+        }
         this.trainingRepository.save(training);
     }
 

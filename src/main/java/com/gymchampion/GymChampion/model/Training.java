@@ -1,5 +1,7 @@
 package com.gymchampion.GymChampion.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Date;
@@ -29,6 +31,7 @@ public class Training {
     private User user;
 
     @OneToMany(mappedBy = "training")
+    @JsonIgnore
     private List<SetScheme> setSchemes = new ArrayList<>();
 
     public Training() {}

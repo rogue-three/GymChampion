@@ -1,5 +1,7 @@
 package com.gymchampion.GymChampion.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Date;
@@ -31,9 +33,11 @@ public class User {
     private Gender gender;
 
     @OneToMany(mappedBy = "user")
+    @JsonIgnore
     private List<Session> sessions;
 
     @OneToMany(mappedBy = "user")
+    @JsonIgnore
     private List<Training> trainings = new ArrayList<>();
 
     public User() {}
