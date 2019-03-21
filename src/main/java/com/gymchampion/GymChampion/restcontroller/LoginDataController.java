@@ -1,7 +1,38 @@
 package com.gymchampion.GymChampion.restcontroller;
 
-import org.springframework.web.bind.annotation.RestController;
+import com.gymchampion.GymChampion.model.LoginData;
+import com.gymchampion.GymChampion.service.LoginDataService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
+@RequestMapping("/login_data")
 public class LoginDataController {
+
+    private LoginDataService loginDataService;
+
+    @Autowired
+    public LoginDataController(LoginDataService loginDataService) {
+        this.loginDataService = loginDataService;
+    }
+
+    @GetMapping("/id/{id}")
+    public LoginData getLoginDataById(@PathVariable("id") int id) {
+        return this.loginDataService.getLoginDataById(id);
+    }
+
+    @GetMapping("/login/{login}")
+    public LoginData getLoginDataByLogin(@PathVariable("login") String login) {
+        return this.loginDataService.getLoginDataByLogin(login);
+    }
+
+    @PostMapping
+    public LoginData addLoginData(@RequestBody LoginData loginData) {
+        return this.loginDataService.addLoginData(loginData);
+    }
+
+    @DeleteMapping
+    public LoginData removeLoginData(@RequestBody LoginData loginData) {
+        return this.loginDataService.removeLoginData(loginData);
+    }
 }
