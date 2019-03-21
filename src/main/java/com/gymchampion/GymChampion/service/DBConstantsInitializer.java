@@ -9,8 +9,6 @@ import java.util.Date;
 @Component
 public class DBConstantsInitializer {
 
-    private UserRepository userRepository;
-
     private ExerciseScheme upperBodyExScheme = new ExerciseScheme("upper body");
     private ExerciseScheme lowerBodyExScheme = new ExerciseScheme("lower body");
 
@@ -26,8 +24,31 @@ public class DBConstantsInitializer {
     private BodyPart hamstringsBodyPart = new BodyPart("hamstrings");
     private BodyPart backBodyPart = new BodyPart("back");
 
+    private Exercise barbellBenchPress;
+    private Exercise squats;
+    private Exercise militaryPress;
+    private Exercise deadLift;
+    private Exercise pullUps;
+
     private User mihuUser;
+    private User krzychuUser;
+    private User jodlaUser;
+    private User zosiaUser;
+
     private Training tr001;
+    private Training tr002;
+    private Training tr003;
+    private Training tr004;
+    private Training tr005;
+    private Training tr006;
+    private Training tr007;
+    private Training tr008;
+    private Training tr009;
+    private Training tr010;
+    private Training tr011;
+    private Training tr012;
+    private Training tr013;
+    private Training tr014;
 
     public DBConstantsInitializer(GenderRepository genderRepository,
                                   ExerciseSchemeRepository exerciseSchemeRepository,
@@ -35,9 +56,8 @@ public class DBConstantsInitializer {
                                   BodyPartRepository bodyPartRepository,
                                   ExerciseRepository exerciseRepository,
                                   UserRepository userRepository,
-                                  TrainingRepository trainingRepository) {
-
-        this.userRepository = userRepository;
+                                  TrainingRepository trainingRepository,
+                                  SetSchemeRepository setSchemeRepository) {
 
         initializeExerciseSchemeTableContent(exerciseSchemeRepository);
         initializeGenderTableContent(genderRepository);
@@ -46,6 +66,7 @@ public class DBConstantsInitializer {
         initializeExerciseTableContent(exerciseRepository);
         initializeUsers(userRepository);
         initializeTraining(trainingRepository);
+        initializeSetSchemeTable(setSchemeRepository);
     }
 
     private void initializeExerciseSchemeTableContent(ExerciseSchemeRepository exerciseSchemeRepository) {
@@ -76,31 +97,31 @@ public class DBConstantsInitializer {
     }
 
     private void initializeExerciseTableContent(ExerciseRepository exerciseRepository) {
-        Exercise barbellBenchPress = new Exercise("barbell bench press", 500, 500d);
+        barbellBenchPress = new Exercise("barbell bench press", 500, 500d);
         barbellBenchPress.setEquipment(barbellEquipment);
         barbellBenchPress.setBodyPart(chestBodyPart);
         barbellBenchPress.setExerciseScheme(upperBodyExScheme);
         exerciseRepository.save(barbellBenchPress);
 
-        Exercise squats = new Exercise("squats", 500, 500d);
+        squats = new Exercise("squats", 500, 500d);
         squats.setEquipment(barbellEquipment);
         squats.setBodyPart(quadsBodyPart);
         squats.setExerciseScheme(lowerBodyExScheme);
         exerciseRepository.save(squats);
 
-        Exercise militaryPress = new Exercise("military press", 500, 300d);
+        militaryPress = new Exercise("military press", 500, 300d);
         militaryPress.setEquipment(barbellEquipment);
         militaryPress.setBodyPart(shouldersBodyPart);
         militaryPress.setExerciseScheme(upperBodyExScheme);
         exerciseRepository.save(militaryPress);
 
-        Exercise deadLift = new Exercise("dead lift", 500, 800d);
+        deadLift = new Exercise("dead lift", 500, 800d);
         deadLift.setEquipment(barbellEquipment);
         deadLift.setBodyPart(hamstringsBodyPart);
         deadLift.setExerciseScheme(lowerBodyExScheme);
         exerciseRepository.save(deadLift);
 
-        Exercise pullUps = new Exercise("pull ups", 200, 200d);
+        pullUps = new Exercise("pull ups", 200, 200d);
         pullUps.setEquipment(noEquipmentEquipment);
         pullUps.setBodyPart(backBodyPart);
         pullUps.setExerciseScheme(upperBodyExScheme);
@@ -109,87 +130,145 @@ public class DBConstantsInitializer {
 
     private void initializeUsers(UserRepository userRepository) {
         mihuUser = new User("Mihu", "the mihu", 88.5, false);
-        mihuUser.setBirthDate(new Date(75, 8, 10));
+        mihuUser.setBirthDate(new Date(176892927000L));
         mihuUser.setGender(maleGender);
-//        userRepository.save(mihuUser);
+        userRepository.save(mihuUser);
 
-        User krzychuUser = new User("Krzychu", "duży krzychu", 85, false);
-        krzychuUser.setBirthDate(new Date(90, 3, 12));
+        krzychuUser = new User("Krzychu", "duży krzychu", 85, false);
+        krzychuUser.setBirthDate(new Date(655721727000L));
         krzychuUser.setGender(maleGender);
         userRepository.save(krzychuUser);
 
-        User jodlaUser = new User("Jodla", "scrum maestro", 75, false);
-        jodlaUser.setBirthDate(new Date(87, 5, 21));
+        jodlaUser = new User("Jodla", "scrum maestro", 75, false);
+        jodlaUser.setBirthDate(new Date(536748927000L));
         jodlaUser.setGender(maleGender);
         userRepository.save(jodlaUser);
 
-        User zosiaUser = new User("Zosia", "zocha", 62, false);
-        zosiaUser.setBirthDate(new Date(91, 11, 11));
+        zosiaUser = new User("Zosia", "zocha", 62, false);
+        zosiaUser.setBirthDate(new Date(794566527000L));
         zosiaUser.setGender(femaleGender);
         userRepository.save(zosiaUser);
     }
-//TODO change data format to timestamp
-    private void initializeTraining(TrainingRepository trainingRepository) {
-        tr001 = new Training(false);
-        tr001.setTrainingDate(new Date(2019, 2, 20));
-        //tr001.getUsers().add(mihuUser);
-        trainingRepository.save(tr001);
-        mihuUser.getTrainings().add(tr001);
-        userRepository.save(mihuUser);
 
-        Training tr002 = new Training(false);
-        tr002.setTrainingDate(new Date(2019, 2, 22));
+    private void initializeTraining(TrainingRepository trainingRepository) {
+
+        tr001 = new Training(false);
+        tr001.setTrainingDate(new Date(1546512327000L));
+        tr001.setUser(mihuUser);
+        trainingRepository.save(tr001);
+
+
+        tr002 = new Training(false);
+        tr002.setTrainingDate(new Date(1547124927000L));
+        tr002.setUser(mihuUser);
         trainingRepository.save(tr002);
 
-        Training tr003 = new Training(false);
-        tr003.setTrainingDate(new Date(2019, 2, 24));
+        tr003 = new Training(false);
+        tr003.setTrainingDate(new Date(1547300727000L));
+        tr003.setUser(mihuUser);
         trainingRepository.save(tr003);
 
-        Training tr004 = new Training(false);
-        tr004.setTrainingDate(new Date(2019, 2, 25));
+        tr004 = new Training(false);
+        tr004.setTrainingDate(new Date(1547991137000L));
+        tr004.setUser(mihuUser);
         trainingRepository.save(tr004);
 
-        Training tr005 = new Training(false);
-        tr005.setTrainingDate(new Date(2019, 2, 26));
+        tr005 = new Training(false);
+        tr005.setTrainingDate(new Date(1547289927000L));
+        tr005.setUser(krzychuUser);
         trainingRepository.save(tr005);
 
-        Training tr006 = new Training(false);
-        tr006.setTrainingDate(new Date(2019, 1, 12));
+        tr006 = new Training(false);
+        tr006.setTrainingDate(new Date(1547549127000L));
+        tr006.setUser(krzychuUser);
         trainingRepository.save(tr006);
 
-        Training tr007 = new Training(false);
-        tr007.setTrainingDate(new Date(2019, 1, 13));
+        tr007 = new Training(false);
+        tr007.setTrainingDate(new Date(1550141177000L));
+        tr007.setUser(krzychuUser);
         trainingRepository.save(tr007);
 
-        Training tr008 = new Training(false);
-        tr008.setTrainingDate(new Date(2019, 1, 14));
+        tr008 = new Training(false);
+        tr008.setTrainingDate(new Date(1549795527000L));
+        tr008.setUser(jodlaUser);
         trainingRepository.save(tr008);
 
-        Training tr009 = new Training(false);
-        tr009.setTrainingDate(new Date(2019, 1, 20));
+        tr009 = new Training(false);
+        tr009.setTrainingDate(new Date(1547124927000L));
+        tr009.setUser(jodlaUser);
         trainingRepository.save(tr009);
 
-        Training tr010 = new Training(false);
-        tr010.setTrainingDate(new Date(2019, 3, 11));
+        tr010 = new Training(false);
+        tr010.setTrainingDate(new Date(1550141127000L));
+        tr010.setUser(jodlaUser);
         trainingRepository.save(tr010);
 
-        Training tr011 = new Training(false);
-        tr011.setTrainingDate(new Date(2019, 3, 12));
+        tr011 = new Training(false);
+        tr011.setTrainingDate(new Date(1549968327000L));
+        tr011.setUser(jodlaUser);
         trainingRepository.save(tr011);
 
-        Training tr012 = new Training(false);
-        tr012.setTrainingDate(new Date(2019, 3, 13));
+        tr012 = new Training(false);
+        tr012.setTrainingDate(new Date(1547127927000L));
+        tr012.setUser(zosiaUser);
         trainingRepository.save(tr012);
 
-        Training tr013 = new Training(false);
-        tr013.setTrainingDate(new Date(2019, 3, 14));
+        tr013 = new Training(false);
+        tr013.setTrainingDate(new Date(1547981127000L));
+        tr013.setUser(zosiaUser);
         trainingRepository.save(tr013);
 
-        Training tr014 = new Training(false);
-        tr014.setTrainingDate(new Date(2019, 3, 15));
+        tr014 = new Training(false);
+        tr014.setTrainingDate(new Date(1549795527000L));
+        tr014.setUser(zosiaUser);
         trainingRepository.save(tr014);
     }
 
+    private void initializeSetSchemeTable(SetSchemeRepository setSchemeRepository) {
 
+        // MIHU training 1
+        SetScheme set1Tr1MihuChest = new SetScheme(12, 40);
+        set1Tr1MihuChest.setTraining(tr001);
+        set1Tr1MihuChest.setExercise(barbellBenchPress);
+        setSchemeRepository.save(set1Tr1MihuChest);
+
+        SetScheme set2Tr1MihuChest = new SetScheme(8, 60);
+        set2Tr1MihuChest.setTraining(tr001);
+        set2Tr1MihuChest.setExercise(barbellBenchPress);
+        setSchemeRepository.save(set2Tr1MihuChest);
+
+        SetScheme set3Tr1MihuChest = new SetScheme(8, 80);
+        set3Tr1MihuChest.setTraining(tr001);
+        set3Tr1MihuChest.setExercise(barbellBenchPress);
+        setSchemeRepository.save(set3Tr1MihuChest);
+
+        SetScheme set4Tr1MihuChest = new SetScheme(8, 80);
+        set4Tr1MihuChest.setTraining(tr001);
+        set4Tr1MihuChest.setExercise(barbellBenchPress);
+        setSchemeRepository.save(set4Tr1MihuChest);
+
+
+        // MIHU training 2
+        SetScheme set1Tr2MihuBack = new SetScheme(12, 0);
+        set1Tr2MihuBack.setTraining(tr002);
+        set1Tr2MihuBack.setExercise(pullUps);
+        setSchemeRepository.save(set1Tr2MihuBack);
+
+        SetScheme set2Tr2MihuBack = new SetScheme(10, 0);
+        set2Tr2MihuBack.setTraining(tr002);
+        set2Tr2MihuBack.setExercise(pullUps);
+        setSchemeRepository.save(set2Tr2MihuBack);
+
+        SetScheme set1Tr2MihuQuads = new SetScheme(10, 80);
+        set1Tr2MihuQuads.setTraining(tr002);
+        set1Tr2MihuQuads.setExercise(squats);
+        setSchemeRepository.save(set1Tr2MihuQuads);
+
+
+        // MIHU training 3
+
+
+        // MIHU training 4
+    }
 
 }
