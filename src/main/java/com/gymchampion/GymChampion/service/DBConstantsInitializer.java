@@ -132,7 +132,7 @@ public class DBConstantsInitializer {
     private void initializeTraining(TrainingRepository trainingRepository) {
         tr001 = new Training(false);
         tr001.setTrainingDate(new Date(2019, 2, 20));
-        tr001.getUsers().add(mihuUser);
+        //tr001.getUsers().add(mihuUser);
         trainingRepository.save(tr001);
         mihuUser.getTrainings().add(tr001);
         userRepository.save(mihuUser);

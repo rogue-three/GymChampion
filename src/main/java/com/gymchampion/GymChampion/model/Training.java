@@ -25,7 +25,7 @@ public class Training {
     private boolean archivized;
 
     @ManyToOne
-    @JoinColumn(name = "user_login")
+    @JoinColumn(name = "user_login", nullable = false)
     private User user;
 
     @OneToMany(mappedBy = "training")

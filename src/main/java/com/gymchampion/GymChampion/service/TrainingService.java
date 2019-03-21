@@ -1,6 +1,5 @@
 package com.gymchampion.GymChampion.service;
 
-import com.gymchampion.GymChampion.model.SetScheme;
 import com.gymchampion.GymChampion.model.Training;
 import com.gymchampion.GymChampion.repository.TrainingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +19,8 @@ public class TrainingService {
     }
 
     public void addTraining(Training training) {
+        double userWeight = training.getUser().getWeight();
+        training.setUserWeight(userWeight);
         this.trainingRepository.save(training);
     }
 
@@ -80,5 +81,4 @@ public class TrainingService {
     public int countTrainingsByUserLogin(String login) {
         return this.trainingRepository.findTrainingsByUserLogin(login).size();
     }
-
 }

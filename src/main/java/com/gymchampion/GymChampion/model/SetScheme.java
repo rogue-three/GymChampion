@@ -1,7 +1,6 @@
 package com.gymchampion.GymChampion.model;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Entity
 @Table(name = "set_scheme")
