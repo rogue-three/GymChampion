@@ -63,4 +63,9 @@ public class TrainingController {
     public void archivizeUser(@PathVariable("id")int id) {
         this.trainingService.archivizeTraining(id);
     }
+
+    @GetMapping("count/user/{login}")
+    public int countTrainingsByUserLogin(@PathVariable("login") String login) {
+        return this.trainingService.countTrainingsByUserLogin(login);
+    }
 }

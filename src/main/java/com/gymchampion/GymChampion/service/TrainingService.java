@@ -77,4 +77,8 @@ public class TrainingService {
         }
     }
 
+    public int countTrainingsByUserLogin(String login) {
+        return this.trainingRepository.findTrainingsByUserLogin(login).size();
+    }
+
 }
