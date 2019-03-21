@@ -35,13 +35,29 @@ public class DBConstantsInitializer {
     private User jodlaUser;
     private User zosiaUser;
 
+    private Training tr001;
+    private Training tr002;
+    private Training tr003;
+    private Training tr004;
+    private Training tr005;
+    private Training tr006;
+    private Training tr007;
+    private Training tr008;
+    private Training tr009;
+    private Training tr010;
+    private Training tr011;
+    private Training tr012;
+    private Training tr013;
+    private Training tr014;
+
     public DBConstantsInitializer(GenderRepository genderRepository,
                                   ExerciseSchemeRepository exerciseSchemeRepository,
                                   EquipmentRepository equipmentRepository,
                                   BodyPartRepository bodyPartRepository,
                                   ExerciseRepository exerciseRepository,
                                   UserRepository userRepository,
-                                  TrainingRepository trainingRepository) {
+                                  TrainingRepository trainingRepository,
+                                  SetSchemeRepository setSchemeRepository) {
 
         initializeExerciseSchemeTableContent(exerciseSchemeRepository);
         initializeGenderTableContent(genderRepository);
@@ -50,6 +66,7 @@ public class DBConstantsInitializer {
         initializeExerciseTableContent(exerciseRepository);
         initializeUsers(userRepository);
         initializeTraining(trainingRepository);
+        initializeSetSchemeTable(setSchemeRepository);
     }
 
     private void initializeExerciseSchemeTableContent(ExerciseSchemeRepository exerciseSchemeRepository) {
@@ -135,76 +152,123 @@ public class DBConstantsInitializer {
 
     private void initializeTraining(TrainingRepository trainingRepository) {
 
-        Training tr001 = new Training(false);
+        tr001 = new Training(false);
         tr001.setTrainingDate(new Date(1546512327000L));
         tr001.setUser(mihuUser);
         trainingRepository.save(tr001);
 
 
-        Training tr002 = new Training(false);
+        tr002 = new Training(false);
         tr002.setTrainingDate(new Date(1547124927000L));
         tr002.setUser(mihuUser);
         trainingRepository.save(tr002);
 
-        Training tr003 = new Training(false);
+        tr003 = new Training(false);
         tr003.setTrainingDate(new Date(1547300727000L));
         tr003.setUser(mihuUser);
         trainingRepository.save(tr003);
 
-        Training tr004 = new Training(false);
+        tr004 = new Training(false);
         tr004.setTrainingDate(new Date(1547991137000L));
         tr004.setUser(mihuUser);
         trainingRepository.save(tr004);
 
-        Training tr005 = new Training(false);
+        tr005 = new Training(false);
         tr005.setTrainingDate(new Date(1547289927000L));
         tr005.setUser(krzychuUser);
         trainingRepository.save(tr005);
 
-        Training tr006 = new Training(false);
+        tr006 = new Training(false);
         tr006.setTrainingDate(new Date(1547549127000L));
         tr006.setUser(krzychuUser);
         trainingRepository.save(tr006);
 
-        Training tr007 = new Training(false);
+        tr007 = new Training(false);
         tr007.setTrainingDate(new Date(1550141177000L));
         tr007.setUser(krzychuUser);
         trainingRepository.save(tr007);
 
-        Training tr008 = new Training(false);
+        tr008 = new Training(false);
         tr008.setTrainingDate(new Date(1549795527000L));
         tr008.setUser(jodlaUser);
         trainingRepository.save(tr008);
 
-        Training tr009 = new Training(false);
+        tr009 = new Training(false);
         tr009.setTrainingDate(new Date(1547124927000L));
         tr009.setUser(jodlaUser);
         trainingRepository.save(tr009);
 
-        Training tr010 = new Training(false);
+        tr010 = new Training(false);
         tr010.setTrainingDate(new Date(1550141127000L));
         tr010.setUser(jodlaUser);
         trainingRepository.save(tr010);
 
-        Training tr011 = new Training(false);
+        tr011 = new Training(false);
         tr011.setTrainingDate(new Date(1549968327000L));
         tr011.setUser(jodlaUser);
         trainingRepository.save(tr011);
 
-        Training tr012 = new Training(false);
+        tr012 = new Training(false);
         tr012.setTrainingDate(new Date(1547127927000L));
         tr012.setUser(zosiaUser);
         trainingRepository.save(tr012);
 
-        Training tr013 = new Training(false);
+        tr013 = new Training(false);
         tr013.setTrainingDate(new Date(1547981127000L));
         tr013.setUser(zosiaUser);
         trainingRepository.save(tr013);
 
-        Training tr014 = new Training(false);
+        tr014 = new Training(false);
         tr014.setTrainingDate(new Date(1549795527000L));
         tr014.setUser(zosiaUser);
         trainingRepository.save(tr014);
     }
-    
+
+    private void initializeSetSchemeTable(SetSchemeRepository setSchemeRepository) {
+
+        // MIHU training 1
+        SetScheme set1Tr1MihuChest = new SetScheme(12, 40);
+        set1Tr1MihuChest.setTraining(tr001);
+        set1Tr1MihuChest.setExercise(barbellBenchPress);
+        setSchemeRepository.save(set1Tr1MihuChest);
+
+        SetScheme set2Tr1MihuChest = new SetScheme(8, 60);
+        set2Tr1MihuChest.setTraining(tr001);
+        set2Tr1MihuChest.setExercise(barbellBenchPress);
+        setSchemeRepository.save(set2Tr1MihuChest);
+
+        SetScheme set3Tr1MihuChest = new SetScheme(8, 80);
+        set3Tr1MihuChest.setTraining(tr001);
+        set3Tr1MihuChest.setExercise(barbellBenchPress);
+        setSchemeRepository.save(set3Tr1MihuChest);
+
+        SetScheme set4Tr1MihuChest = new SetScheme(8, 80);
+        set4Tr1MihuChest.setTraining(tr001);
+        set4Tr1MihuChest.setExercise(barbellBenchPress);
+        setSchemeRepository.save(set4Tr1MihuChest);
+
+
+        // MIHU training 2
+        SetScheme set1Tr2MihuBack = new SetScheme(12, 0);
+        set1Tr2MihuBack.setTraining(tr002);
+        set1Tr2MihuBack.setExercise(pullUps);
+        setSchemeRepository.save(set1Tr2MihuBack);
+
+        SetScheme set2Tr2MihuBack = new SetScheme(10, 0);
+        set2Tr2MihuBack.setTraining(tr002);
+        set2Tr2MihuBack.setExercise(pullUps);
+        setSchemeRepository.save(set2Tr2MihuBack);
+
+        SetScheme set1Tr2MihuQuads = new SetScheme(10, 80);
+        set1Tr2MihuQuads.setTraining(tr002);
+        set1Tr2MihuQuads.setExercise(squats);
+        setSchemeRepository.save(set1Tr2MihuQuads);
+
+
+        // MIHU training 3
+
+
+        // MIHU training 4
+    }
+
 }
