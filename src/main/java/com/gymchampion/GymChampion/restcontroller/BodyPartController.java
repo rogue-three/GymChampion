@@ -24,7 +24,7 @@ public class BodyPartController {
     }
 
     @GetMapping("/{id}")
-    public List<BodyPart> getBodyPartById(@PathVariable("id") int id) {
+    public BodyPart getBodyPartById(@PathVariable("id") int id) {
         return this.bodyPartService.getBodyPartById(id);
     }
 
