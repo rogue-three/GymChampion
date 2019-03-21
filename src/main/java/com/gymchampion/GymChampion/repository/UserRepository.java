@@ -10,6 +10,4 @@ public interface UserRepository extends JpaRepository<User, String> {
     User findUserByLogin(String login);
 
     List<User> findUsersByArchivized(boolean isArchivized);
-
-
 }
