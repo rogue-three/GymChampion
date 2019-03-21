@@ -22,4 +22,9 @@ public class TrainingController {
     public void addTraining(@RequestBody Training training) {
         this.trainingService.addTraining(training);
     }
+
+    @GetMapping
+    public List<Training> getAllTrainings() {
+        return this.trainingService.getAllTrainings();
+    }
 }

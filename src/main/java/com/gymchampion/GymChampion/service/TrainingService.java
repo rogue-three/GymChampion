@@ -5,6 +5,8 @@ import com.gymchampion.GymChampion.repository.TrainingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class TrainingService {
 
@@ -17,5 +19,9 @@ public class TrainingService {
 
     public void addTraining(Training training) {
         this.trainingRepository.save(training);
+    }
+
+    public List<Training> getAllTrainings() {
+        return this.trainingRepository.findAll();
     }
 }
