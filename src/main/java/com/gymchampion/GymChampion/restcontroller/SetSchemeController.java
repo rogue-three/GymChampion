@@ -23,7 +23,6 @@ public class SetSchemeController {
     @PostMapping("/all")
     public List<SetScheme> saveSchemeList(@RequestBody List<SetScheme> schemeList) {
         return setSchemeService.addSchemeListToRepository(schemeList);
-
     }
 
     @PostMapping

@@ -44,19 +44,9 @@ public class TrainingController {
         return this.trainingService.getAllArchivizedTrainings();
     }
 
-    @GetMapping("user/{login}")
+    @GetMapping("/user/{login}")
     public List<Training> getTrainingsByUserLogin(@PathVariable("login") String login) {
         return this.trainingService.getTrainingsByUserLogin(login);
-    }
-
-    @PutMapping("/user_weight/{id}")
-    public void setTrainingUserWeight(@RequestBody Training training, @PathVariable("id") int id) {
-        this.trainingService.setTrainingUserWeight(training, id);
-    }
-
-    @PutMapping("/set_schemes/{id}")
-    public void setTrainingSetSchemes(@RequestBody Training training, @PathVariable("id") int id) {
-        this.trainingService.setTrainingSetSchemes(training, id);
     }
 
     @PutMapping("/archivize/{id}")

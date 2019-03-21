@@ -20,10 +20,7 @@ public class TrainingService {
 
     public void addTraining(Training training) {
         double userWeight = training.getUser().getWeight();
-
-        if (userWeight != 0.0) {
-            training.setUserWeight(userWeight);
-        }
+        training.setUserBodyWeight(userWeight);
         this.trainingRepository.save(training);
     }
 
@@ -51,24 +48,6 @@ public class TrainingService {
 
     public List<Training> getTrainingsByUserLogin(String login) {
         return this.trainingRepository.findTrainingsByUserLogin(login);
-    }
-
-    public void setTrainingUserWeight(Training training, int id) {
-        Optional<Training> optionalTraining = this.trainingRepository.findById(id);
-        if (optionalTraining.isPresent()) {
-            training.setUserWeight(optionalTraining.get().getUserWeight());
-            this.trainingRepository.save(training);
-        }
-
-    }
-
-    public void setTrainingSetSchemes(Training training, int id) {
-        Optional<Training> optionalTraining = this.trainingRepository.findById(id);
-        if (optionalTraining.isPresent()) {
-            training.getSetSchemes().addAll(optionalTraining.get().getSetSchemes());
-            this.trainingRepository.save(training);
-        }
-
     }
 
     public void archivizeTraining(int id) {

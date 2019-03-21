@@ -20,8 +20,8 @@ public class Training {
     @Temporal(TemporalType.TIMESTAMP)
     private Date trainingDate;
 
-    @Column(name = "user_weight")
-    private double userWeight;
+    @Column(name = "user_body_weight")
+    private double userBodyWeight;
 
     @Column(name = "archivized", nullable = false)
     private boolean archivized;
@@ -39,7 +39,7 @@ public class Training {
     public Training(Date trainingDate, double userWeight, boolean archivized) {
         this.archivized = archivized;
         this.trainingDate = trainingDate;
-        this.userWeight = userWeight;
+        this.userBodyWeight = userWeight;
     }
 
     public Training(boolean archivized) {
@@ -54,9 +54,9 @@ public class Training {
 
     public void setTrainingDate(Date trainingDate) { this.trainingDate = trainingDate; }
 
-    public double getUserWeight() { return this.userWeight; }
+    public double getUserBodyWeight() { return this.userBodyWeight; }
 
-    public void setUserWeight(double userWeight) { this.userWeight = userWeight; }
+    public void setUserBodyWeight(double userWeight) { this.userBodyWeight = userWeight; }
 
     public boolean isArchivized() { return this.archivized; }
 
