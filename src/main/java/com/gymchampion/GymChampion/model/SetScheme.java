@@ -17,7 +17,7 @@ public class SetScheme {
     @Column(name = "weight", nullable = false)
     private double weight;
 
-    @ManyToOne(cascade=CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "training_id")
     private Training training;
 
