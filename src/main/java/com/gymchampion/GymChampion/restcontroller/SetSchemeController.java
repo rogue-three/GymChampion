@@ -33,9 +33,14 @@ public class SetSchemeController {
 
     @GetMapping("/{training_id}")
     public List<SetScheme> getSchemeByTrainingId(@PathVariable("training_id") int trainingId) {
-
         return  setSchemeService.getSchemeByTrainingId(trainingId);
 
+    }
+
+    @GetMapping("/max/{login}/{exerciseId}")
+    public SetScheme  getBestSchemeByExerciseId(@PathVariable("exerciseId") int exerciseId,
+                                               @PathVariable("login") String login) {
+        return setSchemeService.getMaxSchemeByExercise(exerciseId, login);
     }
 
 }

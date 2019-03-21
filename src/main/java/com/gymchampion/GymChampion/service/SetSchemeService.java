@@ -32,4 +32,8 @@ public class SetSchemeService {
     public List<SetScheme> getSchemeByTrainingId(int trainingId) {
         return setSchemeRepository.findAllByTrainingTrainingId(trainingId);
     }
+
+    public SetScheme getMaxSchemeByExercise(int exerciseId, String login) {
+        return setSchemeRepository.findMaxWeightForUserByExerciseId(exerciseId, login);
+    }
 }
