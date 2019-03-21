@@ -28,17 +28,14 @@ public class Exercise {
     private List<SetScheme> setSchemes;
 
     @ManyToOne
-    @JsonIgnore
     @JoinColumn(name = "body_part_id")
     private BodyPart bodyPart;
 
     @ManyToOne
-    @JsonIgnore
     @JoinColumn(name = "equipment_id")
     private Equipment equipment;
 
     @ManyToOne
-    @JsonIgnore
     @JoinColumn(name = "exercise_scheme_id")
     private ExerciseScheme exerciseScheme;
 

@@ -33,17 +33,26 @@ public class User {
     private Gender gender;
 
     @OneToMany(mappedBy = "user")
+    @JsonIgnore
     private List<Session> sessions;
 
     @OneToMany(mappedBy = "user")
+    @JsonIgnore
     private List<Training> trainings = new ArrayList<>();
 
     public User() {}
 
-    public User(String login, String nickname, Date birthdayDate, double weight, boolean archivized) {
+    public User(String login, String nickname, Date birthDate, double weight, boolean archivized) {
         this.login = login;
         this.nickname = nickname;
-        this.birthDate = birthdayDate;
+        this.birthDate = birthDate;
+        this.weight = weight;
+        this.archivized = archivized;
+    }
+
+    public User(String login, String nickname, double weight, boolean archivized) {
+        this.login = login;
+        this.nickname = nickname;
         this.weight = weight;
         this.archivized = archivized;
     }

@@ -1,7 +1,6 @@
 package com.gymchampion.GymChampion.model;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Entity
 @Table(name = "set_scheme")
@@ -18,7 +17,7 @@ public class SetScheme {
     @Column(name = "weight", nullable = false)
     private double weight;
 
-    @ManyToOne
+    @ManyToOne(cascade=CascadeType.ALL)
     @JoinColumn(name = "training_id")
     private Training training;
 
