@@ -17,8 +17,8 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
-    public void addUser(User user) {
-        this.userRepository.save(user);
+    public User addUser(User user) {
+        return this.userRepository.save(user);
     }
 
     public User getUser(String login) {
@@ -29,34 +29,34 @@ public class UserService {
         return this.userRepository.findAll();
     }
 
-    public void setUserNickname(User user) {
+    public User setUserNickname(User user) {
         User userToBeUpdated = this.userRepository.findUserByLogin(user.getLogin());
         userToBeUpdated.setNickname(user.getNickname());
-        this.userRepository.save(userToBeUpdated);
+        return this.userRepository.save(userToBeUpdated);
     }
 
-    public void setUserBirthdate(User user) {
+    public User setUserBirthdate(User user) {
         User userToBeUpdated = this.userRepository.findUserByLogin(user.getLogin());
         userToBeUpdated.setBirthDate(user.getBirthDate());
-        this.userRepository.save(userToBeUpdated);
+        return this.userRepository.save(userToBeUpdated);
     }
 
-    public void setUserGender(User user) {
+    public User setUserGender(User user) {
         User userToBeUpdated = this.userRepository.findUserByLogin(user.getLogin());
         userToBeUpdated.setGender(user.getGender());
-        this.userRepository.save(userToBeUpdated);
+        return this.userRepository.save(userToBeUpdated);
     }
 
-    public void setUserWeight(User user) {
+    public User setUserWeight(User user) {
         User userToBeUpdated = this.userRepository.findUserByLogin(user.getLogin());
         userToBeUpdated.setWeight(user.getWeight());
-        this.userRepository.save(userToBeUpdated);
+        return this.userRepository.save(userToBeUpdated);
     }
 
-    public void archivizeUser(String login) {
+    public User archivizeUser(String login) {
         User user = this.getUser(login);
         user.setArchivized(true);
-        this.userRepository.save(user);
+        return this.userRepository.save(user);
     }
 
     public List<User> getActiveUsers() {
