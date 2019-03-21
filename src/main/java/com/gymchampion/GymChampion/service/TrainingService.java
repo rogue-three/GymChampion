@@ -24,4 +24,12 @@ public class TrainingService {
     public List<Training> getAllTrainings() {
         return this.trainingRepository.findAll();
     }
+
+    public List<Training> getAllTrainingsFromActiveUsers() {
+        return this.trainingRepository.findTrainingsByArchivized(false);
+    }
+
+    public List<Training> getAllArchivizedTrainings() {
+        return this.trainingRepository.findTrainingsByArchivized(true);
+    }
 }

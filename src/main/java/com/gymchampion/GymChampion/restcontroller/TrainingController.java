@@ -27,4 +27,14 @@ public class TrainingController {
     public List<Training> getAllTrainings() {
         return this.trainingService.getAllTrainings();
     }
+
+    @GetMapping("/active")
+    public List<Training> getAllTrainingsFromActiveUsers() {
+        return this.trainingService.getAllTrainingsFromActiveUsers();
+    }
+
+    @GetMapping("/archive")
+    public List<Training> getAllArchivizedTrainings() {
+        return this.trainingService.getAllArchivizedTrainings();
+    }
 }
