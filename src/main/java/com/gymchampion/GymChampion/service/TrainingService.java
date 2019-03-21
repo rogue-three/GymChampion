@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class TrainingService {
@@ -23,6 +24,16 @@ public class TrainingService {
 
     public List<Training> getAllTrainings() {
         return this.trainingRepository.findAll();
+    }
+
+    public Training getTraining(int id) {
+        Optional<Training> optionalTraining = this.trainingRepository.findById(id);
+        Training training = new Training();
+
+        if(optionalTraining.isPresent()) {
+            training = optionalTraining.get();
+        }
+        return training;
     }
 
     public List<Training> getAllTrainingsFromActiveUsers() {

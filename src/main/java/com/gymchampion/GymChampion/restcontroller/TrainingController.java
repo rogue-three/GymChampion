@@ -28,6 +28,11 @@ public class TrainingController {
         return this.trainingService.getAllTrainings();
     }
 
+    @GetMapping("/{id}")
+    public Training getTraining(@PathVariable("id") int id) {
+        return this.trainingService.getTraining(id);
+    }
+
     @GetMapping("/active")
     public List<Training> getAllTrainingsFromActiveUsers() {
         return this.trainingService.getAllTrainingsFromActiveUsers();
