@@ -41,6 +41,7 @@ public class User {
             joinColumns = { @JoinColumn(name = "user_login") },
             inverseJoinColumns = { @JoinColumn(name = "training_id") }
     )
+    @JsonIgnore
     private List<Training> trainings = new ArrayList<>();
 
     public User() {}

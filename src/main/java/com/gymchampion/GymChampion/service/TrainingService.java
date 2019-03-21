@@ -32,4 +32,11 @@ public class TrainingService {
     public List<Training> getAllArchivizedTrainings() {
         return this.trainingRepository.findTrainingsByArchivized(true);
     }
+
+    public List<Training> getTrainingsByUserLogin(String login) {
+        return this.trainingRepository.findTrainingsByUserLogin(login);
+    }
+
+
+
 }

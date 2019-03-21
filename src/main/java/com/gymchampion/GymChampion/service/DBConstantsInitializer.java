@@ -9,6 +9,8 @@ import java.util.Date;
 @Component
 public class DBConstantsInitializer {
 
+    private UserRepository userRepository;
+
     private ExerciseScheme upperBodyExScheme = new ExerciseScheme("upper body");
     private ExerciseScheme lowerBodyExScheme = new ExerciseScheme("lower body");
 
@@ -24,6 +26,9 @@ public class DBConstantsInitializer {
     private BodyPart hamstringsBodyPart = new BodyPart("hamstrings");
     private BodyPart backBodyPart = new BodyPart("back");
 
+    private User mihuUser;
+    private Training tr001;
+
     public DBConstantsInitializer(GenderRepository genderRepository,
                                   ExerciseSchemeRepository exerciseSchemeRepository,
                                   EquipmentRepository equipmentRepository,
@@ -31,6 +36,8 @@ public class DBConstantsInitializer {
                                   ExerciseRepository exerciseRepository,
                                   UserRepository userRepository,
                                   TrainingRepository trainingRepository) {
+
+        this.userRepository = userRepository;
 
         initializeExerciseSchemeTableContent(exerciseSchemeRepository);
         initializeGenderTableContent(genderRepository);
@@ -101,10 +108,10 @@ public class DBConstantsInitializer {
     }
 
     private void initializeUsers(UserRepository userRepository) {
-        User mihuUser = new User("Mihu", "the mihu", 88.5, false);
+        mihuUser = new User("Mihu", "the mihu", 88.5, false);
         mihuUser.setBirthDate(new Date(75, 8, 10));
         mihuUser.setGender(maleGender);
-        userRepository.save(mihuUser);
+//        userRepository.save(mihuUser);
 
         User krzychuUser = new User("Krzychu", "duży krzychu", 85, false);
         krzychuUser.setBirthDate(new Date(90, 3, 12));
@@ -123,9 +130,12 @@ public class DBConstantsInitializer {
     }
 //TODO change data format to timestamp
     private void initializeTraining(TrainingRepository trainingRepository) {
-        Training tr001 = new Training(false);
+        tr001 = new Training(false);
         tr001.setTrainingDate(new Date(2019, 2, 20));
+        tr001.getUsers().add(mihuUser);
         trainingRepository.save(tr001);
+        mihuUser.getTrainings().add(tr001);
+        userRepository.save(mihuUser);
 
         Training tr002 = new Training(false);
         tr002.setTrainingDate(new Date(2019, 2, 22));

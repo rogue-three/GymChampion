@@ -37,4 +37,9 @@ public class TrainingController {
     public List<Training> getAllArchivizedTrainings() {
         return this.trainingService.getAllArchivizedTrainings();
     }
+
+    @GetMapping("user/{login}")
+    public List<Training> getTrainingsByUserLogin(@PathVariable("login") String login) {
+        return this.trainingService.getTrainingsByUserLogin(login);
+    }
 }
