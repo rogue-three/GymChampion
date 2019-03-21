@@ -28,4 +28,8 @@ public class SetSchemeService {
     public List<SetScheme> addSchemeListToRepository(List<SetScheme> schemeList) {
         return setSchemeRepository.saveAll(schemeList);
     }
+
+    public List<SetScheme> getSchemeByTrainingId(int trainingId) {
+        return setSchemeRepository.findAllByTrainingTrainingId(trainingId);
+    }
 }

@@ -9,8 +9,8 @@ import java.util.Date;
 @Component
 public class DBConstantsInitializer {
 
-    private ExerciseScheme upperBodyExScheme = new ExerciseScheme("upper body");
-    private ExerciseScheme lowerBodyExScheme = new ExerciseScheme("lower body");
+    private ExerciseScheme upperBodyExScheme = new ExerciseScheme("upper_body");
+    private ExerciseScheme lowerBodyExScheme = new ExerciseScheme("lower_body");
 
     private Gender maleGender = new Gender("male");
     private Gender femaleGender = new Gender("female");
