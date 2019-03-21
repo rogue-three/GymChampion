@@ -53,18 +53,28 @@ public class TrainingService {
         Optional<Training> optionalTraining = this.trainingRepository.findById(id);
         if (optionalTraining.isPresent()) {
             training.setUserWeight(optionalTraining.get().getUserWeight());
+            this.trainingRepository.save(training);
         }
-        this.trainingRepository.save(training);
+
     }
 
     public void setTrainingSetSchemes(Training training, int id) {
         Optional<Training> optionalTraining = this.trainingRepository.findById(id);
         if (optionalTraining.isPresent()) {
             training.getSetSchemes().addAll(optionalTraining.get().getSetSchemes());
+            this.trainingRepository.save(training);
         }
-        this.trainingRepository.save(training);
+
     }
 
-
+    public void archivizeTraining(int id) {
+        Optional<Training> optionalTraining = this.trainingRepository.findById(id);
+        Training training;
+        if (optionalTraining.isPresent()) {
+            training = optionalTraining.get();
+            training.setArchivized(true);
+            this.trainingRepository.save(training);
+        }
+    }
 
 }

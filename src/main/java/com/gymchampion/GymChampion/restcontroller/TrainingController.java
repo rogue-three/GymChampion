@@ -58,4 +58,9 @@ public class TrainingController {
     public void setTrainingSetSchemes(@RequestBody Training training, @PathVariable("id") int id) {
         this.trainingService.setTrainingSetSchemes(training, id);
     }
+
+    @PutMapping("/archivize/{id}")
+    public void archivizeUser(@PathVariable("id")int id) {
+        this.trainingService.archivizeTraining(id);
+    }
 }
