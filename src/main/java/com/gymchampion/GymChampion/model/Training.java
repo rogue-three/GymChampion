@@ -24,16 +24,12 @@ public class Training {
     @Column(name = "archivized", nullable = false)
     private boolean archivized;
 
-    @ManyToMany(mappedBy = "trainings")
-    private List<User> users = new ArrayList<>();
+    @ManyToOne
+    @JoinColumn(name = "user_login")
+    private User user;
 
-    @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(
-            name = "training_set_scheme",
-            joinColumns = { @JoinColumn(name = "training_id") },
-            inverseJoinColumns = { @JoinColumn(name = "set_scheme_id") }
-    )
-    private List<SetScheme> setSchemes;
+    @OneToMany(mappedBy = "training")
+    private List<SetScheme> setSchemes = new ArrayList<>();
 
     public Training() {}
 
@@ -63,9 +59,9 @@ public class Training {
 
     public void setArchivized(boolean archivized) { this.archivized = archivized; }
 
-    public List<User> getUsers() { return this.users; }
+    public User getUser() { return this.user; }
 
-    public void setUsers(List<User> users) { this.users = users; }
+    public void setUser(User user) { this.user = user; }
 
     public List<SetScheme> getSetSchemes() { return this.setSchemes; }
 
