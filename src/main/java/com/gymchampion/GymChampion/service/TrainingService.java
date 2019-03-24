@@ -18,10 +18,10 @@ public class TrainingService {
         this.trainingRepository = trainingRepository;
     }
 
-    public void addTraining(Training training) {
+    public Training addTraining(Training training) {
         double userWeight = training.getUser().getWeight();
         training.setUserBodyWeight(userWeight);
-        this.trainingRepository.save(training);
+        return this.trainingRepository.save(training);
     }
 
     public List<Training> getAllTrainings() {
@@ -50,14 +50,15 @@ public class TrainingService {
         return this.trainingRepository.findTrainingsByUserLogin(login);
     }
 
-    public void archivizeTraining(int id) {
+    public Training archivizeTraining(int id) {
         Optional<Training> optionalTraining = this.trainingRepository.findById(id);
         Training training;
         if (optionalTraining.isPresent()) {
             training = optionalTraining.get();
             training.setArchivized(true);
-            this.trainingRepository.save(training);
+            return this.trainingRepository.save(training);
         }
+        return new Training();
     }
 
     public int countTrainingsByUserLogin(String login) {

@@ -1,6 +1,5 @@
 package com.gymchampion.GymChampion.restcontroller;
 
-import com.gymchampion.GymChampion.model.SetScheme;
 import com.gymchampion.GymChampion.model.Training;
 import com.gymchampion.GymChampion.service.TrainingService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,8 +19,8 @@ public class TrainingController {
     }
 
     @PostMapping
-    public void addTraining(@RequestBody Training training) {
-        this.trainingService.addTraining(training);
+    public Training addTraining(@RequestBody Training training) {
+        return this.trainingService.addTraining(training);
     }
 
     @GetMapping
@@ -50,8 +49,8 @@ public class TrainingController {
     }
 
     @PutMapping("/archivize/{id}")
-    public void archivizeUser(@PathVariable("id")int id) {
-        this.trainingService.archivizeTraining(id);
+    public Training archivizeUser(@PathVariable("id")int id) {
+        return this.trainingService.archivizeTraining(id);
     }
 
     @GetMapping("count/user/{login}")
