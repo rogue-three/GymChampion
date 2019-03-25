@@ -35,7 +35,7 @@ public class UserService {
         return this.userRepository.save(userToBeUpdated);
     }
 
-    public User setUserBirthdate(User user) {
+    public User setUserBirthDate(User user) {
         User userToBeUpdated = this.userRepository.findUserByLogin(user.getLogin());
         userToBeUpdated.setBirthDate(user.getBirthDate());
         return this.userRepository.save(userToBeUpdated);
