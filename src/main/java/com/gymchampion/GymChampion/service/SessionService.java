@@ -24,10 +24,7 @@ public class SessionService {
 
     public Session getSessionById(int id) {
         Optional<Session> optionalSession = this.sessionRepository.findById(id);
-        if (optionalSession.isPresent()) {
-            return optionalSession.get();
-        }
-        return new Session();
+        return optionalSession.orElseGet(Session::new);
     }
 
     public Session getSessionBySessionKey(String key) {
@@ -52,7 +49,7 @@ public class SessionService {
         return this.sessionRepository.findAllByActive(true);
     }
 
-    public List<Session> getArchivizedSessions() {
+    public List<Session> getArchivedSessions() {
         return this.sessionRepository.findAllByActive(false);
     }
 
