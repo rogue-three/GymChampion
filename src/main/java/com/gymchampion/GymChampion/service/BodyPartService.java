@@ -25,10 +25,7 @@ public class BodyPartService {
     public BodyPart getBodyPartById(int id) {
         Optional<BodyPart> optionalBodypart = this.bodyPartRepository.findById(id);
 
-        if(optionalBodypart.isPresent()) {
-            return optionalBodypart.get();
-        }
-        return new BodyPart();
+        return optionalBodypart.orElseGet(BodyPart::new);
     }
 
     public BodyPart addBodyPart(BodyPart bodyPart) {
