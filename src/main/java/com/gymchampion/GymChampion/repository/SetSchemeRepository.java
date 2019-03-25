@@ -10,7 +10,7 @@ import java.util.List;
 
 public interface SetSchemeRepository extends JpaRepository<SetScheme, Integer> {
 
-    List<SetScheme> findAllByTrainingTrainingId(@Param("training_id") int trainingId);
+    List<SetScheme> findAllByTrainingTrainingId(int trainingId);
 
     @Query(nativeQuery = true, value= "SELECT set_scheme.set_scheme_id, set_scheme.reps, set_scheme.weight, set_scheme.exercise_id, set_scheme.training_id " +
             "FROM set_scheme " +

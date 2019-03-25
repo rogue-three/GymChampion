@@ -23,8 +23,8 @@ public class Training {
     @Column(name = "user_body_weight")
     private double userBodyWeight;
 
-    @Column(name = "archivized", nullable = false)
-    private boolean archivized;
+    @Column(name = "archived", nullable = false)
+    private boolean archived;
 
     @ManyToOne
     @JoinColumn(name = "user_login", nullable = false)
@@ -36,14 +36,14 @@ public class Training {
 
     public Training() {}
 
-    public Training(Date trainingDate, double userWeight, boolean archivized) {
-        this.archivized = archivized;
+    public Training(Date trainingDate, double userWeight, boolean archived) {
+        this.archived = archived;
         this.trainingDate = trainingDate;
         this.userBodyWeight = userWeight;
     }
 
-    public Training(boolean archivized) {
-        this.archivized = archivized;
+    public Training(boolean archived) {
+        this.archived = archived;
     }
 
     public int getTrainingId() { return this.trainingId; }
@@ -58,9 +58,9 @@ public class Training {
 
     public void setUserBodyWeight(double userWeight) { this.userBodyWeight = userWeight; }
 
-    public boolean isArchivized() { return this.archivized; }
+    public boolean isArchived() { return this.archived; }
 
-    public void setArchivized(boolean archivized) { this.archivized = archivized; }
+    public void setArchived(boolean archived) { this.archived = archived; }
 
     public User getUser() { return this.user; }
 
