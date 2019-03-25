@@ -50,6 +50,6 @@ public class SessionController {
 
     @GetMapping("/archivized")
     public List<Session> getArchivizedSessions() {
-        return this.sessionService.getArchivizedSessions();
+        return this.sessionService.getArchivedSessions();
     }
 }
