@@ -32,10 +32,6 @@ public class User {
     @JoinColumn(name = "gender_id")
     private Gender gender;
 
-    @OneToMany(mappedBy = "user")
-    @JsonIgnore
-    private List<Training> trainings = new ArrayList<>();
-
     public User() {}
 
     public User(String login, String nickname, Date birthDate, double weight, boolean archived) {
@@ -100,10 +96,6 @@ public class User {
     public void setGender(Gender gender) {
         this.gender = gender;
     }
-
-    public List<Training> getTrainings() { return this.trainings; }
-
-    public void setTrainings(List<Training> trainings) { this.trainings = trainings; }
 }
 
 
