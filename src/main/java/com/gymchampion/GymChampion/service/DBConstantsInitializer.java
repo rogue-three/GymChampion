@@ -17,12 +17,16 @@ public class DBConstantsInitializer {
 
     private Equipment barbellEquipment = new Equipment("barbell");
     private Equipment noEquipmentEquipment = new Equipment("no_equipment");
+    private Equipment dumbbellEquipment = new Equipment("dumbbell");
+    private Equipment machineEquipment = new Equipment("machine");
 
     private BodyPart chestBodyPart = new BodyPart("chest");
     private BodyPart quadsBodyPart = new BodyPart("quads");
     private BodyPart shouldersBodyPart = new BodyPart("shoulders");
     private BodyPart hamstringsBodyPart = new BodyPart("hamstrings");
     private BodyPart backBodyPart = new BodyPart("back");
+    private BodyPart calvesBodyPart = new BodyPart("calves");
+    private BodyPart armsBodyPart = new BodyPart("arms");
 
     private Exercise barbellBenchPress;
     private Exercise squats;
@@ -81,8 +85,8 @@ public class DBConstantsInitializer {
 
     private void initializeEquipmentTableContent(EquipmentRepository equipmentRepository ){
         equipmentRepository.save(barbellEquipment);
-        equipmentRepository.save(new Equipment("dumbbell"));
-        equipmentRepository.save(new Equipment("machine"));
+        equipmentRepository.save(dumbbellEquipment);
+        equipmentRepository.save(machineEquipment);
         equipmentRepository.save(noEquipmentEquipment);
     }
 
@@ -92,8 +96,8 @@ public class DBConstantsInitializer {
         bodyPartRepository.save(chestBodyPart);
         bodyPartRepository.save(quadsBodyPart);
         bodyPartRepository.save(hamstringsBodyPart);
-        bodyPartRepository.save(new BodyPart("arms"));
-        bodyPartRepository.save(new BodyPart("calves"));
+        bodyPartRepository.save(armsBodyPart);
+        bodyPartRepository.save(calvesBodyPart);
     }
 
     private void initializeExerciseTableContent(ExerciseRepository exerciseRepository) {
