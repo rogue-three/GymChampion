@@ -39,8 +39,8 @@ public class TrainingController {
     }
 
     @GetMapping("/archive")
-    public List<Training> getAllArchivizedTrainings() {
-        return this.trainingService.getAllArchivizedTrainings();
+    public List<Training> getAllArchivedTrainings() {
+        return this.trainingService.getAllArchivedTrainings();
     }
 
     @GetMapping("/user/{login}")
@@ -49,8 +49,8 @@ public class TrainingController {
     }
 
     @PutMapping("/archivize/{id}")
-    public Training archivizeUser(@PathVariable("id")int id) {
-        return this.trainingService.archivizeTraining(id);
+    public Training archiveUser(@PathVariable("id")int id) {
+        return this.trainingService.archiveTraining(id);
     }
 
     @GetMapping("count/user/{login}")
