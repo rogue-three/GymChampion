@@ -39,7 +39,7 @@ public class TrainingService {
     }
 
     public List<Training> getAllTrainingsFromActiveUsers() {
-        return this.trainingRepository.findTrainingsByArchivized(false);
+        return this.trainingRepository.findTrainingsByArchived(false);
     }
 
     public List<Training> getAllArchivedTrainings() {
@@ -47,7 +47,7 @@ public class TrainingService {
     }
 
     public List<Training> getTrainingsByUserLogin(String login) {
-        return this.trainingRepository.findTrainingsByUserLogin(login);
+        return this.trainingRepository.findByUser_Login(login);
     }
 
     public Training archiveTraining(int id) {
@@ -62,6 +62,6 @@ public class TrainingService {
     }
 
     public int countTrainingsByUserLogin(String login) {
-        return this.trainingRepository.findTrainingsByUserLogin(login).size();
+        return this.trainingRepository.findByUser_Login(login).size();
     }
 }
