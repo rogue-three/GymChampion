@@ -14,6 +14,9 @@ public class LoginData {
     @Column(name = "password", nullable = false, length = 20)
     private String password;
 
+    @Column(name = "user_email", nullable = false, length = 30)
+    private String email;
+
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_login")
     private User user;
@@ -25,8 +28,9 @@ public class LoginData {
 
     public LoginData() {}
 
-    public LoginData(String password, User user, Role userRole) {
+    public LoginData(String password, String email, User user, Role userRole) {
         this.password = password;
+        this.email = email;
         this.user = user;
         this.userRole = userRole;
     }
@@ -57,5 +61,13 @@ public class LoginData {
 
     public void setUserRole(Role userRole) {
         this.userRole = userRole;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 }

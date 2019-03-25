@@ -324,7 +324,7 @@ public class DBConstantsInitializer {
         set4Tr1KrzychuChest.setTraining(tr005);
         set4Tr1KrzychuChest.setExercise(barbellBenchPress);
         setSchemeRepository.save(set4Tr1KrzychuChest);
-        
+
         // Krzychu training 2
         SetScheme set1Tr2KrzychuBack = new SetScheme(7, 0);
         set1Tr2KrzychuBack.setTraining(tr006);
