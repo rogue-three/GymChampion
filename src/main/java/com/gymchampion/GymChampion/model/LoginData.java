@@ -14,7 +14,7 @@ public class LoginData {
     @Column(name = "password", nullable = false, length = 20)
     private String password;
 
-    @Column(name = "user_email", nullable = false, length = 30)
+    @Column(name = "user_email", nullable = false, length = 30, unique = true)
     private String email;
 
     @OneToOne(cascade = CascadeType.ALL)
