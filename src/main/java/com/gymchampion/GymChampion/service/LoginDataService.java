@@ -19,14 +19,11 @@ public class LoginDataService {
 
     public LoginData getLoginDataById(int id) {
         Optional<LoginData> optionalLoginData = this.loginDataRepository.findById(id);
-        if (optionalLoginData.isPresent()) {
-            return optionalLoginData.get();
-        }
-        return new LoginData();
+        return optionalLoginData.orElseGet(LoginData::new);
     }
 
     public LoginData getLoginDataByLogin(String login) {
-        return this.loginDataRepository.findLoginDataByUserLogin(login);
+        return this.loginDataRepository.findByUser_Login(login);
     }
 
     public LoginData addLoginData(LoginData loginData) {
