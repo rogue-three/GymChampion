@@ -48,7 +48,7 @@ public class TrainingController {
         return this.trainingService.getTrainingsByUserLogin(login);
     }
 
-    @PutMapping("/archivize/{id}")
+    @PutMapping("/archive/{id}")
     public Training archiveUser(@PathVariable("id")int id) {
         return this.trainingService.archiveTraining(id);
     }
