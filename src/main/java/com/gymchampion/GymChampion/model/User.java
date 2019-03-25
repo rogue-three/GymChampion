@@ -34,10 +34,6 @@ public class User {
 
     @OneToMany(mappedBy = "user")
     @JsonIgnore
-    private List<Session> sessions;
-
-    @OneToMany(mappedBy = "user")
-    @JsonIgnore
     private List<Training> trainings = new ArrayList<>();
 
     public User() {}
@@ -104,10 +100,6 @@ public class User {
     public void setGender(Gender gender) {
         this.gender = gender;
     }
-
-    public List<Session> getSessions() { return this.sessions; }
-
-    public void setSessions(List<Session> sessions) { this.sessions = sessions; }
 
     public List<Training> getTrainings() { return this.trainings; }
 
