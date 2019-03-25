@@ -18,12 +18,17 @@ public class LoginData {
     @JoinColumn(name = "user_login")
     private User user;
 
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "user_role")
+    private Role userRole;
+
 
     public LoginData() {}
 
-    public LoginData(int loginId, String password) {
-        this.loginId = loginId;
+    public LoginData(String password, User user, Role userRole) {
         this.password = password;
+        this.user = user;
+        this.userRole = userRole;
     }
 
     public int getLoginId() {
@@ -45,4 +50,12 @@ public class LoginData {
     public User getUser() { return this.user; }
 
     public void setUser(User user) { this.user = user; }
+
+    public Role getUserRole() {
+        return userRole;
+    }
+
+    public void setUserRole(Role userRole) {
+        this.userRole = userRole;
+    }
 }
