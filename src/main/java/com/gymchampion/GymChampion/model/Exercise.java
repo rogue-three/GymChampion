@@ -1,9 +1,6 @@
 package com.gymchampion.GymChampion.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import javax.persistence.*;
-import java.util.List;
 
 @Entity
 @Table(name = "exercise")
@@ -22,10 +19,6 @@ public class Exercise {
 
     @Column(name = "max_weight", nullable = false)
     private double maxWeight;
-
-    @OneToMany(mappedBy = "exercise")
-    @JsonIgnore
-    private List<SetScheme> setSchemes;
 
     @ManyToOne
     @JoinColumn(name = "body_part_id")
@@ -62,10 +55,6 @@ public class Exercise {
     public double getMaxWeight() { return this.maxWeight; }
 
     public void setMaxWeight(double maxWeight) { this.maxWeight = maxWeight; }
-
-    public List<SetScheme> getSetSchemes() { return this.setSchemes; }
-
-    public void setSetSchemes(List<SetScheme> setSchemes) { this.setSchemes = setSchemes; }
 
     public BodyPart getBodyPart() { return this.bodyPart; }
 
