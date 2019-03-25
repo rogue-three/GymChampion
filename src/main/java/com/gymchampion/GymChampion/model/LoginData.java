@@ -18,6 +18,7 @@ public class LoginData {
     @JoinColumn(name = "user_login")
     private User user;
 
+
     public LoginData() {}
 
     public LoginData(int loginId, String password) {
