@@ -1,11 +1,7 @@
 package com.gymchampion.GymChampion.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 @Entity
 @Table(name = "training")
@@ -29,10 +25,6 @@ public class Training {
     @ManyToOne
     @JoinColumn(name = "user_login", nullable = false)
     private User user;
-
-    @OneToMany(mappedBy = "training")
-    @JsonIgnore
-    private List<SetScheme> setSchemes = new ArrayList<>();
 
     public Training() {}
 
@@ -65,8 +57,4 @@ public class Training {
     public User getUser() { return this.user; }
 
     public void setUser(User user) { this.user = user; }
-
-    public List<SetScheme> getSetSchemes() { return this.setSchemes; }
-
-    public void setSetSchemes(List<SetScheme> setSchemes) { this.setSchemes = setSchemes; }
 }
