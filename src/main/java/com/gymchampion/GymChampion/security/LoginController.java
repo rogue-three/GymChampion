@@ -22,7 +22,7 @@ public class LoginController {
     @PostMapping
     public String getTokenForUser(@RequestBody String login, @RequestBody String password) {
 
-        
+
         return "Token";
     }
 }
