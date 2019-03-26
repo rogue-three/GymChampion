@@ -8,4 +8,6 @@ import java.util.List;
 public interface ExerciseRepository extends JpaRepository<Exercise, Integer> {
 
     List<Exercise> findAllByExerciseScheme_ExerciseSchemeName(String scheme);
+
+    List<Exercise> findAllByBodyPart(String bodyPart);
 }

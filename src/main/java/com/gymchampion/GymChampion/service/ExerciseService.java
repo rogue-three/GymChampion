@@ -30,6 +30,10 @@ public class ExerciseService {
         return new Exercise();
     }
 
+    public List<Exercise> getAllExerciseByBodyPart(String bodyPart) {
+        return this.exerciseRepository.findAllByBodyPart(bodyPart);
+    }
+
     public List<Exercise> getListOfExerciseByScheme(String scheme) {
         return exerciseRepository.findAllByExerciseScheme_ExerciseSchemeName(scheme);
     }
