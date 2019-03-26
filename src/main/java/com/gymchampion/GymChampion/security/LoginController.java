@@ -1,6 +1,8 @@
 package com.gymchampion.GymChampion.security;
 
 
+import com.gymchampion.GymChampion.security.exceptions.UncorrectPasswordException;
+import com.gymchampion.GymChampion.security.exceptions.UserNotExistException;
 import com.gymchampion.GymChampion.service.LoginDataService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -22,7 +24,13 @@ public class LoginController {
     @PostMapping
     public String getTokenForUser(@RequestBody String login, @RequestBody String password) {
 
-
-        return "Token";
+        try {
+          loginDataService.validateUser(login, password);
+        }
+        catch(UncorrectPasswordException | UserNotExistException e) {
+            e.printStackTrace();
+            return e.getMessage();
+        }
+        return "token";
     }
 }
