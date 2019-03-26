@@ -8,6 +8,8 @@ import com.gymchampion.GymChampion.service.SessionService;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Component;
 
 import javax.servlet.FilterChain;
@@ -20,11 +22,17 @@ import java.io.IOException;
 @Component
 public class GymApiFilter implements javax.servlet.Filter {
 
-    @Autowired
+
     private SessionService sessionService;
 
-    @Autowired
+
     private LoginDataService loginDataService;
+
+    @Autowired
+    public GymApiFilter(LoginDataService loginDataService, SessionService sessionService) {
+        this.loginDataService = loginDataService;
+        this.sessionService = sessionService;
+    }
 
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain)
@@ -34,7 +42,7 @@ public class GymApiFilter implements javax.servlet.Filter {
         String authorizationHeader = httpServletRequest.getHeader("authorization");
 
         if (authorizationHeader == null) {
-            throw new ServletException("Must log again! Session expired!");
+            throw new ServletException("Login Error!");
         }
         int indexOfTokenStarted = 7;
         String token = authorizationHeader.substring(indexOfTokenStarted);
