@@ -2,6 +2,8 @@ package com.gymchampion.GymChampion.service;
 
 import com.gymchampion.GymChampion.model.LoginData;
 import com.gymchampion.GymChampion.repository.LoginDataRepository;
+import com.gymchampion.GymChampion.security.exceptions.UncorrectPasswordException;
+import com.gymchampion.GymChampion.security.exceptions.UserNotExistException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -38,20 +40,19 @@ public class LoginDataService {
     }
 
 
-    public boolean validateUser(String login, String password) {
+    public boolean validateUser(String login, String password)
+            throws UserNotExistException, UncorrectPasswordException {
+
         LoginData data = this.loginDataRepository.findLoginDataByUserLogin(login);
-
         if (data == null) {
-
+            throw new UserNotExistException();
         }
-
         if (data.isArchivized()) {
-
+            throw new UserNotExistException();
         }
-
-        if (password.equals(data.getPassword()) && !data.isArchivized()) {
-            return true;
+        if (!password.equals(data.getPassword())) {
+            throw new UncorrectPasswordException();
         }
-        return false;
+        return true;
     }
 }
