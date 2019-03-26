@@ -5,8 +5,10 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
+import java.util.Optional;
+
 public interface LoginDataRepository extends JpaRepository<LoginData, Integer> {
 
-    @Query(nativeQuery = true, value = "SELECT * FROM login_data WHERE login_data.user_login = :login")
+    @Query(nativeQuery = true, value = "SELECT * FROM login_data WHERE user_login = :login")
     LoginData findLoginDataByUserLogin(@Param("login") String login);
 }

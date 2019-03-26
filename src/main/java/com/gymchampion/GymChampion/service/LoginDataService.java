@@ -28,7 +28,7 @@ public class LoginDataService {
     }
 
     public LoginData getLoginDataByLogin(String login) {
-        return this.loginDataRepository.findLoginDataByUserLogin(login);
+       return this.loginDataRepository.findLoginDataByUserLogin(login);
     }
 
     public LoginData addLoginData(LoginData loginData) {

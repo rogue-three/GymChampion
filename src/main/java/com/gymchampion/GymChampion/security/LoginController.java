@@ -5,11 +5,12 @@ import com.gymchampion.GymChampion.model.LoginData;
 import com.gymchampion.GymChampion.security.exceptions.UncorrectPasswordException;
 import com.gymchampion.GymChampion.security.exceptions.UserNotExistException;
 import com.gymchampion.GymChampion.service.LoginDataService;
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.Date;
 
 @RestController
 @RequestMapping("/login")
@@ -22,8 +23,8 @@ public class LoginController {
         this.loginDataService = loginDataService;
     }
 
-    @PostMapping
-    public String getTokenForUser(@RequestBody String login, @RequestBody String password) {
+    @GetMapping("/{login}/{password}")
+    public String getTokenForUser(@PathVariable String login, @PathVariable String password) {
 
         LoginData data;
         try {
@@ -33,6 +34,15 @@ public class LoginController {
             e.printStackTrace();
             return e.getMessage();
         }
-        return "token";
+        long timeInMilisec = System.currentTimeMillis();
+
+        return
+        Jwts.builder()
+                .setSubject(data.getUser().getLogin())
+                .claim("role", data.getUserRole())
+                .setIssuedAt(new Date(timeInMilisec))
+                .setExpiration(new Date(timeInMilisec + 30000))  /// 30 sec test token
+                .signWith(SignatureAlgorithm.HS384, data.getPassword())
+                .compact();
     }
 }
