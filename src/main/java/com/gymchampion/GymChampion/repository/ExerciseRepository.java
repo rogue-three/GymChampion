@@ -9,5 +9,7 @@ public interface ExerciseRepository extends JpaRepository<Exercise, Integer> {
 
     List<Exercise> findAllByExerciseScheme_ExerciseSchemeName(String scheme);
 
-    List<Exercise> findAllByBodyPart(String bodyPart);
+    List<Exercise> findAllByBodyPart_BodyPartName(String bodyPart);
+
+    List<Exercise> findAllByEquipment_EquipmentName(String equipment);
 }

@@ -6,10 +6,8 @@
 1. Get all exercises by scheme. We can get Upper body or Lower body exercises.
 2. Get  all exercises by equipment 
 3. Get exercise by ID 
-
-
-**TODO**: get all exercises by body part
-**TODO**: get all exercises by equipment
+4. Get all exercises by body part
+5. Get all exercises by equipment
 
 
 ### Post

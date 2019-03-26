@@ -31,11 +31,15 @@ public class ExerciseService {
     }
 
     public List<Exercise> getAllExerciseByBodyPart(String bodyPart) {
-        return this.exerciseRepository.findAllByBodyPart(bodyPart);
+        return this.exerciseRepository.findAllByBodyPart_BodyPartName(bodyPart);
     }
 
     public List<Exercise> getListOfExerciseByScheme(String scheme) {
         return exerciseRepository.findAllByExerciseScheme_ExerciseSchemeName(scheme);
+    }
+
+    public List<Exercise> getAllExerciseByEquipment(String equipment) {
+        return this.exerciseRepository.findAllByEquipment_EquipmentName(equipment);
     }
 
     public Exercise addExercise(Exercise exercise) {
@@ -59,6 +63,5 @@ public class ExerciseService {
         exerciseToUpdate.setEquipment(exercise.getEquipment());
         return this.exerciseRepository.save(exerciseToUpdate);
     }
-
 
 }

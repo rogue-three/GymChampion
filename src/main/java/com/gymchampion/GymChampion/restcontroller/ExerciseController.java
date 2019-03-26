@@ -39,6 +39,11 @@ public class ExerciseController {
         return this.exerciseService.getAllExerciseByBodyPart(bodyPart);
     }
 
+    @GetMapping("equipment/{equipment}")
+    public List<Exercise> getExercisesByEquipment(@PathVariable("equipment") String equipment) {
+        return this.exerciseService.getAllExerciseByEquipment(equipment);
+    }
+
     @PostMapping
     public Exercise addExercise(@RequestBody Exercise exercise) {
         return this.exerciseService.addExercise(exercise);
