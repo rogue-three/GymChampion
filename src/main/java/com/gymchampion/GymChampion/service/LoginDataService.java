@@ -36,4 +36,22 @@ public class LoginDataService {
     public void removeLoginData(LoginData loginData) {
         this.loginDataRepository.delete(loginData);
     }
+
+
+    public boolean validateUser(String login, String password) {
+        LoginData data = this.loginDataRepository.findLoginDataByUserLogin(login);
+
+        if (data == null) {
+
+        }
+
+        if (data.isArchivized()) {
+
+        }
+
+        if (password.equals(data.getPassword()) && !data.isArchivized()) {
+            return true;
+        }
+        return false;
+    }
 }
