@@ -30,6 +30,10 @@ public class ExerciseService {
         return new Exercise();
     }
 
+    public List<Exercise> getListOfExerciseByScheme(String scheme) {
+        return exerciseRepository.findAllByExerciseScheme_ExerciseSchemeName(scheme);
+    }
+
     public Exercise addExercise(Exercise exercise) {
         return this.exerciseRepository.save(exercise);
     }
@@ -52,7 +56,5 @@ public class ExerciseService {
         return this.exerciseRepository.save(exerciseToUpdate);
     }
 
-    public List<Exercise> getListOfExerciseByScheme(String scheme) {
-        return exerciseRepository.findAllByExerciseScheme_ExerciseSchemeName(scheme);
-    }
+
 }

@@ -29,6 +29,11 @@ public class ExerciseController {
         return this.exerciseService.getExerciseById(id);
     }
 
+    @GetMapping("/{scheme}")
+    public List<Exercise> getExerciseByScheme(@PathVariable("scheme") String scheme) {
+        return this.exerciseService.getListOfExerciseByScheme(scheme);
+    }
+
     @PostMapping
     public Exercise addExercise(@RequestBody Exercise exercise) {
         return this.exerciseService.addExercise(exercise);
@@ -49,8 +54,5 @@ public class ExerciseController {
         return this.exerciseService.setExerciseEquipment(exercise);
     }
 
-    @GetMapping("/{scheme}")
-    public List<Exercise> getExerciseByScheme(@PathVariable("scheme") String scheme) {
-        return this.exerciseService.getListOfExerciseByScheme(scheme);
-    }
+
 }
