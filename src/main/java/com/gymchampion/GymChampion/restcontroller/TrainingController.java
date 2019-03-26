@@ -48,13 +48,14 @@ public class TrainingController {
         return this.trainingService.getTrainingsByUserLogin(login);
     }
 
+    @GetMapping("count/user/{login}")
+    public int countTrainingsByUserLogin(@PathVariable("login") String login) {
+        return this.trainingService.countTrainingsByUserLogin(login);
+    }
     @PutMapping("/archivize/{id}")
     public Training archivizeUser(@PathVariable("id")int id) {
         return this.trainingService.archivizeTraining(id);
     }
 
-    @GetMapping("count/user/{login}")
-    public int countTrainingsByUserLogin(@PathVariable("login") String login) {
-        return this.trainingService.countTrainingsByUserLogin(login);
-    }
+
 }

@@ -46,3 +46,22 @@ This should be available for admins only (or deleted)
 
 ### Post
 1. add new training scheme
+
+## Gender controller
+
+### Get
+1. get list of all gender
+
+## Login Data controller
+
+this will be refactored due to login mechanism change in spring security
+
+## Set scheme controller
+
+### Get
+1. get list of exercises and sets by training
+2. get heaviest weight in given exercise by user login
+
+### Post
+1. add new 
+
