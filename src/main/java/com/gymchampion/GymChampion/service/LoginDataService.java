@@ -40,7 +40,7 @@ public class LoginDataService {
     }
 
 
-    public boolean validateUser(String login, String password)
+    public LoginData validateUserAndGetLoginData(String login, String password)
             throws UserNotExistException, UncorrectPasswordException {
 
         LoginData data = this.loginDataRepository.findLoginDataByUserLogin(login);
@@ -53,6 +53,6 @@ public class LoginDataService {
         if (!password.equals(data.getPassword())) {
             throw new UncorrectPasswordException();
         }
-        return true;
+        return data;
     }
 }

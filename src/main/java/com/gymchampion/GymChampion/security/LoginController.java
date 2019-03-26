@@ -1,6 +1,7 @@
 package com.gymchampion.GymChampion.security;
 
 
+import com.gymchampion.GymChampion.model.LoginData;
 import com.gymchampion.GymChampion.security.exceptions.UncorrectPasswordException;
 import com.gymchampion.GymChampion.security.exceptions.UserNotExistException;
 import com.gymchampion.GymChampion.service.LoginDataService;
@@ -24,8 +25,9 @@ public class LoginController {
     @PostMapping
     public String getTokenForUser(@RequestBody String login, @RequestBody String password) {
 
+        LoginData data;
         try {
-          loginDataService.validateUser(login, password);
+           data = loginDataService.validateUserAndGetLoginData(login, password);
         }
         catch(UncorrectPasswordException | UserNotExistException e) {
             e.printStackTrace();
