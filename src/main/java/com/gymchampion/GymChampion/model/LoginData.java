@@ -25,14 +25,18 @@ public class LoginData {
     @JoinColumn(name = "user_role")
     private Role userRole;
 
+    @Column(name = "archive")
+    private boolean archive;
+
 
     public LoginData() {}
 
-    public LoginData(String password, String email, User user, Role userRole) {
+    public LoginData(String password, String email, User user, Role userRole, boolean archive) {
         this.password = password;
         this.email = email;
         this.user = user;
         this.userRole = userRole;
+        this.archive = archive;
     }
 
     public int getLoginId() {
@@ -69,5 +73,13 @@ public class LoginData {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public boolean isArchivized() {
+        return archive;
+    }
+
+    public void setArchivized(boolean archivized) {
+        this.archive = archivized;
     }
 }
