@@ -32,6 +32,8 @@ public class LoginDataService {
     }
 
     public LoginData addLoginData(LoginData loginData) {
+        int correctId = getCountOfLoginDataRecords() + 1;
+        loginData.setLoginId(correctId);
         return this.loginDataRepository.save(loginData);
     }
 
@@ -54,5 +56,9 @@ public class LoginDataService {
             throw new UncorrectPasswordException();
         }
         return data;
+    }
+
+    private int getCountOfLoginDataRecords() {
+        return loginDataRepository.countOfLoginDataRecords();
     }
 }
