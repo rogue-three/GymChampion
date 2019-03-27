@@ -44,7 +44,11 @@ public class GymApiFilter implements javax.servlet.Filter {
         }
         int indexOfTokenStarted = 7;
         String token = authorizationHeader.substring(indexOfTokenStarted);
+
         Session actualSession = this.sessionService.getSessionBySessionKey(token);
+        if(actualSession == null) {
+            throw new ServletException("Session terminate or deny access!");
+        }
         String login = actualSession.getUser().getLogin();
         LoginData data = loginDataService.getLoginDataByLogin(login);
         Claims claims = Jwts.parser().setSigningKey(data.getPassword()).parseClaimsJws(token).getBody();
