@@ -12,13 +12,13 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/signIn")
-public class CreateUserController {
+public class SignInUserController {
 
     private LoginDataService loginDataService;
     private UserService userService;
 
     @Autowired
-    public CreateUserController(LoginDataService service, UserService userService) {
+    public SignInUserController(LoginDataService service, UserService userService) {
         this.loginDataService = service;
         this.userService = userService;
     }
