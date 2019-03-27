@@ -20,37 +20,21 @@ import java.io.IOException;
 @Component
 public class GymApiFilter implements javax.servlet.Filter {
 
-
-    private SessionService sessionService;
-
-
-    private LoginDataService loginDataService;
+    private FilterHelper helper;
 
     @Autowired
-    public GymApiFilter(LoginDataService loginDataService, SessionService sessionService) {
-        this.loginDataService = loginDataService;
-        this.sessionService = sessionService;
+    public GymApiFilter(FilterHelper helper) {
+        this.helper = helper;
     }
 
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain)
             throws IOException, ServletException {
 
-        HttpServletRequest httpServletRequest = (HttpServletRequest) servletRequest;
-        String authorizationHeader = httpServletRequest.getHeader("authorization");
+        String token = helper.getToken(servletRequest);
 
-        if (authorizationHeader == null) {
-            throw new ServletException("Login Error!");
-        }
-        int indexOfTokenStarted = 7;
-        String token = authorizationHeader.substring(indexOfTokenStarted);
+        LoginData data = helper.getLoginDataFromSession(token);
 
-        Session actualSession = this.sessionService.getSessionBySessionKey(token);
-        if(actualSession == null) {
-            throw new ServletException("Session terminate or deny access!");
-        }
-        String login = actualSession.getUser().getLogin();
-        LoginData data = loginDataService.getLoginDataByLogin(login);
         Claims claims = Jwts.parser().setSigningKey(data.getPassword()).parseClaimsJws(token).getBody();
         servletRequest.setAttribute("claims", claims);
         filterChain.doFilter(servletRequest,servletResponse);
