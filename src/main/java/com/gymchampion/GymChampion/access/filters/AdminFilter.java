@@ -1,10 +1,6 @@
-package com.gymchampion.GymChampion.security;
-
+package com.gymchampion.GymChampion.access.filters;
 
 import com.gymchampion.GymChampion.model.LoginData;
-import com.gymchampion.GymChampion.model.Session;
-import com.gymchampion.GymChampion.service.LoginDataService;
-import com.gymchampion.GymChampion.service.SessionService;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,18 +10,18 @@ import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
-import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 
 @Component
-public class GymApiFilter implements javax.servlet.Filter {
+public class AdminFilter implements javax.servlet.Filter {
 
     private FilterHelper helper;
 
     @Autowired
-    public GymApiFilter(FilterHelper helper) {
+    public AdminFilter(FilterHelper helper) {
         this.helper = helper;
     }
+
 
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain)
@@ -37,8 +33,10 @@ public class GymApiFilter implements javax.servlet.Filter {
 
         Claims claims = Jwts.parser().setSigningKey(data.getPassword()).parseClaimsJws(token).getBody();
         servletRequest.setAttribute("claims", claims);
+
+        if(!data.getUserRole().getRoleName().equals("ADMIN")) {
+            throw new ServletException("Only Admin access!");
+        }
         filterChain.doFilter(servletRequest,servletResponse);
     }
-
-
 }

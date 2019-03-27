@@ -1,4 +1,4 @@
-package com.gymchampion.GymChampion.security.exceptions;
+package com.gymchampion.GymChampion.access.exceptions;
 
 public class UncorrectPasswordException extends Exception {
 

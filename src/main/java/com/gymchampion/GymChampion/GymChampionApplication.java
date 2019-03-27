@@ -1,7 +1,7 @@
 package com.gymchampion.GymChampion;
 
-import com.gymchampion.GymChampion.security.AdminFilter;
-import com.gymchampion.GymChampion.security.GymApiFilter;
+import com.gymchampion.GymChampion.access.filters.AdminFilter;
+import com.gymchampion.GymChampion.access.filters.UserFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -13,14 +13,14 @@ import java.util.Collections;
 @SpringBootApplication
 public class GymChampionApplication {
 
-	private GymApiFilter gymApiFilter;
+	private UserFilter userFilter;
 	private AdminFilter adminFilter;
 
 	@Autowired
-	public GymChampionApplication(GymApiFilter gymApiFilter, AdminFilter adminFilter)
+	public GymChampionApplication(UserFilter userFilter, AdminFilter adminFilter)
 	{
 		this.adminFilter = adminFilter;
-		this.gymApiFilter = gymApiFilter;
+		this.userFilter = userFilter;
 	}
 
 	public static void main(String[] args) {
@@ -29,10 +29,10 @@ public class GymChampionApplication {
 
 
 	@Bean
-	public FilterRegistrationBean<GymApiFilter> setFilter() {
+	public FilterRegistrationBean<UserFilter> setUserFilter() {
 
 		FilterRegistrationBean filterRegistrationBean = new FilterRegistrationBean();
-		filterRegistrationBean.setFilter(gymApiFilter);
+		filterRegistrationBean.setFilter(userFilter);
 		filterRegistrationBean.setUrlPatterns(Collections.singleton("/api/*"));
 		return filterRegistrationBean;
 	}

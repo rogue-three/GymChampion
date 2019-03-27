@@ -2,8 +2,8 @@ package com.gymchampion.GymChampion.service;
 
 import com.gymchampion.GymChampion.model.LoginData;
 import com.gymchampion.GymChampion.repository.LoginDataRepository;
-import com.gymchampion.GymChampion.security.exceptions.UncorrectPasswordException;
-import com.gymchampion.GymChampion.security.exceptions.UserNotExistException;
+import com.gymchampion.GymChampion.access.exceptions.UncorrectPasswordException;
+import com.gymchampion.GymChampion.access.exceptions.UserNotExistException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

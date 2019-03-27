@@ -1,4 +1,5 @@
-package com.gymchampion.GymChampion.security;
+package com.gymchampion.GymChampion.access.filters;
+
 
 import com.gymchampion.GymChampion.model.LoginData;
 import io.jsonwebtoken.Claims;
@@ -13,15 +14,14 @@ import javax.servlet.ServletResponse;
 import java.io.IOException;
 
 @Component
-public class AdminFilter implements javax.servlet.Filter {
+public class UserFilter implements javax.servlet.Filter {
 
     private FilterHelper helper;
 
     @Autowired
-    public AdminFilter(FilterHelper helper) {
+    public UserFilter(FilterHelper helper) {
         this.helper = helper;
     }
-
 
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain)
@@ -33,10 +33,8 @@ public class AdminFilter implements javax.servlet.Filter {
 
         Claims claims = Jwts.parser().setSigningKey(data.getPassword()).parseClaimsJws(token).getBody();
         servletRequest.setAttribute("claims", claims);
-
-        if(!data.getUserRole().getRoleName().equals("ADMIN")) {
-            throw new ServletException("Only Admin access!");
-        }
         filterChain.doFilter(servletRequest,servletResponse);
     }
+
+
 }
