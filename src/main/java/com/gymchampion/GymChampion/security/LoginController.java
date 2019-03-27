@@ -12,6 +12,7 @@ import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletResponse;
 import java.util.Date;
 
 @RestController
@@ -47,7 +48,8 @@ public class LoginController {
 
      */
     @GetMapping
-    public String getTokenForUser(@RequestBody LoginData dataFromUser) {
+    @ResponseBody
+    public String getTokenForUser(@RequestBody LoginData dataFromUser, HttpServletResponse response) {
         String login = dataFromUser.getUser().getLogin();
         String password = dataFromUser.getPassword();
 
@@ -57,6 +59,7 @@ public class LoginController {
         }
         catch(UncorrectPasswordException | UserNotExistException e) {
             e.printStackTrace();
+            response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
             return e.getMessage();
         }
         long timeInMilisec = System.currentTimeMillis();
