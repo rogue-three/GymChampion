@@ -1,5 +1,6 @@
 package com.gymchampion.GymChampion.security;
 
+import com.gymchampion.GymChampion.model.LoginData;
 import com.gymchampion.GymChampion.model.User;
 import com.gymchampion.GymChampion.service.LoginDataService;
 import com.gymchampion.GymChampion.service.UserService;
@@ -24,8 +25,9 @@ public class CreateUserController {
 
 
     @PostMapping
-    public User addUser(@RequestBody User user) {
-        return this.userService.addUser(user);
+    public User addUser(@RequestBody LoginData data) {
+        loginDataService.addLoginData(data);
+        return this.userService.addUser(data.getUser());
     }
 
 }
