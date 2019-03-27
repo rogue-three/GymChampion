@@ -17,6 +17,17 @@ public class LoginDataService {
         this.loginDataRepository = loginDataRepository;
     }
 
+    public LoginData addLoginData(LoginData loginData) {
+        return this.loginDataRepository.save(loginData);
+    }
+
+
+
+
+
+
+
+
     public LoginData getLoginDataById(int id) {
         Optional<LoginData> optionalLoginData = this.loginDataRepository.findById(id);
         return optionalLoginData.orElseGet(LoginData::new);
@@ -26,9 +37,6 @@ public class LoginDataService {
         return this.loginDataRepository.findByUser_Login(login);
     }
 
-    public LoginData addLoginData(LoginData loginData) {
-        return this.loginDataRepository.save(loginData);
-    }
 
     public void removeLoginData(LoginData loginData) {
         this.loginDataRepository.delete(loginData);
