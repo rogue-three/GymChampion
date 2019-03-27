@@ -132,7 +132,7 @@ public class SessionController {
     }
 
     /*
-     *   LoginData object handling
+     *   LoginData object handling - TODO
      */
 
     @PostMapping("/login_data")
