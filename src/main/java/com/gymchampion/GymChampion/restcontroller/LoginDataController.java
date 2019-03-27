@@ -31,7 +31,7 @@ public class LoginDataController {
         return this.loginDataService.addLoginData(loginData);
     }
 
-    @DeleteMapping
+    @DeleteMapping("/admin")
     public void removeLoginData(@RequestBody LoginData loginData) {
         this.loginDataService.removeLoginData(loginData);
     }

@@ -28,7 +28,7 @@ public class EquipmentController {
         return this.equipmentService.getEquipmentById(id);
     }
 
-    @PostMapping
+    @PostMapping("/admin")
     public Equipment addEquipment(@RequestBody Equipment equipment) {
         return this.equipmentService.addEquipment(equipment);
     }

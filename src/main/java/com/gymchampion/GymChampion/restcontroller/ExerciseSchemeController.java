@@ -28,7 +28,7 @@ public class ExerciseSchemeController {
         return this.exerciseSchemeService.getExerciseSchemeById(id);
     }
 
-    @PostMapping
+    @PostMapping("/admin")
     public ExerciseScheme addExerciseScheme(@RequestBody ExerciseScheme exerciseScheme) {
         return this.exerciseSchemeService.addExerciseScheme(exerciseScheme);
     }

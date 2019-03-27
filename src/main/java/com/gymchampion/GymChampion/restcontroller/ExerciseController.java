@@ -34,17 +34,17 @@ public class ExerciseController {
         return this.exerciseService.addExercise(exercise);
     }
 
-    @PutMapping("/max_reps")
+    @PutMapping("/max_reps/admin")
     public Exercise setExerciseMaxReps(@RequestBody Exercise exercise) {
         return this.exerciseService.setExerciseMaxReps(exercise);
     }
 
-    @PutMapping("/max_weight")
+    @PutMapping("/max_weight/admin")
     public Exercise setExerciseMaxWeight(@RequestBody Exercise exercise) {
         return this.exerciseService.setExerciseMaxWeight(exercise);
     }
 
-    @PutMapping("/equipment")
+    @PutMapping("/equipment/admin")
     public Exercise setExerciseEquipment(@RequestBody Exercise exercise) {
         return this.exerciseService.setExerciseEquipment(exercise);
     }

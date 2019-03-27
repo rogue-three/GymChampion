@@ -28,7 +28,7 @@ public class BodyPartController {
         return this.bodyPartService.getBodyPartById(id);
     }
 
-    @PostMapping
+    @PostMapping("/admin")
     public BodyPart addBodyPart(@RequestBody BodyPart bodyPart) {
         return this.bodyPartService.addBodyPart(bodyPart);
     }
