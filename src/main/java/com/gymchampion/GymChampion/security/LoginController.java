@@ -26,9 +26,30 @@ public class LoginController {
         this.loginDataService = loginDataService;
         this.sessionService = sessionService;
     }
+    /* user will login by example login_data json with only login and password:
+        {
+    "loginId": 1,
+    "password": "krzychu1",
+    "email": "example@gmail.com",
+    "user": {
+        "login": "krzychu",
+        "nickname": null,
+        "birthDate": null,
+        "weight": null,
+        "gender": null
+    				},
+    "userRole": {
+        "id": 1,
+        "roleName": "USER"
+    },
+    "archivized": false
+}
 
-    @GetMapping("/{login}/{password}")
-    public String getTokenForUser(@PathVariable String login, @PathVariable String password) {
+     */
+    @GetMapping
+    public String getTokenForUser(@RequestBody LoginData dataFromUser) {
+        String login = dataFromUser.getUser().getLogin();
+        String password = dataFromUser.getPassword();
 
         LoginData data;
         try {
@@ -44,7 +65,7 @@ public class LoginController {
                 .setSubject(data.getUser().getLogin())
                 .claim("role", data.getUserRole())
                 .setIssuedAt(new Date(timeInMilisec))
-                .setExpiration(new Date(timeInMilisec + 30000))  /// 30 sec test token
+                .setExpiration(new Date(timeInMilisec + 60000))  /// 60 sec test token
                 .signWith(SignatureAlgorithm.HS384, data.getPassword())
                 .compact();
         sessionService.addSession(
