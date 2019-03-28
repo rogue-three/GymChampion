@@ -128,22 +128,22 @@ public class DBaseLoader implements CommandLineRunner {
     }
 
     private void initializeUsers(UserRepository userRepository) {
-        mihuUser = new User("Mihu", "the_mihu", 88.5, false);
+        mihuUser = new User("Mihu", "the_mihu", 88.5);
         mihuUser.setBirthDate(new Date(176892927000L));
         mihuUser.setGender(maleGender);
         userRepository.save(mihuUser);
 
-        krzychuUser = new User("Krzychu", "duży_krzychu", 85, false);
+        krzychuUser = new User("Krzychu", "duży_krzychu", 85);
         krzychuUser.setBirthDate(new Date(655721727000L));
         krzychuUser.setGender(maleGender);
         userRepository.save(krzychuUser);
 
-        jodlaUser = new User("Jodla", "scrum_maestro", 75, false);
+        jodlaUser = new User("Jodla", "scrum_maestro", 75);
         jodlaUser.setBirthDate(new Date(536748927000L));
         jodlaUser.setGender(maleGender);
         userRepository.save(jodlaUser);
 
-        zosiaUser = new User("Zosia", "zocha", 62, false);
+        zosiaUser = new User("Zosia", "zocha", 62);
         zosiaUser.setBirthDate(new Date(794566527000L));
         zosiaUser.setGender(femaleGender);
         userRepository.save(zosiaUser);
