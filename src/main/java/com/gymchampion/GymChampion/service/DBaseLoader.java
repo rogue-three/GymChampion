@@ -22,8 +22,7 @@ public class DBaseLoader implements CommandLineRunner {
     private  ExerciseRepository exerciseRepository;
     private  SetSchemeRepository setSchemeRepository;
     private  BodyPartRepository bodyPartRepository;
-
-
+    private RoleRepository roleRepository;
 
     private ExerciseScheme upperBodyExScheme = new ExerciseScheme("upper_body");
     private ExerciseScheme lowerBodyExScheme = new ExerciseScheme("lower_body");
@@ -49,6 +48,9 @@ public class DBaseLoader implements CommandLineRunner {
     private Exercise militaryPress;
     private Exercise deadLift;
     private Exercise pullUps;
+
+    private Role user;
+    private Role admin;
 
     private User mihuUser;
     private User krzychuUser;
@@ -76,7 +78,7 @@ public class DBaseLoader implements CommandLineRunner {
                        ExerciseSchemeRepository exerciseSchemeRepository, EquipmentRepository equipmentRepository,
                        UserRepository userRepository, TrainingRepository trainingRepository,
                        ExerciseRepository exerciseRepository, SetSchemeRepository setSchemeRepository,
-                       BodyPartRepository bodyPartRepository) {
+                       BodyPartRepository bodyPartRepository, RoleRepository roleRepository) {
         this.gymChampionApplication = gymChampionApplication;
         this.genderRepository = genderRepository;
         this.exerciseSchemeRepository = exerciseSchemeRepository;
@@ -86,6 +88,7 @@ public class DBaseLoader implements CommandLineRunner {
         this.exerciseRepository = exerciseRepository;
         this.setSchemeRepository = setSchemeRepository;
         this.bodyPartRepository = bodyPartRepository;
+        this.roleRepository = roleRepository;
     }
 
     @Override
@@ -98,6 +101,7 @@ public class DBaseLoader implements CommandLineRunner {
         initializeUsers(userRepository);
         initializeTraining(trainingRepository);
         initializeSetSchemeTable(setSchemeRepository);
+        initializeRoles(roleRepository);
     }
 
     private void initializeGenderTableContent(GenderRepository genderRepository){
@@ -147,6 +151,13 @@ public class DBaseLoader implements CommandLineRunner {
         zosiaUser.setBirthDate(new Date(794566527000L));
         zosiaUser.setGender(femaleGender);
         userRepository.save(zosiaUser);
+    }
+
+    private void initializeRoles(RoleRepository roleRepository) {
+        user = new Role("USER");
+        admin = new Role("ADMIN");
+        roleRepository.save(user);
+        roleRepository.save(admin);
     }
 
 
