@@ -53,17 +53,8 @@ public class UserService {
         return this.userRepository.save(userToBeUpdated);
     }
 
-    public User archivizeUser(String login) {
-        User user = this.getUser(login);
-        user.setArchivized(true);
-        return this.userRepository.save(user);
-    }
 
-    public List<User> getActiveUsers() {
-        return this.userRepository.findUsersByArchivized(false);
-    }
 
-    public List<User> getArchivizedUsers() {
-        return this.userRepository.findUsersByArchivized(true);
-    }
+
+
 }

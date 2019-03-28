@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/login_data")
+@RequestMapping("/api/login_data")
 public class LoginDataController {
 
     private LoginDataService loginDataService;
@@ -31,7 +31,7 @@ public class LoginDataController {
         return this.loginDataService.addLoginData(loginData);
     }
 
-    @DeleteMapping
+    @DeleteMapping("/admin")
     public void removeLoginData(@RequestBody LoginData loginData) {
         this.loginDataService.removeLoginData(loginData);
     }

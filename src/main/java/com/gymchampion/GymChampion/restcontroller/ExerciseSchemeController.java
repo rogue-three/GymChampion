@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/exercise_scheme")
+@RequestMapping("/api/exercise_scheme")
 public class ExerciseSchemeController {
 
     private ExerciseSchemeService exerciseSchemeService;
@@ -28,7 +28,7 @@ public class ExerciseSchemeController {
         return this.exerciseSchemeService.getExerciseSchemeById(id);
     }
 
-    @PostMapping
+    @PostMapping("/admin")
     public ExerciseScheme addExerciseScheme(@RequestBody ExerciseScheme exerciseScheme) {
         return this.exerciseSchemeService.addExerciseScheme(exerciseScheme);
     }

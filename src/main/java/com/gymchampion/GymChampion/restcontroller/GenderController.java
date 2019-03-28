@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("/gender")
+@RequestMapping("/api/gender")
 public class GenderController {
 
     private GenderService genderService;

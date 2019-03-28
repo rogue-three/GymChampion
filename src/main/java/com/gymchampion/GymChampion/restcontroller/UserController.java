@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/user")
+@RequestMapping("/api/user")
 public class UserController {
 
     private UserService userService;
@@ -53,18 +53,8 @@ public class UserController {
         return this.userService.setUserWeight(user);
     }
 
-    @PutMapping("/archivize/{login}")
-    public User archivizeUser(@PathVariable("login") String login) {
-        return this.userService.archivizeUser(login);
-    }
 
-    @GetMapping("/active")
-    public List<User> getActiveUsers() {
-        return this.userService.getActiveUsers();
-    }
 
-    @GetMapping("/archive")
-    public List<User> getArchivizedUsers() {
-        return this.userService.getArchivizedUsers();
-    }
+
+
 }

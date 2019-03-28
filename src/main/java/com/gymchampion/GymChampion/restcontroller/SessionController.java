@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/session")
+@RequestMapping("/admin/session")
 public class SessionController {
 
     private SessionService sessionService;
