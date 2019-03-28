@@ -66,7 +66,7 @@ public class LoginController {
 
         String token = Jwts.builder()
                 .setSubject(data.getUser().getLogin())
-                .claim("role", data.getUserRole())
+                .claim("role", data.getRole())
                 .setIssuedAt(new Date(timeInMilisec))
                 .setExpiration(new Date(timeInMilisec + 60000))  /// 60 sec test token
                 .signWith(SignatureAlgorithm.HS384, data.getPassword())

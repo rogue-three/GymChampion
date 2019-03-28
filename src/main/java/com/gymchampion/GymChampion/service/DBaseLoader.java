@@ -6,6 +6,7 @@ import com.gymchampion.GymChampion.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
+import sun.rmi.runtime.Log;
 
 import java.util.Date;
 
@@ -23,6 +24,12 @@ public class DBaseLoader implements CommandLineRunner {
     private  SetSchemeRepository setSchemeRepository;
     private  BodyPartRepository bodyPartRepository;
     private RoleRepository roleRepository;
+    private LoginDataRepository loginDataRepository;
+
+    private LoginData mihuData;
+    private LoginData krzychuData;
+    private LoginData zosiaData;
+    private LoginData jodlaData;
 
     private ExerciseScheme upperBodyExScheme = new ExerciseScheme("upper_body");
     private ExerciseScheme lowerBodyExScheme = new ExerciseScheme("lower_body");
@@ -78,7 +85,8 @@ public class DBaseLoader implements CommandLineRunner {
                        ExerciseSchemeRepository exerciseSchemeRepository, EquipmentRepository equipmentRepository,
                        UserRepository userRepository, TrainingRepository trainingRepository,
                        ExerciseRepository exerciseRepository, SetSchemeRepository setSchemeRepository,
-                       BodyPartRepository bodyPartRepository, RoleRepository roleRepository) {
+                       BodyPartRepository bodyPartRepository, RoleRepository roleRepository,
+                       LoginDataRepository loginDataRepository) {
         this.gymChampionApplication = gymChampionApplication;
         this.genderRepository = genderRepository;
         this.exerciseSchemeRepository = exerciseSchemeRepository;
@@ -89,6 +97,7 @@ public class DBaseLoader implements CommandLineRunner {
         this.setSchemeRepository = setSchemeRepository;
         this.bodyPartRepository = bodyPartRepository;
         this.roleRepository = roleRepository;
+        this.loginDataRepository = loginDataRepository;
     }
 
     @Override
@@ -102,6 +111,7 @@ public class DBaseLoader implements CommandLineRunner {
         initializeTraining(trainingRepository);
         initializeSetSchemeTable(setSchemeRepository);
         initializeRoles(roleRepository);
+        initializeLoginData(loginDataRepository);
     }
 
     private void initializeGenderTableContent(GenderRepository genderRepository){
@@ -158,6 +168,18 @@ public class DBaseLoader implements CommandLineRunner {
         admin = new Role("ADMIN");
         roleRepository.save(user);
         roleRepository.save(admin);
+    }
+
+    private void initializeLoginData(LoginDataRepository loginDataRepository) {
+        mihuData = new LoginData("mihu1", "mihu@gmail.com", mihuUser, user, false);
+        krzychuData = new LoginData("krzychu1","krzychu@gmail.com",krzychuUser,user,false);
+        zosiaData = new LoginData("zosia1","zosia@gmail.com",zosiaUser,user,false);
+        jodlaData = new LoginData("jodla1","jodla@gmail.com",jodlaUser, admin, false);
+
+        loginDataRepository.save(mihuData);
+        loginDataRepository.save(krzychuData);
+        loginDataRepository.save(zosiaData);
+        loginDataRepository.save(jodlaData);
     }
 
 

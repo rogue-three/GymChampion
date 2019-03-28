@@ -59,11 +59,11 @@ public class LoginData {
 
     public void setUser(User user) { this.user = user; }
 
-    public Role getUserRole() {
+    public Role getRole() {
         return userRole;
     }
 
-    public void setUserRole(Role userRole) {
+    public void setRole(Role userRole) {
         this.userRole = userRole;
     }
 

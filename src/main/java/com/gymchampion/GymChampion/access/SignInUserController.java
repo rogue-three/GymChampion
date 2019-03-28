@@ -32,7 +32,7 @@ public class SignInUserController {
     public User addUser(@RequestBody LoginData data) {
         loginDataService.addLoginData(data);
         Role user = roleService.getRoleByRoleName("USER");
-        data.setUserRole(user);
+        data.setRole(user);
         return this.userService.addUser(data.getUser());
     }
 

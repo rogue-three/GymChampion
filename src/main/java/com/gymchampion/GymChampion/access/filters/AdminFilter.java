@@ -34,7 +34,7 @@ public class AdminFilter implements javax.servlet.Filter {
         Claims claims = Jwts.parser().setSigningKey(data.getPassword()).parseClaimsJws(token).getBody();
         servletRequest.setAttribute("claims", claims);
 
-        if(!data.getUserRole().getRoleName().equals("ADMIN")) {
+        if(!data.getRole().getRoleName().equals("ADMIN")) {
             throw new ServletException("Only Admin access!");
         }
         filterChain.doFilter(servletRequest,servletResponse);
