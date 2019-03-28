@@ -24,9 +24,24 @@ public class ExerciseController {
         return this.exerciseService.getAllExercises();
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/id/{id}")
     public Exercise getExerciseById(@PathVariable int id) {
         return this.exerciseService.getExerciseById(id);
+    }
+
+    @GetMapping("/scheme/{scheme}")
+    public List<Exercise> getExerciseByScheme(@PathVariable("scheme") String scheme) {
+        return this.exerciseService.getListOfExerciseByScheme(scheme);
+    }
+
+    @GetMapping("/bodypart/{bodyPart}")
+    public List<Exercise> getExercisesByBodyPart(@PathVariable("bodyPart") String bodyPart) {
+        return this.exerciseService.getAllExerciseByBodyPart(bodyPart);
+    }
+
+    @GetMapping("equipment/{equipment}")
+    public List<Exercise> getExercisesByEquipment(@PathVariable("equipment") String equipment) {
+        return this.exerciseService.getAllExerciseByEquipment(equipment);
     }
 
     @PostMapping
@@ -49,8 +64,5 @@ public class ExerciseController {
         return this.exerciseService.setExerciseEquipment(exercise);
     }
 
-    @GetMapping("/{scheme}")
-    public List<Exercise> getExerciseByScheme(@PathVariable("scheme") String scheme) {
-        return this.exerciseService.getListOfExerciseByScheme(scheme);
-    }
+
 }
