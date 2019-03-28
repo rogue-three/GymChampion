@@ -21,14 +21,11 @@ public class LoginDataService {
 
     public LoginData getLoginDataById(int id) {
         Optional<LoginData> optionalLoginData = this.loginDataRepository.findById(id);
-        if (optionalLoginData.isPresent()) {
-            return optionalLoginData.get();
-        }
-        return new LoginData();
+        return optionalLoginData.orElseGet(LoginData::new);
     }
 
     public LoginData getLoginDataByLogin(String login) {
-       return this.loginDataRepository.findLoginDataByUserLogin(login);
+       return this.loginDataRepository.findByUser_Login(login);
     }
 
     public LoginData addLoginData(LoginData loginData) {
@@ -45,11 +42,11 @@ public class LoginDataService {
     public LoginData validateUserAndGetLoginData(String login, String password)
             throws UserNotExistException, UncorrectPasswordException {
 
-        LoginData data = this.loginDataRepository.findLoginDataByUserLogin(login);
+        LoginData data = this.loginDataRepository.findByUser_Login(login);
         if (data == null) {
             throw new UserNotExistException();
         }
-        if (data.isArchivized()) {
+        if (data.isArchived()) {
             throw new UserNotExistException();
         }
         if (!password.equals(data.getPassword())) {
@@ -59,6 +56,6 @@ public class LoginDataService {
     }
 
     private int getCountOfLoginDataRecords() {
-        return loginDataRepository.countOfLoginDataRecords();
+        return this.loginDataRepository.findAll().size();
     }
 }

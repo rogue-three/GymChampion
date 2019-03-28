@@ -1,11 +1,7 @@
 package com.gymchampion.GymChampion.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 @Entity
 @Table(name = "gym_user")
@@ -25,18 +21,9 @@ public class User {
     @Column(name = "weight")
     private double weight;
 
-
     @ManyToOne
     @JoinColumn(name = "gender_id")
     private Gender gender;
-
-    @OneToMany(mappedBy = "user")
-    @JsonIgnore
-    private List<Session> sessions;
-
-    @OneToMany(mappedBy = "user")
-    @JsonIgnore
-    private List<Training> trainings = new ArrayList<>();
 
     public User() {}
 
@@ -85,7 +72,6 @@ public class User {
         this.weight = weight;
     }
 
-
     public Gender getGender() {
         return this.gender;
     }
@@ -93,14 +79,6 @@ public class User {
     public void setGender(Gender gender) {
         this.gender = gender;
     }
-
-    public List<Session> getSessions() { return this.sessions; }
-
-    public void setSessions(List<Session> sessions) { this.sessions = sessions; }
-
-    public List<Training> getTrainings() { return this.trainings; }
-
-    public void setTrainings(List<Training> trainings) { this.trainings = trainings; }
 }
 
 

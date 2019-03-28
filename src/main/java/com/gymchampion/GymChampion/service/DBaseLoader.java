@@ -46,7 +46,6 @@ public class DBaseLoader implements CommandLineRunner {
     private Exercise barbellBenchPress;
     private Exercise squats;
     private Exercise militaryPress;
-    private Exercise deadLift;
     private Exercise pullUps;
 
     private Role user;
@@ -64,13 +63,6 @@ public class DBaseLoader implements CommandLineRunner {
     private Training tr005;
     private Training tr006;
     private Training tr007;
-    private Training tr008;
-    private Training tr009;
-    private Training tr010;
-    private Training tr011;
-    private Training tr012;
-    private Training tr013;
-    private Training tr014;
 
 
     @Autowired
@@ -180,7 +172,7 @@ public class DBaseLoader implements CommandLineRunner {
         militaryPress.setExerciseScheme(upperBodyExScheme);
         exerciseRepository.save(militaryPress);
 
-        deadLift = new Exercise("dead_lift", 500, 800d);
+        Exercise deadLift = new Exercise("dead_lift", 500, 800d);
         deadLift.setEquipment(barbellEquipment);
         deadLift.setBodyPart(hamstringsBodyPart);
         deadLift.setExerciseScheme(lowerBodyExScheme);
@@ -231,37 +223,37 @@ public class DBaseLoader implements CommandLineRunner {
         tr007.setUser(krzychuUser);
         trainingRepository.save(tr007);
 
-        tr008 = new Training(false);
+        Training tr008 = new Training(false);
         tr008.setTrainingDate(new Date(1549795527000L));
         tr008.setUser(jodlaUser);
         trainingRepository.save(tr008);
 
-        tr009 = new Training(false);
+        Training tr009 = new Training(false);
         tr009.setTrainingDate(new Date(1547124927000L));
         tr009.setUser(jodlaUser);
         trainingRepository.save(tr009);
 
-        tr010 = new Training(false);
+        Training tr010 = new Training(false);
         tr010.setTrainingDate(new Date(1550141127000L));
         tr010.setUser(jodlaUser);
         trainingRepository.save(tr010);
 
-        tr011 = new Training(false);
+        Training tr011 = new Training(false);
         tr011.setTrainingDate(new Date(1549968327000L));
         tr011.setUser(jodlaUser);
         trainingRepository.save(tr011);
 
-        tr012 = new Training(false);
+        Training tr012 = new Training(false);
         tr012.setTrainingDate(new Date(1547127927000L));
         tr012.setUser(zosiaUser);
         trainingRepository.save(tr012);
 
-        tr013 = new Training(false);
+        Training tr013 = new Training(false);
         tr013.setTrainingDate(new Date(1547981127000L));
         tr013.setUser(zosiaUser);
         trainingRepository.save(tr013);
 
-        tr014 = new Training(false);
+        Training tr014 = new Training(false);
         tr014.setTrainingDate(new Date(1549795527000L));
         tr014.setUser(zosiaUser);
         trainingRepository.save(tr014);

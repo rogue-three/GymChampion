@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/user")
+@RequestMapping("/user")
 public class UserController {
 
     private UserService userService;
@@ -38,9 +38,9 @@ public class UserController {
         return this.userService.setUserNickname(user);
     }
 
-    @PutMapping("/birthdate")
-    public User setUserBirthdate(@RequestBody User user) {
-        return this.userService.setUserBirthdate(user);
+    @PutMapping("/birth_date")
+    public User setUserBirthDate(@RequestBody User user) {
+        return this.userService.setUserBirthDate(user);
     }
 
     @PutMapping("/gender")

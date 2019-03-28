@@ -1,13 +1,10 @@
 package com.gymchampion.GymChampion.service;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.type.TypeFactory;
 import com.gymchampion.GymChampion.model.SetScheme;
 import com.gymchampion.GymChampion.repository.SetSchemeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.io.IOException;
 import java.util.List;
 
 @Service

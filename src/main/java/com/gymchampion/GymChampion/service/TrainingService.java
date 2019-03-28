@@ -39,29 +39,29 @@ public class TrainingService {
     }
 
     public List<Training> getAllTrainingsFromActiveUsers() {
-        return this.trainingRepository.findTrainingsByArchivized(false);
+        return this.trainingRepository.findTrainingsByArchived(false);
     }
 
-    public List<Training> getAllArchivizedTrainings() {
-        return this.trainingRepository.findTrainingsByArchivized(true);
+    public List<Training> getAllArchivedTrainings() {
+        return this.trainingRepository.findTrainingsByArchived(true);
     }
 
     public List<Training> getTrainingsByUserLogin(String login) {
-        return this.trainingRepository.findTrainingsByUserLogin(login);
+        return this.trainingRepository.findByUser_Login(login);
     }
 
-    public Training archivizeTraining(int id) {
+    public Training archiveTraining(int id) {
         Optional<Training> optionalTraining = this.trainingRepository.findById(id);
         Training training;
         if (optionalTraining.isPresent()) {
             training = optionalTraining.get();
-            training.setArchivized(true);
+            training.setArchived(true);
             return this.trainingRepository.save(training);
         }
         return new Training();
     }
 
     public int countTrainingsByUserLogin(String login) {
-        return this.trainingRepository.findTrainingsByUserLogin(login).size();
+        return this.trainingRepository.findByUser_Login(login).size();
     }
 }

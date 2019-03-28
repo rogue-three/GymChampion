@@ -9,8 +9,7 @@ import java.util.List;
 
 public interface TrainingRepository extends JpaRepository<Training, Integer> {
 
-    List<Training> findTrainingsByArchivized(boolean isArchivized);
+    List<Training> findTrainingsByArchived(boolean isArchived);
 
-    @Query(nativeQuery = true, value = "SELECT * FROM training WHERE user_login = :login")
-    List<Training> findTrainingsByUserLogin(@Param("login") String login);
+    List<Training> findByUser_Login(String login);
 }

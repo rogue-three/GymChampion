@@ -1,9 +1,6 @@
 package com.gymchampion.GymChampion.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import javax.persistence.*;
-import java.util.List;
 
 @Entity
 @Table(name = "exercise_scheme")
@@ -17,10 +14,6 @@ public class ExerciseScheme {
     @Column(name = "exercise_scheme_name", nullable = false, length = 20)
     private String exerciseSchemeName;
 
-    @OneToMany(mappedBy = "exerciseScheme", cascade = CascadeType.ALL)
-    @JsonIgnore
-    private List<Exercise> exercises;
-
     public ExerciseScheme() {}
 
     public ExerciseScheme(String exerciseSchemeName) { this.exerciseSchemeName = exerciseSchemeName; }
@@ -32,8 +25,4 @@ public class ExerciseScheme {
     public String getExerciseName() { return this.exerciseSchemeName; }
 
     public void setExerciseName(String exerciseName) { this.exerciseSchemeName = exerciseName; }
-
-    public List<Exercise> getExercises() { return this.exercises; }
-
-    public void setExercises(List<Exercise> exercises) { this.exercises = exercises; }
 }

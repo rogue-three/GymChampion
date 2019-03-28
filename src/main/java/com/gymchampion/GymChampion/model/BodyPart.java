@@ -1,9 +1,6 @@
 package com.gymchampion.GymChampion.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import javax.persistence.*;
-import java.util.List;
 
 @Entity
 @Table(name = "body_part")
@@ -16,10 +13,6 @@ public class BodyPart {
 
     @Column(name = "body_part_name", nullable = false, length = 20)
     private String bodyPartName;
-
-    @OneToMany(mappedBy = "bodyPart", cascade = CascadeType.ALL)
-    @JsonIgnore
-    private List<Exercise> exercises;
 
     public BodyPart() {}
 
@@ -42,8 +35,4 @@ public class BodyPart {
     public void setBodyPartName(String bodyPartName) {
         this.bodyPartName = bodyPartName;
     }
-
-    public List<Exercise> getExercises() { return this.exercises; }
-
-    public void setExercises(List<Exercise> exercises) { this.exercises = exercises; }
 }

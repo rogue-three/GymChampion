@@ -1,10 +1,6 @@
 package com.gymchampion.GymChampion.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
 @Table(name="gender")
@@ -17,10 +13,6 @@ public class Gender {
 
     @Column(name="sex", nullable = false, length = 15)
     private String sex;
-
-    @OneToMany(mappedBy = "gender")
-    @JsonIgnore
-    private List<User> users = new ArrayList<>();
 
     public Gender() {}
 
@@ -42,13 +34,5 @@ public class Gender {
 
     public void setSex(String sex) {
         this.sex = sex;
-    }
-
-    public List<User> getUsers() {
-        return this.users;
-    }
-
-    public void setUsers(List<User> users) {
-        this.users = users;
     }
 }
