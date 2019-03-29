@@ -2,8 +2,11 @@ package com.gymchampion.GymChampion.restcontroller;
 
 import com.gymchampion.GymChampion.exceptions.ResourceAlreadyExistsException;
 import com.gymchampion.GymChampion.exceptions.ResourceDoesNotExistException;
+import com.gymchampion.GymChampion.model.LoginData;
+import com.gymchampion.GymChampion.model.Role;
 import com.gymchampion.GymChampion.model.Session;
 import com.gymchampion.GymChampion.service.LoginDataService;
+import com.gymchampion.GymChampion.service.RoleService;
 import com.gymchampion.GymChampion.service.SessionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -20,11 +23,15 @@ public class SessionController {
 
     private LoginDataService loginDataService;
     private SessionService sessionService;
+    private RoleService roleService;
 
     @Autowired
-    public SessionController(LoginDataService loginDataService, SessionService sessionService) {
+    public SessionController(LoginDataService loginDataService,
+                             SessionService sessionService,
+                             RoleService roleService) {
         this.loginDataService = loginDataService;
         this.sessionService = sessionService;
+        this.roleService = roleService;
     }
 
     /*
@@ -136,9 +143,11 @@ public class SessionController {
     /*
      *   LoginData object handling - TODO
      */
-    /*
+
     @PostMapping("/login_data")
-    public LoginData addLoginData(@RequestBody LoginData loginData) {
+    public LoginData addUserLoginData(@RequestBody LoginData loginData) {
+        Role userRole = this.roleService.getRoleByRoleName("USER");
+        loginData.setUserRole(userRole);
         return this.loginDataService.addLoginData(loginData);
     }
 
@@ -161,5 +170,5 @@ public class SessionController {
     @DeleteMapping("login_data/{id}")
     public void removeLoginData(@PathVariable("id") int id) {
         this.loginDataService.removeLoginData(id);
-    }   */
+    }
 }

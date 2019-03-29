@@ -1,4 +1,4 @@
-package com.gymchampion.GymChampion.access.filters;
+package com.gymchampion.GymChampion.access_filters;
 
 import com.gymchampion.GymChampion.model.LoginData;
 import com.gymchampion.GymChampion.model.Session;
