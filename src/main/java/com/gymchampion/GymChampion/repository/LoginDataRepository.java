@@ -11,5 +11,5 @@ public interface LoginDataRepository extends JpaRepository<LoginData, Integer> {
 
     LoginData findByPassword(String password);
 
-    List<LoginData> findAllByArchived(boolean isArchived);
+    List<LoginData> findAllByArchivedEquals(boolean isArchived);
 }

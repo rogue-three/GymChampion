@@ -79,7 +79,7 @@ public class LoginData {
         return this.isArchived;
     }
 
-    public void setArchived(boolean archivized) {
-        this.isArchived = archivized;
+    public void setArchived(boolean archived) {
+        this.isArchived = archived;
     }
 }

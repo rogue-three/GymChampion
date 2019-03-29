@@ -41,18 +41,18 @@ public class LoginDataService {
         return this.loginDataRepository.findByUser_Login(login);
     }
 
-    public LoginData addLoginData(LoginData loginData) {
+    public void addLoginData(LoginData loginData) {
         int correctId = getCountOfLoginDataRecords() + 1;
         loginData.setLoginId(correctId);
-        return this.loginDataRepository.save(loginData);
+        this.loginDataRepository.save(loginData);
     }
 
     public List<LoginData> getLoginDataFromActiveUsers() {
-        return this.loginDataRepository.findAllByArchived(false);
+        return this.loginDataRepository.findAllByArchivedEquals(false);
     }
 
     public List<LoginData> getArchivedLoginData() {
-        return this.loginDataRepository.findAllByArchived(true);
+        return this.loginDataRepository.findAllByArchivedEquals(true);
     }
 
     public void updateLoginData(LoginData loginData) {
