@@ -53,18 +53,8 @@ public class UserController {
         return this.userService.setUserWeight(user);
     }
 
-    @PutMapping("/archive/{login}")
-    public User archiveUser(@PathVariable("login") String login) {
-        return this.userService.archiveUser(login);
-    }
 
-    @GetMapping("/active")
-    public List<User> getActiveUsers() {
-        return this.userService.getActiveUsers();
-    }
 
-    @GetMapping("/archive")
-    public List<User> getArchivedUsers() {
-        return this.userService.getArchivedUsers();
-    }
+
+
 }

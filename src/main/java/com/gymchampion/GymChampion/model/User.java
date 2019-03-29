@@ -21,28 +21,23 @@ public class User {
     @Column(name = "weight")
     private double weight;
 
-    @Column(name = "archived")
-    private boolean archived;
-
     @ManyToOne
     @JoinColumn(name = "gender_id")
     private Gender gender;
 
     public User() {}
 
-    public User(String login, String nickname, Date birthDate, double weight, boolean archived) {
+    public User(String login, String nickname, Date birthDate, double weight) {
         this.login = login;
         this.nickname = nickname;
         this.birthDate = birthDate;
         this.weight = weight;
-        this.archived = archived;
     }
 
-    public User(String login, String nickname, double weight, boolean archived) {
+    public User(String login, String nickname, double weight) {
         this.login = login;
         this.nickname = nickname;
         this.weight = weight;
-        this.archived = archived;
     }
 
     public String getLogin() {
@@ -75,14 +70,6 @@ public class User {
 
     public void setWeight(double weight) {
         this.weight = weight;
-    }
-
-    public boolean isArchived() {
-        return this.archived;
-    }
-
-    public void setArchived(boolean archived) {
-        this.archived = archived;
     }
 
     public Gender getGender() {

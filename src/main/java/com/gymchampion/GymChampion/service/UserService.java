@@ -52,18 +52,4 @@ public class UserService {
         userToBeUpdated.setWeight(user.getWeight());
         return this.userRepository.save(userToBeUpdated);
     }
-
-    public User archiveUser(String login) {
-        User user = this.getUser(login);
-        user.setArchived(true);
-        return this.userRepository.save(user);
-    }
-
-    public List<User> getActiveUsers() {
-        return this.userRepository.findUsersByArchived(false);
-    }
-
-    public List<User> getArchivedUsers() {
-        return this.userRepository.findUsersByArchived(true);
-    }
 }

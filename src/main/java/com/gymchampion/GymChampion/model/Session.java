@@ -1,5 +1,6 @@
 package com.gymchampion.GymChampion.model;
 
+import javax.jws.soap.SOAPBinding;
 import javax.persistence.*;
 import java.util.Date;
 
@@ -28,10 +29,11 @@ public class Session {
 
     public Session() {}
 
-    public Session(String sessionKey, Date loginDate, boolean active) {
+    public Session(String sessionKey, Date loginDate, boolean active, User user) {
         this.sessionKey = sessionKey;
         this.loginDate = loginDate;
         this.active = active;
+        this.user = user;
     }
 
     public int getSessionId() {

@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/equipment")
+@RequestMapping("/api/equipment")
 public class EquipmentController {
 
     private EquipmentService equipmentService;
@@ -28,7 +28,7 @@ public class EquipmentController {
         return this.equipmentService.getEquipmentById(id);
     }
 
-    @PostMapping
+    @PostMapping("/admin")
     public Equipment addEquipment(@RequestBody Equipment equipment) {
         return this.equipmentService.addEquipment(equipment);
     }

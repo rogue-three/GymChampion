@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/exercise")
+@RequestMapping("/api/exercise")
 public class ExerciseController {
 
     private ExerciseService exerciseService;
@@ -23,9 +23,24 @@ public class ExerciseController {
         return this.exerciseService.getAllExercises();
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/id/{id}")
     public Exercise getExerciseById(@PathVariable int id) {
         return this.exerciseService.getExerciseById(id);
+    }
+
+    @GetMapping("/scheme/{scheme}")
+    public List<Exercise> getExerciseByScheme(@PathVariable("scheme") String scheme) {
+        return this.exerciseService.getListOfExerciseByScheme(scheme);
+    }
+
+    @GetMapping("/bodypart/{bodyPart}")
+    public List<Exercise> getExercisesByBodyPart(@PathVariable("bodyPart") String bodyPart) {
+        return this.exerciseService.getAllExerciseByBodyPart(bodyPart);
+    }
+
+    @GetMapping("equipment/{equipment}")
+    public List<Exercise> getExercisesByEquipment(@PathVariable("equipment") String equipment) {
+        return this.exerciseService.getAllExerciseByEquipment(equipment);
     }
 
     @PostMapping
@@ -33,23 +48,20 @@ public class ExerciseController {
         return this.exerciseService.addExercise(exercise);
     }
 
-    @PutMapping("/max_reps")
+    @PutMapping("/max_reps/admin")
     public Exercise setExerciseMaxReps(@RequestBody Exercise exercise) {
         return this.exerciseService.setExerciseMaxReps(exercise);
     }
 
-    @PutMapping("/max_weight")
+    @PutMapping("/max_weight/admin")
     public Exercise setExerciseMaxWeight(@RequestBody Exercise exercise) {
         return this.exerciseService.setExerciseMaxWeight(exercise);
     }
 
-    @PutMapping("/equipment")
+    @PutMapping("/equipment/admin")
     public Exercise setExerciseEquipment(@RequestBody Exercise exercise) {
         return this.exerciseService.setExerciseEquipment(exercise);
     }
 
-    @GetMapping("/{scheme}")
-    public List<Exercise> getExerciseByScheme(@PathVariable("scheme") String scheme) {
-        return this.exerciseService.getListOfExerciseByScheme(scheme);
-    }
+
 }

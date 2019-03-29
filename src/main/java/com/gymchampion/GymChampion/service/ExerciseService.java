@@ -27,6 +27,18 @@ public class ExerciseService {
         return optionalExercise.orElseGet(Exercise::new);
     }
 
+    public List<Exercise> getAllExerciseByBodyPart(String bodyPart) {
+        return this.exerciseRepository.findAllByBodyPart_BodyPartName(bodyPart);
+    }
+
+    public List<Exercise> getListOfExerciseByScheme(String scheme) {
+        return exerciseRepository.findAllByExerciseScheme_ExerciseSchemeName(scheme);
+    }
+
+    public List<Exercise> getAllExerciseByEquipment(String equipment) {
+        return this.exerciseRepository.findAllByEquipment_EquipmentName(equipment);
+    }
+
     public Exercise addExercise(Exercise exercise) {
         return this.exerciseRepository.save(exercise);
     }
@@ -49,7 +61,4 @@ public class ExerciseService {
         return this.exerciseRepository.save(exerciseToUpdate);
     }
 
-    public List<Exercise> getListOfExerciseByScheme(String scheme) {
-        return exerciseRepository.findAllByExerciseScheme_ExerciseSchemeName(scheme);
-    }
 }

@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/body_part")
+@RequestMapping("/api/body_part")
 public class BodyPartController {
 
     private BodyPartService bodyPartService;
@@ -28,7 +28,7 @@ public class BodyPartController {
         return this.bodyPartService.getBodyPartById(id);
     }
 
-    @PostMapping
+    @PostMapping("/admin")
     public BodyPart addBodyPart(@RequestBody BodyPart bodyPart) {
         return this.bodyPartService.addBodyPart(bodyPart);
     }
