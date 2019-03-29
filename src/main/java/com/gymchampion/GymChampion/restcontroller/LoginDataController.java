@@ -1,5 +1,6 @@
 package com.gymchampion.GymChampion.restcontroller;
 
+import com.gymchampion.GymChampion.GymChampionApplication;
 import com.gymchampion.GymChampion.model.LoginData;
 import com.gymchampion.GymChampion.model.Role;
 import com.gymchampion.GymChampion.exceptions.ResourceAlreadyExistsException;
@@ -7,6 +8,7 @@ import com.gymchampion.GymChampion.exceptions.ResourceDoesNotExistException;
 import com.gymchampion.GymChampion.service.LoginDataService;
 import com.gymchampion.GymChampion.service.RoleService;
 import com.gymchampion.GymChampion.util.LoginDataPasswordOnly;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -22,6 +24,7 @@ public class LoginDataController {
 
     private LoginDataService loginDataService;
     private RoleService roleService;
+    private static Logger logger = GymChampionApplication.logger;
 
     @Autowired
     public LoginDataController(LoginDataService loginDataService, RoleService roleService) {
@@ -31,9 +34,9 @@ public class LoginDataController {
 
     @PostMapping
     public ResponseEntity<?> addUserLoginData(@RequestBody LoginData loginData, UriComponentsBuilder ucBuilder) {
-//        logger.info("Creating LoginData : {}", loginData);
+        logger.info(String.format("Creating LoginData with role: %s.", loginData.getUserRole()));
         if (this.loginDataService.doesLoginDataExist(loginData)) {
-//            logger.error("Unable to create. Login data with id {} already exist", loginData.getLoginId());
+            logger.error(String.format("Unable to create. Login data with id %d already exist", loginData.getLoginId()));
             return new ResponseEntity<>(new ResourceAlreadyExistsException("Unable to create. Login data with id " +
                     loginData.getLoginId() + " already exist."), HttpStatus.CONFLICT);
         }
@@ -42,16 +45,16 @@ public class LoginDataController {
         this.loginDataService.addLoginData(loginData);
         HttpHeaders headers = new HttpHeaders();
         headers.setLocation(ucBuilder.path("/v1/session/login_data/{id}").buildAndExpand(loginData.getLoginId()).toUri());
-//        logger.info("Login data created.");
+        logger.info("Login data created.");
         return new ResponseEntity<String>(headers, HttpStatus.CREATED);
     }
 
     @GetMapping
     public ResponseEntity<List<LoginData>> getAllLoginData() {
-//        logger.info("Fetching all Login data");
+        logger.info("Fetching all Login data.");
         List<LoginData> loginData = this.loginDataService.getAllLoginData();
         if (loginData.isEmpty()) {
-//            logger.error("Login data not found.");
+            logger.error("Login data not found.");
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         return new ResponseEntity<>(loginData, HttpStatus.OK);
@@ -59,22 +62,22 @@ public class LoginDataController {
 
     @GetMapping("/password/{password}")
     public ResponseEntity<?> getLoginDataByPassword(@PathVariable("password") String password) {
-//        logger.info("Fetching Login data with password {}", password);
+        logger.info(String.format("Fetching Login data with password %s.", password));
         LoginData loginData = this.loginDataService.getLoginDataByPassword(password);
         if (loginData == null) {
-//            logger.error("Login data with password {} not found.", password);
-            return new ResponseEntity<>(new ResourceDoesNotExistException("Login data with password " + password
-                    + " not found").getMessage(), HttpStatus.NOT_FOUND);
+            logger.error(String.format("Login data with password %s not found.", password));
+            return new ResponseEntity<>(new ResourceDoesNotExistException("Login data with password " +
+                    password + " not found.").getMessage(), HttpStatus.NOT_FOUND);
         }
         return new ResponseEntity<>(loginData, HttpStatus.OK);
     }
 
     @GetMapping("/login/{login}")
     public ResponseEntity<?> getLoginDataByLogin(@PathVariable("login") String login) {
-//        logger.info("Fetching Login data with user login {}", login);
+        logger.info(String.format("Fetching Login data with user login %s.", login));
         LoginData loginData = this.loginDataService.getLoginDataByLogin(login);
         if (loginData == null) {
-//            logger.error("Login data with user login {} not found.", login);
+            logger.error(String.format("Login data with user login %s not found.", login));
             return new ResponseEntity<>(new ResourceDoesNotExistException("Login data with user login " + login
                     + " not found").getMessage(), HttpStatus.NOT_FOUND);
         }
@@ -83,22 +86,22 @@ public class LoginDataController {
 
     @GetMapping("/id/{id}")
     public ResponseEntity<?> getLoginDataById(@PathVariable("id") int id) {
-//        logger.info("Fetching Login data with id {}", id);
+        logger.info(String.format("Fetching Login data with id %d.", id));
         LoginData loginData = this.loginDataService.getLoginDataById(id);
         if (loginData == null) {
-//            logger.error("Login data with id {} not found.", id);
+            logger.error(String.format("Login data with id %d not found.", id));
             return new ResponseEntity<>(new ResourceDoesNotExistException("Login data with id" + id
-                    + " not found").getMessage(), HttpStatus.NOT_FOUND);
+                    + " not found.").getMessage(), HttpStatus.NOT_FOUND);
         }
         return new ResponseEntity<>(loginData, HttpStatus.OK);
     }
 
     @GetMapping("/active")
     public ResponseEntity<List<LoginData>> getLoginDataFromActiveUsers() {
-//        logger.info("Fetching Login data from active users");
+        logger.info("Fetching Login data from active users.");
         List<LoginData> loginData = this.loginDataService.getLoginDataFromActiveUsers();
         if (loginData.isEmpty()) {
-//            logger.error("Login data from active users not found");
+            logger.error("Login data from active users not found.");
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         return new ResponseEntity<>(loginData, HttpStatus.OK);
@@ -106,10 +109,10 @@ public class LoginDataController {
 
     @GetMapping("/archived")
     public ResponseEntity<List<LoginData>> getArchivedLoginData() {
-//        logger.info("Fetching Login data from archived users");
+        logger.info("Fetching Login data from archived users.");
         List<LoginData> loginData = this.loginDataService.getArchivedLoginData();
         if (loginData.isEmpty()) {
-//            logger.error("Archived login data not found");
+            logger.error("Archived login data not found.");
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         return new ResponseEntity<>(loginData, HttpStatus.OK);
@@ -118,10 +121,10 @@ public class LoginDataController {
     @PatchMapping("/password/{id}")
     public ResponseEntity<?> updatePassword(@RequestBody LoginDataPasswordOnly loginDataPasswordOnly,
                                             @PathVariable("id") int id) {
-//        logger.info("Updating password for Login data with id {}", id);
+        logger.info(String.format("Updating password for Login data with id %d.", id));
         LoginData loginData = this.loginDataService.getLoginDataById(id);
         if (loginData == null) {
-//            logger.error("Unable to update password. Login data with id {} not found.", id);
+            logger.error(String.format("Unable to update password. Login data with id %d not found.", id));
             return new ResponseEntity<>(new ResourceDoesNotExistException("Unable to update password. Login data with id " +
                     id + " not found.").getMessage(),
                     HttpStatus.NOT_FOUND);
@@ -133,10 +136,10 @@ public class LoginDataController {
 
     @PatchMapping("/archive/{id}")
     public ResponseEntity<?> archiveLoginData(@PathVariable("id") int id) {
-//        logger.info("Archiving Login data with id {}", id);
+        logger.info(String.format("Archiving Login data with id %d.", id));
         LoginData loginData = this.loginDataService.getLoginDataById(id);
         if (loginData == null) {
-//            logger.error("Unable to archive. Login data with id {} not found.", id);
+            logger.error(String.format("Unable to archive. Login data with id %d not found.", id));
             return new ResponseEntity<>(new ResourceDoesNotExistException("Unable to update. Login data with id " +
                     id + " not found.").getMessage(),
                     HttpStatus.NOT_FOUND);
@@ -148,10 +151,10 @@ public class LoginDataController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<?> removeLoginData(@PathVariable("id") int id) {
-//        logger.info("Fetching & Deleting Login data with id {}", id);
+        logger.info(String.format("Fetching & Deleting Login data with id %d.", id));
         LoginData loginData = this.loginDataService.getLoginDataById(id);
         if (loginData == null) {
-//            logger.error("Unable to delete. Login data with id {} not found.", id);
+            logger.error(String.format("Unable to delete. Login data with id %d not found.", id));
             return new ResponseEntity<>(new ResourceDoesNotExistException("Unable to delete. Login data with id " +
                     id + " not found.").getMessage(),
                     HttpStatus.NOT_FOUND);

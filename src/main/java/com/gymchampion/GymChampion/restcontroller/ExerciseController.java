@@ -1,5 +1,6 @@
 package com.gymchampion.GymChampion.restcontroller;
 
+import com.gymchampion.GymChampion.GymChampionApplication;
 import com.gymchampion.GymChampion.model.BodyPart;
 import com.gymchampion.GymChampion.model.Equipment;
 import com.gymchampion.GymChampion.model.ExerciseScheme;
@@ -8,6 +9,7 @@ import com.gymchampion.GymChampion.service.EquipmentService;
 import com.gymchampion.GymChampion.service.ExerciseSchemeService;
 import com.gymchampion.GymChampion.service.ExerciseService;
 import com.gymchampion.GymChampion.model.Exercise;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,6 +23,7 @@ public class ExerciseController {
     private BodyPartService bodyPartService;
     private EquipmentService equipmentService;
     private ExerciseSchemeService exerciseSchemeService;
+    private static Logger logger = GymChampionApplication.logger;
 
     @Autowired
     public ExerciseController(ExerciseService service,

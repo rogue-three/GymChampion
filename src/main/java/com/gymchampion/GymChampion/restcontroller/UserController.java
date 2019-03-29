@@ -1,9 +1,11 @@
 package com.gymchampion.GymChampion.restcontroller;
 
+import com.gymchampion.GymChampion.GymChampionApplication;
 import com.gymchampion.GymChampion.model.Gender;
 import com.gymchampion.GymChampion.model.User;
 import com.gymchampion.GymChampion.service.GenderService;
 import com.gymchampion.GymChampion.service.UserService;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,6 +17,7 @@ public class UserController {
 
     private UserService userService;
     private GenderService genderService;
+    private static Logger logger = GymChampionApplication.logger;
 
     @Autowired
     public UserController(UserService userService,

@@ -1,9 +1,11 @@
 package com.gymchampion.GymChampion.restcontroller;
 
+import com.gymchampion.GymChampion.GymChampionApplication;
 import com.gymchampion.GymChampion.model.SetScheme;
 import com.gymchampion.GymChampion.model.Training;
 import com.gymchampion.GymChampion.service.SetSchemeService;
 import com.gymchampion.GymChampion.service.TrainingService;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,6 +17,7 @@ public class TrainingController {
 
     private TrainingService trainingService;
     private SetSchemeService setSchemeService;
+    private static Logger logger = GymChampionApplication.logger;
 
     @Autowired
     public TrainingController(TrainingService trainingService,

@@ -1,6 +1,7 @@
 package com.gymchampion.GymChampion.restcontroller;
 
 
+import com.gymchampion.GymChampion.GymChampionApplication;
 import com.gymchampion.GymChampion.exceptions.ResourceDoesNotExistException;
 import com.gymchampion.GymChampion.model.LoginData;
 import com.gymchampion.GymChampion.model.Session;
@@ -10,6 +11,7 @@ import com.gymchampion.GymChampion.service.LoginDataService;
 import com.gymchampion.GymChampion.service.SessionService;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -24,6 +26,7 @@ public class LoginController {
 
     private LoginDataService loginDataService;
     private SessionService sessionService;
+    private static Logger logger = GymChampionApplication.logger;
 
     @Autowired
     public LoginController(LoginDataService loginDataService, SessionService sessionService) {
@@ -53,7 +56,7 @@ public class LoginController {
     @GetMapping
     public ResponseEntity<?> getTokenForUser(@RequestBody LoginData userLoginData, HttpServletResponse response) {
         String userLogin = userLoginData.getUser().getLogin();
-//        logger.info("Fetching access token for user with login {}", userLogin);
+        logger.info(String.format("Fetching access token for user with login %s", userLogin));
         String password = userLoginData.getPassword();
         LoginData data;
 
@@ -61,7 +64,7 @@ public class LoginController {
            data = this.loginDataService.validateUserAndGetLoginData(userLogin, password);
         }
         catch(UncorrectPasswordException | UserNotExistException e) {
-//            logger.error("Access token for user with login {} not found.", userLogin);
+            logger.error(String.format("Access token for user with login %s not found.", userLogin));
             return new ResponseEntity<>(new ResourceDoesNotExistException("Access token for user with login " +
                     userLogin + " not found.").getMessage(), HttpStatus.UNAUTHORIZED);
         }
