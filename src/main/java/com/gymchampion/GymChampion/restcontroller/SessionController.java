@@ -57,7 +57,7 @@ public class SessionController {
         if (session == null) {
 //            logger.error("Session with session key {} not found.", sessionKey);
             return new ResponseEntity<>(new ResourceDoesNotExistException("Session with session key " + sessionKey
-                    + " not found").getMessage(), HttpStatus.NOT_FOUND);
+                    + " not found.").getMessage(), HttpStatus.NOT_FOUND);
         }
         return new ResponseEntity<>(session, HttpStatus.OK);
     }
@@ -69,7 +69,7 @@ public class SessionController {
         if (session == null) {
 //            logger.error("Session with id {} not found.", id);
             return new ResponseEntity<>(new ResourceDoesNotExistException("Session with id" + id
-                    + " not found").getMessage(), HttpStatus.NOT_FOUND);
+                    + " not found.").getMessage(), HttpStatus.NOT_FOUND);
         }
         return new ResponseEntity<>(session, HttpStatus.OK);
     }
