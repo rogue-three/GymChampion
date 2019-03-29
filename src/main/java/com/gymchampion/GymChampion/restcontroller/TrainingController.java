@@ -71,24 +71,24 @@ public class TrainingController {
      *   SetScheme handling
      */
 
-    @GetMapping("/{training_id}")
+    @GetMapping("/set_scheme/{training_id}")
     public List<SetScheme> getSchemeByTrainingId(@PathVariable("training_id") int trainingId) {
-        return  setSchemeService.getSchemeByTrainingId(trainingId);
+        return this.setSchemeService.getSchemeByTrainingId(trainingId);
     }
 
-    @GetMapping("/max/{login}/{exerciseId}")
-    public SetScheme  getBestSchemeByExerciseId(@PathVariable("exerciseId") int exerciseId,
+    @GetMapping("/set_scheme/max/{login}/{exerciseId}")
+    public SetScheme getBestSchemeByExerciseId(@PathVariable("exerciseId") int exerciseId,
                                                 @PathVariable("login") String login) {
-        return setSchemeService.getMaxSchemeByExercise(exerciseId, login);
+        return this.setSchemeService.getMaxSchemeByExercise(exerciseId, login);
     }
 
-    @PostMapping("/all")
+    @PostMapping("/set_scheme/all")
     public List<SetScheme> saveSchemeList(@RequestBody List<SetScheme> schemeList) {
-        return setSchemeService.addSchemeListToRepository(schemeList);
+        return this.setSchemeService.addSchemeListToRepository(schemeList);
     }
 
-    @PostMapping
+    @PostMapping("/set_scheme")
     public SetScheme saveScheme(@RequestBody SetScheme scheme) {
-        return setSchemeService.addSchemeToRepository(scheme);
+        return this.setSchemeService.addSchemeToRepository(scheme);
     }
 }

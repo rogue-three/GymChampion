@@ -31,14 +31,14 @@ public class GymChampionApplication {
 	public FilterRegistrationBean<UserFilter> setUserFilter() {
 		FilterRegistrationBean<UserFilter> filterRegistrationBean = new FilterRegistrationBean<>();
 		filterRegistrationBean.setFilter(userFilter);
-		filterRegistrationBean.setUrlPatterns(Collections.singleton("/api/*"));
+		filterRegistrationBean.setUrlPatterns(Collections.singleton("/exercise/*"));
 		return filterRegistrationBean;
 	}
 
 	@Bean FilterRegistrationBean<AdminFilter> setAdminFilter() {
 		FilterRegistrationBean<AdminFilter> filterRegistrationBean = new FilterRegistrationBean<>();
 		filterRegistrationBean.setFilter(adminFilter);
-		filterRegistrationBean.setUrlPatterns(Collections.singleton("/admin/*"));
+		filterRegistrationBean.setUrlPatterns(Collections.singleton("/user/*"));
 		return filterRegistrationBean;
 	}
 }

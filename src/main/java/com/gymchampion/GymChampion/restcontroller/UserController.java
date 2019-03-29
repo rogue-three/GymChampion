@@ -62,7 +62,7 @@ public class UserController {
      *   Gender handling
      */
 
-    @GetMapping
+    @GetMapping("/gender")
     public List<Gender> getAllGenders() {
         return this.genderService.getAllGenders();
     }

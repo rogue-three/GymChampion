@@ -48,11 +48,11 @@ public class LoginDataService {
     }
 
     public List<LoginData> getLoginDataFromActiveUsers() {
-        return this.loginDataRepository.findAllByArchivedEquals(false);
+        return this.loginDataRepository.findAllByArchived(false);
     }
 
     public List<LoginData> getArchivedLoginData() {
-        return this.loginDataRepository.findAllByArchivedEquals(true);
+        return this.loginDataRepository.findAllByArchived(true);
     }
 
     public void updateLoginData(LoginData loginData) {
