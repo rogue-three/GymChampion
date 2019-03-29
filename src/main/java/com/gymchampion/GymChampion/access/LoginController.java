@@ -3,8 +3,8 @@ package com.gymchampion.GymChampion.access;
 
 import com.gymchampion.GymChampion.model.LoginData;
 import com.gymchampion.GymChampion.model.Session;
-import com.gymchampion.GymChampion.access.exceptions.UncorrectPasswordException;
-import com.gymchampion.GymChampion.access.exceptions.UserNotExistException;
+import com.gymchampion.GymChampion.exceptions.UncorrectPasswordException;
+import com.gymchampion.GymChampion.exceptions.UserNotExistException;
 import com.gymchampion.GymChampion.service.LoginDataService;
 import com.gymchampion.GymChampion.service.SessionService;
 import io.jsonwebtoken.Jwts;

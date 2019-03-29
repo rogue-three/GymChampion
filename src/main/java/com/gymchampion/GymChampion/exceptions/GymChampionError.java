@@ -1,4 +1,4 @@
-package com.gymchampion.GymChampion.util;
+package com.gymchampion.GymChampion.exceptions;
 
 public class GymChampionError {
 

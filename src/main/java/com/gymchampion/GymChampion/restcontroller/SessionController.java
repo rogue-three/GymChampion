@@ -1,10 +1,9 @@
 package com.gymchampion.GymChampion.restcontroller;
 
-import com.gymchampion.GymChampion.model.LoginData;
 import com.gymchampion.GymChampion.model.Session;
 import com.gymchampion.GymChampion.service.LoginDataService;
 import com.gymchampion.GymChampion.service.SessionService;
-import com.gymchampion.GymChampion.util.GymChampionError;
+import com.gymchampion.GymChampion.exceptions.GymChampionError;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -134,7 +133,7 @@ public class SessionController {
     /*
      *   LoginData object handling - TODO
      */
-
+    /*
     @PostMapping("/login_data")
     public LoginData addLoginData(@RequestBody LoginData loginData) {
         return this.loginDataService.addLoginData(loginData);
@@ -159,5 +158,5 @@ public class SessionController {
     @DeleteMapping("login_data/{id}")
     public void removeLoginData(@PathVariable("id") int id) {
         this.loginDataService.removeLoginData(id);
-    }
+    }   */
 }
