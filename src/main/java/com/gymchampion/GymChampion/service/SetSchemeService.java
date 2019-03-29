@@ -32,7 +32,7 @@ public class SetSchemeService {
         return setSchemeRepository.findAllByTrainingTrainingId(trainingId);
     }
 
-    public SetScheme getSetSchemeWithMaxWeightByExerciseId(int exerciseId, User user) {
-        return setSchemeRepository.getSetSchemeWithMaxWeightByExerciseId(exerciseId, user.getLogin());
+    public SetScheme getSetSchemeWithMaxWeightByExerciseId(int exerciseId, String login) {
+        return setSchemeRepository.getSetSchemeWithMaxWeightByExerciseId(exerciseId, login);
     }
 }

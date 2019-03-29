@@ -28,11 +28,11 @@ public class StatisticsController {
         this.setSchemeService = setSchemeService;
     }
 
-    @GetMapping("/max_weight_pulled/{exerciseId}")
-    public ResponseEntity<?> getSetSchemeWithMaxWeightByExerciseId(@RequestBody User user,
-                                                                   @PathVariable("exerciseId") int exerciseId) {
+    @GetMapping("/max_weight_pulled/{exerciseId}/login/{login}")
+    public ResponseEntity<?> getSetSchemeWithMaxWeightByExerciseId(@PathVariable("exerciseId") int exerciseId,
+                                                                   @PathVariable("login") String login) {
         logger.info(String.format("Fetching Set scheme with max weight by exercise with id %d", exerciseId));
-        SetScheme setScheme = this.setSchemeService.getSetSchemeWithMaxWeightByExerciseId(exerciseId, user);
+        SetScheme setScheme = this.setSchemeService.getSetSchemeWithMaxWeightByExerciseId(exerciseId, login);
         if (setScheme == null) {
             logger.error(String.format("Set scheme with max weight by exercise with id %d not found.", exerciseId));
             return new ResponseEntity<>(new ResourceDoesNotExistException("Set scheme with max weight by exercise with id " +
@@ -41,14 +41,14 @@ public class StatisticsController {
         return new ResponseEntity<>(setScheme, HttpStatus.OK);
     }
 
-    @GetMapping("/training_days")
-    public ResponseEntity<?> countTrainingsByUserLogin(@RequestBody User user) {
-        logger.info(String.format("Fetching count of trainings for user with login %s.", user.getLogin()));
-        TrainingDaysCount trainingDaysCount = this.trainingService.countTrainingsByUserLogin(user);
+    @GetMapping("/training_days/{login}")
+    public ResponseEntity<?> countTrainingsByUserLogin(@PathVariable("login") String login) {
+        logger.info(String.format("Fetching count of trainings for user with login %s.", login));
+        TrainingDaysCount trainingDaysCount = this.trainingService.countTrainingsByUserLogin(login);
         if (trainingDaysCount == null) {
-            logger.error(String.format("Trainings for user with login %s not found.", user.getLogin()));
+            logger.error(String.format("Trainings for user with login %s not found.", login));
             return new ResponseEntity<>(new ResourceDoesNotExistException("User with login " +
-                    user.getLogin() + "have trained 0 days.").getMessage(), HttpStatus.NOT_FOUND);
+                    login + "have trained 0 days.").getMessage(), HttpStatus.NOT_FOUND);
         }
         return new ResponseEntity<>(trainingDaysCount, HttpStatus.OK);
     }

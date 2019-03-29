@@ -63,8 +63,8 @@ public class TrainingService {
         return new Training();
     }
 
-    public TrainingDaysCount countTrainingsByUserLogin(User user) {
-        int trainedDays = this.getTrainingsByUserLogin(user.getLogin()).size();
+    public TrainingDaysCount countTrainingsByUserLogin(String login) {
+        int trainedDays = this.getTrainingsByUserLogin(login).size();
         return new TrainingDaysCount(trainedDays);
     }
 }
