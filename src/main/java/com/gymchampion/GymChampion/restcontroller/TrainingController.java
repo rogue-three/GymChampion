@@ -62,11 +62,6 @@ public class TrainingController {
         return this.trainingService.archiveTraining(id);
     }
 
-    @GetMapping("count/user/{login}")
-    public int countTrainingsByUserLogin(@PathVariable("login") String login) {
-        return this.trainingService.countTrainingsByUserLogin(login);
-    }
-
     /*
      *   SetScheme handling
      */
@@ -74,12 +69,6 @@ public class TrainingController {
     @GetMapping("/set_scheme/{training_id}")
     public List<SetScheme> getSchemeByTrainingId(@PathVariable("training_id") int trainingId) {
         return this.setSchemeService.getSchemeByTrainingId(trainingId);
-    }
-
-    @GetMapping("/set_scheme/max/{login}/{exerciseId}")
-    public SetScheme getBestSchemeByExerciseId(@PathVariable("exerciseId") int exerciseId,
-                                                @PathVariable("login") String login) {
-        return this.setSchemeService.getMaxSchemeByExercise(exerciseId, login);
     }
 
     @PostMapping("/set_scheme/all")

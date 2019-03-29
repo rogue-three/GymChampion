@@ -11,5 +11,5 @@ public interface TrainingRepository extends JpaRepository<Training, Integer> {
 
     List<Training> findTrainingsByArchived(boolean isArchived);
 
-    List<Training> findByUser_Login(String login);
+    List<Training> findAllByUser_Login(String login);
 }

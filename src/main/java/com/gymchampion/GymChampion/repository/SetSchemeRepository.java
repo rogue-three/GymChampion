@@ -17,5 +17,5 @@ public interface SetSchemeRepository extends JpaRepository<SetScheme, Integer> {
             "INNER JOIN training t on set_scheme.training_id = t.training_id " +
             "WHERE set_scheme.exercise_id = :exerciseId AND t.user_login = :login " +
             "ORDER BY set_scheme.weight DESC LIMIT 1")
-    SetScheme findMaxWeightForUserByExerciseId( @Param("exerciseId") int exerciseId, @Param("login") String userLogin);
+    SetScheme getSetSchemeWithMaxWeightByExerciseId( @Param("exerciseId") int exerciseId, @Param("login") String userLogin);
 }

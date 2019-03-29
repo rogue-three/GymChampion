@@ -1,7 +1,9 @@
 package com.gymchampion.GymChampion.service;
 
 import com.gymchampion.GymChampion.model.Training;
+import com.gymchampion.GymChampion.model.User;
 import com.gymchampion.GymChampion.repository.TrainingRepository;
+import com.gymchampion.GymChampion.util.TrainingDaysCount;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -47,7 +49,7 @@ public class TrainingService {
     }
 
     public List<Training> getTrainingsByUserLogin(String login) {
-        return this.trainingRepository.findByUser_Login(login);
+        return this.trainingRepository.findAllByUser_Login(login);
     }
 
     public Training archiveTraining(int id) {
@@ -61,7 +63,8 @@ public class TrainingService {
         return new Training();
     }
 
-    public int countTrainingsByUserLogin(String login) {
-        return this.trainingRepository.findByUser_Login(login).size();
+    public TrainingDaysCount countTrainingsByUserLogin(User user) {
+        int trainedDays = this.getTrainingsByUserLogin(user.getLogin()).size();
+        return new TrainingDaysCount(trainedDays);
     }
 }
