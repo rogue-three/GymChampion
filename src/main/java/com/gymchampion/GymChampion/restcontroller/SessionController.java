@@ -1,9 +1,10 @@
 package com.gymchampion.GymChampion.restcontroller;
 
+import com.gymchampion.GymChampion.exceptions.ResourceAlreadyExistsException;
+import com.gymchampion.GymChampion.exceptions.ResourceDoesNotExistException;
 import com.gymchampion.GymChampion.model.Session;
 import com.gymchampion.GymChampion.service.LoginDataService;
 import com.gymchampion.GymChampion.service.SessionService;
-import com.gymchampion.GymChampion.exceptions.GymChampionError;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -35,8 +36,8 @@ public class SessionController {
 //        logger.info("Creating Session : {}", session);
         if (this.sessionService.doesSessionExist(session)) {
 //             logger.error("Unable to create. A Session with session key {} already exist", session.getSessionKey());
-            return new ResponseEntity<>(new GymChampionError("Unable to create. A Session with session key " +
-                    session.getSessionKey() + " already exist."), HttpStatus.CONFLICT);
+            return new ResponseEntity<>(new ResourceAlreadyExistsException("Unable to create. A Session with session key " +
+                    session.getSessionKey() + " already exist.").getMessage(), HttpStatus.CONFLICT);
         }
         this.sessionService.addSession(session);
         HttpHeaders headers = new HttpHeaders();
@@ -62,8 +63,8 @@ public class SessionController {
         Session session = this.sessionService.getSessionBySessionKey(sessionKey);
         if (session == null) {
 //            logger.error("Session with session key {} not found.", sessionKey);
-            return new ResponseEntity<>(new GymChampionError("Session with session key " + sessionKey
-                    + " not found"), HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(new ResourceDoesNotExistException("Session with session key " + sessionKey
+                    + " not found").getMessage(), HttpStatus.NOT_FOUND);
         }
         return new ResponseEntity<>(session, HttpStatus.OK);
     }
@@ -74,8 +75,8 @@ public class SessionController {
         Session session = this.sessionService.getSessionById(id);
         if (session == null) {
 //            logger.error("Session with id {} not found.", id);
-            return new ResponseEntity<>(new GymChampionError("Session with id" + id
-                    + " not found"), HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(new ResourceDoesNotExistException("Session with id" + id
+                    + " not found").getMessage(), HttpStatus.NOT_FOUND);
         }
         return new ResponseEntity<>(session, HttpStatus.OK);
     }
@@ -109,7 +110,8 @@ public class SessionController {
         Session session = this.sessionService.getSessionById(id);
         if (session == null) {
 //            logger.error("Unable to archive. Session with id {} not found.", id);
-            return new ResponseEntity<>(new GymChampionError("Unable to update. Session with id " + id + " not found."),
+            return new ResponseEntity<>(new ResourceDoesNotExistException("Unable to update. Session with id " +
+                    id + " not found.").getMessage(),
                     HttpStatus.NOT_FOUND);
         }
         session.setActive(false);
@@ -123,7 +125,8 @@ public class SessionController {
         Session session = this.sessionService.getSessionById(id);
         if (session == null) {
 //            logger.error("Unable to delete. Session with id {} not found.", id);
-            return new ResponseEntity<>(new GymChampionError("Unable to delete. Session with id " + id + " not found."),
+            return new ResponseEntity<>(new ResourceDoesNotExistException("Unable to delete. Session with id " +
+                    id + " not found.").getMessage(),
                     HttpStatus.NOT_FOUND);
         }
         this.sessionService.removeSessionById(id);
