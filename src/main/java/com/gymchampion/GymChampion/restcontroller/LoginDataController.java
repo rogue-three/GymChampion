@@ -15,6 +15,8 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import java.util.List;
 
+@RestController
+@RequestMapping("/v1/login_data")
 public class LoginDataController {
 
     private LoginDataService loginDataService;
@@ -25,7 +27,7 @@ public class LoginDataController {
         this.roleService = roleService;
     }
 
-    @PostMapping("/login_data")
+    @PostMapping
     public ResponseEntity<?> addUserLoginData(@RequestBody LoginData loginData, UriComponentsBuilder ucBuilder) {
 //        logger.info("Creating LoginData : {}", loginData);
         if (this.loginDataService.doesLoginDataExist(loginData)) {
@@ -42,7 +44,7 @@ public class LoginDataController {
         return new ResponseEntity<String>(headers, HttpStatus.CREATED);
     }
 
-    @GetMapping("/login_data")
+    @GetMapping
     public ResponseEntity<List<LoginData>> getAllLoginData() {
 //        logger.info("Fetching all Login data");
         List<LoginData> loginData = this.loginDataService.getAllLoginData();
@@ -53,7 +55,7 @@ public class LoginDataController {
         return new ResponseEntity<>(loginData, HttpStatus.OK);
     }
 
-    @GetMapping("login_data/password/{password}")
+    @GetMapping("/password/{password}")
     public ResponseEntity<?> getLoginDataByPassword(@PathVariable("password") String password) {
 //        logger.info("Fetching Login data with password {}", password);
         LoginData loginData = this.loginDataService.getLoginDataByPassword(password);
@@ -65,7 +67,7 @@ public class LoginDataController {
         return new ResponseEntity<>(loginData, HttpStatus.OK);
     }
 
-    @GetMapping("login_data/login/{login}")
+    @GetMapping("/login/{login}")
     public ResponseEntity<?> getLoginDataByLogin(@PathVariable("login") String login) {
 //        logger.info("Fetching Login data with user login {}", login);
         LoginData loginData = this.loginDataService.getLoginDataByLogin(login);
@@ -77,7 +79,7 @@ public class LoginDataController {
         return new ResponseEntity<>(loginData, HttpStatus.OK);
     }
 
-    @GetMapping("login_data/id/{id}")
+    @GetMapping("/id/{id}")
     public ResponseEntity<?> getLoginDataById(@PathVariable("id") int id) {
 //        logger.info("Fetching Login data with id {}", id);
         LoginData loginData = this.loginDataService.getLoginDataById(id);
@@ -89,7 +91,7 @@ public class LoginDataController {
         return new ResponseEntity<>(loginData, HttpStatus.OK);
     }
 
-    @GetMapping("login_data/active")
+    @GetMapping("/active")
     public ResponseEntity<List<LoginData>> getLoginDataFromActiveUsers() {
 //        logger.info("Fetching Login data from active users");
         List<LoginData> loginData = this.loginDataService.getLoginDataFromActiveUsers();
@@ -100,7 +102,7 @@ public class LoginDataController {
         return new ResponseEntity<>(loginData, HttpStatus.OK);
     }
 
-    @GetMapping("login_data/archived")
+    @GetMapping("/archived")
     public ResponseEntity<List<LoginData>> getArchivedLoginData() {
 //        logger.info("Fetching Login data from archived users");
         List<LoginData> loginData = this.loginDataService.getArchivedLoginData();
@@ -111,7 +113,7 @@ public class LoginDataController {
         return new ResponseEntity<>(loginData, HttpStatus.OK);
     }
 
-    @PatchMapping("login_data/password/{id}")
+    @PatchMapping("/password/{id}")
     public ResponseEntity<?> updatePassword(@RequestBody LoginDataPasswordOnly loginDataPasswordOnly,
                                             @PathVariable("id") int id) {
 //        logger.info("Updating password for Login data with id {}", id);
@@ -127,7 +129,7 @@ public class LoginDataController {
         return new ResponseEntity<>(loginData, HttpStatus.OK);
     }
 
-    @PatchMapping("login_data/{id}")
+    @PatchMapping("/archive/{id}")
     public ResponseEntity<?> archiveLoginData(@PathVariable("id") int id) {
 //        logger.info("Archiving Login data with id {}", id);
         LoginData loginData = this.loginDataService.getLoginDataById(id);
@@ -142,7 +144,7 @@ public class LoginDataController {
         return new ResponseEntity<>(loginData, HttpStatus.OK);
     }
 
-    @DeleteMapping("/login_data/{id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity<?> removeLoginData(@PathVariable("id") int id) {
 //        logger.info("Fetching & Deleting Login data with id {}", id);
         LoginData loginData = this.loginDataService.getLoginDataById(id);
