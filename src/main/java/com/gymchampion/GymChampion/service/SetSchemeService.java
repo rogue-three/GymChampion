@@ -1,9 +1,7 @@
 package com.gymchampion.GymChampion.service;
 
 import com.gymchampion.GymChampion.model.SetScheme;
-import com.gymchampion.GymChampion.model.User;
 import com.gymchampion.GymChampion.repository.SetSchemeRepository;
-import com.gymchampion.GymChampion.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
