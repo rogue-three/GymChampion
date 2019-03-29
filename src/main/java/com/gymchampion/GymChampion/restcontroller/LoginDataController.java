@@ -7,6 +7,7 @@ import com.gymchampion.GymChampion.exceptions.ResourceDoesNotExistException;
 import com.gymchampion.GymChampion.service.LoginDataService;
 import com.gymchampion.GymChampion.service.RoleService;
 import com.gymchampion.GymChampion.util.LoginDataPasswordOnly;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,6 +23,7 @@ public class LoginDataController {
     private LoginDataService loginDataService;
     private RoleService roleService;
 
+    @Autowired
     public LoginDataController(LoginDataService loginDataService, RoleService roleService) {
         this.loginDataService = loginDataService;
         this.roleService = roleService;
