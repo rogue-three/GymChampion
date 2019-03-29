@@ -1,4 +1,4 @@
-package com.gymchampion.GymChampion.access;
+package com.gymchampion.GymChampion.restcontroller;
 
 
 import com.gymchampion.GymChampion.model.LoginData;
