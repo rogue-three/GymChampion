@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.Date;
 
 @RestController
-@RequestMapping("/login")
+@RequestMapping("/v1/login")
 public class LoginController {
 
     private LoginDataService loginDataService;
