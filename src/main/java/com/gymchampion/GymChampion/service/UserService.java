@@ -17,11 +17,15 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
-    public User addUser(User user) {
-        return this.userRepository.save(user);
+    public boolean doesUserExist(User user) {
+        return this.getUserByLogin(user.getLogin()) != null;
     }
 
-    public User getUser(String login) {
+    public void addUser(User user) {
+        this.userRepository.save(user);
+    }
+
+    public User getUserByLogin(String login) {
         return this.userRepository.findUserByLogin(login);
     }
 
@@ -29,27 +33,12 @@ public class UserService {
         return this.userRepository.findAll();
     }
 
-    public User setUserNickname(User user) {
-        User userToBeUpdated = this.userRepository.findUserByLogin(user.getLogin());
-        userToBeUpdated.setNickname(user.getNickname());
-        return this.userRepository.save(userToBeUpdated);
+    public void updateUser(User user) {
+        this.userRepository.save(user);
     }
 
-    public User setUserBirthDate(User user) {
-        User userToBeUpdated = this.userRepository.findUserByLogin(user.getLogin());
-        userToBeUpdated.setBirthDate(user.getBirthDate());
-        return this.userRepository.save(userToBeUpdated);
-    }
-
-    public User setUserGender(User user) {
-        User userToBeUpdated = this.userRepository.findUserByLogin(user.getLogin());
-        userToBeUpdated.setGender(user.getGender());
-        return this.userRepository.save(userToBeUpdated);
-    }
-
-    public User setUserWeight(User user) {
-        User userToBeUpdated = this.userRepository.findUserByLogin(user.getLogin());
-        userToBeUpdated.setWeight(user.getWeight());
-        return this.userRepository.save(userToBeUpdated);
+    public void removeUser(String login) {
+        User user = this.userRepository.findUserByLogin(login);
+        this.userRepository.delete(user);
     }
 }

@@ -44,7 +44,7 @@ public class SessionController {
 
     @GetMapping
     public ResponseEntity<List<Session>> getAllSessions() {
-        logger.info("Fetching all Sessions");
+        logger.info("Fetching all Sessions.");
         List<Session> sessions = this.sessionService.getAllSessions();
         if (sessions.isEmpty()) {
             logger.error("Sessions not found.");
@@ -117,7 +117,7 @@ public class SessionController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<?> removeSession(@PathVariable("id") int id) {
-        logger.info(String.format("Fetching & Deleting Session with id %d", id));
+        logger.info(String.format("Fetching & Deleting Session with id %d.", id));
         Session session = this.sessionService.getSessionById(id);
         if (session == null) {
             logger.error(String.format("Unable to delete. Session with id %d not found.", id));
