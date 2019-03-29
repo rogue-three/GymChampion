@@ -30,7 +30,7 @@ public class FilterHelper {
             throw new ServletException("Session terminate or deny access!");
         }
         String login = actualSession.getUser().getLogin();
-        return loginDataService.getLoginDataByLogin(login);
+        return this.loginDataService.getLoginDataByLogin(login);
 
     }
 

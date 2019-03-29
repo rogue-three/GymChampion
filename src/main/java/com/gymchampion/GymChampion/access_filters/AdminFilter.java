@@ -27,9 +27,9 @@ public class AdminFilter implements javax.servlet.Filter {
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain)
             throws IOException, ServletException {
 
-        String token = helper.getToken(servletRequest);
+        String token = this.helper.getToken(servletRequest);
 
-        LoginData data = helper.getLoginDataFromSession(token);
+        LoginData data = this.helper.getLoginDataFromSession(token);
 
         Claims claims = Jwts.parser().setSigningKey(data.getPassword()).parseClaimsJws(token).getBody();
         servletRequest.setAttribute("claims", claims);
