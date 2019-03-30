@@ -30,4 +30,8 @@ public class ExerciseSchemeService {
     public ExerciseScheme addExerciseScheme(ExerciseScheme exerciseScheme) {
         return this.exerciseSchemeRepository.save(exerciseScheme);
     }
+
+    public boolean doesExerciseSchemeExist(ExerciseScheme exerciseScheme) {
+        return this.exerciseSchemeRepository.findByExerciseSchemeName(exerciseScheme.getExerciseSchemeName()) != null;
+    }
 }

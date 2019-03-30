@@ -31,4 +31,7 @@ public class EquipmentService {
         return this.equipmentRepository.save(equipment);
     }
 
+    public boolean doesEquipmentExists(Equipment equipment) {
+        return this.equipmentRepository.findByEquipmentName(equipment.getEquipmentName()) != null;
+    }
 }

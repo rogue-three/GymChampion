@@ -22,6 +22,10 @@ public class BodyPartService {
         return this.bodyPartRepository.findAll();
     }
 
+    public boolean doesBodyPartExist(BodyPart bodyPart) {
+        return this.bodyPartRepository.findByBodyPartName(bodyPart.getBodyPartName()) != null;
+    }
+
     public BodyPart getBodyPartById(int id) {
         Optional<BodyPart> optionalBodypart = this.bodyPartRepository.findById(id);
         return optionalBodypart.orElseGet(null);

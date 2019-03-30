@@ -1,6 +1,7 @@
 package com.gymchampion.GymChampion.restcontroller;
 
 import com.gymchampion.GymChampion.GymChampionApplication;
+import com.gymchampion.GymChampion.exceptions.ResourceAlreadyExistsException;
 import com.gymchampion.GymChampion.model.BodyPart;
 import com.gymchampion.GymChampion.model.Equipment;
 import com.gymchampion.GymChampion.model.ExerciseScheme;
@@ -9,7 +10,11 @@ import com.gymchampion.GymChampion.service.EquipmentService;
 import com.gymchampion.GymChampion.service.ExerciseSchemeService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.util.UriComponentsBuilder;
 
 import java.util.List;
 
@@ -35,8 +40,31 @@ public class ExerciseParametersController {
      *   BodyPart handling
      */
 
-    // add bodypart, getallbodyparts, getbodypartbyid, getbodypartbyname,
-    // updatebodypartname, removebodypart
+    @PostMapping("/body_part")
+    public ResponseEntity<?> addBodyPart(@RequestBody BodyPart bodyPart, UriComponentsBuilder ucBuilder) {
+        logger.info(String.format("Creating Body part with name %s.", bodyPart.getBodyPartName()));
+        if (this.bodyPartService.doesBodyPartExist(bodyPart)) {
+            logger.error(String.format("Unable to create. Body part with name %s already exist.", bodyPart.getBodyPartName()));
+            return new ResponseEntity<>(new ResourceAlreadyExistsException("Unable to create. Body part with name " +
+                    bodyPart.getBodyPartName() + " already exist.").getMessage(), HttpStatus.CONFLICT);
+        }
+        this.bodyPartService.addBodyPart(bodyPart);
+        HttpHeaders headers = new HttpHeaders();
+        headers.setLocation(ucBuilder.path("/v1/exercise_parameters/body_part/{id}").
+                buildAndExpand(bodyPart.getBodyPartId()).toUri());
+        logger.info("Body part created.");
+        return new ResponseEntity<String>(headers, HttpStatus.CREATED);
+    }
+
+    // getall
+
+    // getbyid
+
+    //getbyname
+
+    //update name
+
+    //remove
 
 
     @GetMapping("/body_part")
@@ -58,6 +86,32 @@ public class ExerciseParametersController {
      *   Equipment handling
      */
 
+    @PostMapping("/equipment")
+    public ResponseEntity<?> addEquipment(@RequestBody Equipment equipment, UriComponentsBuilder ucBuilder) {
+        logger.info(String.format("Creating Equipment with name %s.", equipment.getEquipmentName()));
+        if (this.equipmentService.doesEquipmentExists(equipment)) {
+            logger.error(String.format("Unable to create. Equipment with name %s already exist.", equipment.getEquipmentName()));
+            return new ResponseEntity<>(new ResourceAlreadyExistsException("Unable to create. Equipment with name " +
+                    equipment.getEquipmentName() + " already exist.").getMessage(), HttpStatus.CONFLICT);
+        }
+        this.equipmentService.addEquipment(equipment);
+        HttpHeaders headers = new HttpHeaders();
+        headers.setLocation(ucBuilder.path("/v1/exercise_parameters/equipment/{id}").
+                buildAndExpand(equipment.getEquipmentId()).toUri());
+        logger.info("Equipment created.");
+        return new ResponseEntity<String>(headers, HttpStatus.CREATED);
+    }
+
+    // getall
+
+    // getbyid
+
+    //getbyname
+
+    //update name
+
+    //remove
+
     @GetMapping("/equipment")
     public List<Equipment> getAllEquipments() {
         return this.equipmentService.getAllEquipments();
@@ -76,6 +130,32 @@ public class ExerciseParametersController {
     /*
      *   ExerciseScheme handling
      */
+
+    @PostMapping("/exercise_scheme")
+    public ResponseEntity<?> addExerciseScheme(@RequestBody ExerciseScheme exerciseScheme, UriComponentsBuilder ucBuilder) {
+        logger.info(String.format("Creating Exercise scheme with name %s.", exerciseScheme.getExerciseSchemeName()));
+        if (this.exerciseSchemeService.doesExerciseSchemeExist(exerciseScheme)) {
+            logger.error(String.format("Unable to create. Exercise schme with name %s already exist.", exerciseScheme.getExerciseSchemeName()));
+            return new ResponseEntity<>(new ResourceAlreadyExistsException("Unable to create. Exercise scheme with name " +
+                    exerciseScheme.getExerciseSchemeName() + " already exist.").getMessage(), HttpStatus.CONFLICT);
+        }
+        this.exerciseSchemeService.addExerciseScheme(exerciseScheme);
+        HttpHeaders headers = new HttpHeaders();
+        headers.setLocation(ucBuilder.path("/v1/exercise_parameters/exercise_scheme/{id}").
+                buildAndExpand(exerciseScheme.getExerciseSchemeId()).toUri());
+        logger.info("Exercise scheme created.");
+        return new ResponseEntity<String>(headers, HttpStatus.CREATED);
+    }
+
+    // getall
+
+    // getbyid
+
+    //getbyname
+
+    //update name
+
+    //remove
 
     @GetMapping("/exercise_scheme")
     public List<ExerciseScheme> getAllExerciseSchemes() {
