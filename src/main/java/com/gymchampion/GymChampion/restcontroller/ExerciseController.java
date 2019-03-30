@@ -40,6 +40,9 @@ public class ExerciseController {
      *   Exercise handling
      */
 
+    // add ex, getall, getbyid, getbyexercisename, getbybodypart, getbyequipment,
+    // getbyexercisescheme, updatebodypart, updateequipment, updateexercisescheme, delete
+
     @GetMapping
     public List<Exercise> getAllExercises() {
         return this.exerciseService.getAllExercises();
@@ -88,6 +91,9 @@ public class ExerciseController {
     /*
      *   BodyPart handling
      */
+
+    // add bodypart, getallbodyparts, getbodypartbyid, getbodypartbyname,
+    // updatebodypartname, removebodypart
 
 
     @GetMapping("/body_part")
