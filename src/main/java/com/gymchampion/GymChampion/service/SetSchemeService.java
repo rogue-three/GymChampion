@@ -1,6 +1,7 @@
 package com.gymchampion.GymChampion.service;
 
 import com.gymchampion.GymChampion.model.SetScheme;
+import com.gymchampion.GymChampion.model.Training;
 import com.gymchampion.GymChampion.repository.SetSchemeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
