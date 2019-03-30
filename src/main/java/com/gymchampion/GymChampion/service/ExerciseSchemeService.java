@@ -24,7 +24,7 @@ public class ExerciseSchemeService {
 
     public ExerciseScheme getExerciseSchemeById(int id) {
         Optional<ExerciseScheme> optionalExerciseScheme = this.exerciseSchemeRepository.findById(id);
-        return optionalExerciseScheme.orElseGet(ExerciseScheme::new);
+        return optionalExerciseScheme.orElseGet(null);
     }
 
     public ExerciseScheme addExerciseScheme(ExerciseScheme exerciseScheme) {

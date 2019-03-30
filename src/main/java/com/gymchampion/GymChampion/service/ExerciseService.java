@@ -24,7 +24,7 @@ public class ExerciseService {
 
     public Exercise getExerciseById(int id) {
         Optional<Exercise> optionalExercise = this.exerciseRepository.findById(id);
-        return optionalExercise.orElseGet(Exercise::new);
+        return optionalExercise.orElseGet(null);
     }
 
     public List<Exercise> getAllExerciseByBodyPart(String bodyPart) {

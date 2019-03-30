@@ -24,8 +24,7 @@ public class BodyPartService {
 
     public BodyPart getBodyPartById(int id) {
         Optional<BodyPart> optionalBodypart = this.bodyPartRepository.findById(id);
-
-        return optionalBodypart.orElseGet(BodyPart::new);
+        return optionalBodypart.orElseGet(null);
     }
 
     public BodyPart addBodyPart(BodyPart bodyPart) {

@@ -24,8 +24,7 @@ public class EquipmentService {
 
     public Equipment getEquipmentById(int id) {
         Optional<Equipment> optionalBodypart = this.equipmentRepository.findById(id);
-
-        return optionalBodypart.orElseGet(Equipment::new);
+        return optionalBodypart.orElseGet(null);
     }
 
     public Equipment addEquipment(Equipment equipment) {
