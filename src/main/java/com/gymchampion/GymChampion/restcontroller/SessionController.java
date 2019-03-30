@@ -44,7 +44,7 @@ public class SessionController {
 
     @GetMapping
     public ResponseEntity<List<Session>> getAllSessions() {
-        logger.info("Fetching all Sessions.");
+        logger.info("Fetchinnameg all Sessions.");
         List<Session> sessions = this.sessionService.getAllSessions();
         if (sessions.isEmpty()) {
             logger.error("Sessions not found.");

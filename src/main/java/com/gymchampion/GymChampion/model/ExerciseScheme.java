@@ -22,7 +22,7 @@ public class ExerciseScheme {
 
     public void setExerciseSchemeId(int exerciseSchemeId) { this.exerciseSchemeId = exerciseSchemeId; }
 
-    public String getExerciseName() { return this.exerciseSchemeName; }
+    public String getExerciseSchemeName() { return this.exerciseSchemeName; }
 
-    public void setExerciseName(String exerciseName) { this.exerciseSchemeName = exerciseName; }
+    public void setExerciseSchemeName(String exerciseName) { this.exerciseSchemeName = exerciseName; }
 }

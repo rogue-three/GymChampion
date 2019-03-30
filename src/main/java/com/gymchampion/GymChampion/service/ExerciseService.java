@@ -18,6 +18,10 @@ public class ExerciseService {
         this.exerciseRepository = exerciseRepository;
     }
 
+    public boolean doesExerciseExists(Exercise exercise) {
+        return this.exerciseRepository.findByExerciseName(exercise.getExerciseName()) != null;
+    }
+
     public List<Exercise> getAllExercises() {
         return this.exerciseRepository.findAll();
     }
@@ -25,6 +29,10 @@ public class ExerciseService {
     public Exercise getExerciseById(int id) {
         Optional<Exercise> optionalExercise = this.exerciseRepository.findById(id);
         return optionalExercise.orElseGet(null);
+    }
+
+    public Exercise getExerciseByName(String name) {
+        return this.exerciseRepository.findByExerciseName(name);
     }
 
     public List<Exercise> getAllExerciseByBodyPart(String bodyPart) {
@@ -43,22 +51,13 @@ public class ExerciseService {
         return this.exerciseRepository.save(exercise);
     }
 
-    public Exercise setExerciseMaxReps(Exercise exercise) {
-        Exercise exerciseToUpdate = this.getExerciseById(exercise.getExerciseId());
-        exerciseToUpdate.setMaxReps(exercise.getMaxReps());
-        return this.exerciseRepository.save(exerciseToUpdate);
+    public void updateExercise(Exercise exercise) {
+        this.exerciseRepository.save(exercise);
     }
 
-    public Exercise setExerciseMaxWeight(Exercise exercise) {
-        Exercise exerciseToUpdate = this.getExerciseById(exercise.getExerciseId());
-        exerciseToUpdate.setMaxWeight(exercise.getMaxWeight());
-        return this.exerciseRepository.save(exerciseToUpdate);
-    }
-
-    public Exercise setExerciseEquipment(Exercise exercise) {
-        Exercise exerciseToUpdate = this.getExerciseById(exercise.getExerciseId());
-        exerciseToUpdate.setEquipment(exercise.getEquipment());
-        return this.exerciseRepository.save(exerciseToUpdate);
+    public void removeExerciseById(int id) {
+        Exercise exercise = this.getExerciseById(id);
+        this.exerciseRepository.delete(exercise);
     }
 
 }
