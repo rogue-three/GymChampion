@@ -31,12 +31,8 @@ public class TrainingService {
 
     public Training getTrainingById(int id) {
         Optional<Training> optionalTraining = this.trainingRepository.findById(id);
-        Training training = new Training();
 
-        if(optionalTraining.isPresent()) {
-            training = optionalTraining.get();
-        }
-        return training;
+        return optionalTraining.orElse(null);
     }
 
     public List<Training> getAllTrainingsFromActiveUsers() {
