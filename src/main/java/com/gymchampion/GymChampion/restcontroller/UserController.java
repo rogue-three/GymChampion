@@ -8,7 +8,6 @@ import com.gymchampion.GymChampion.model.User;
 import com.gymchampion.GymChampion.service.GenderService;
 import com.gymchampion.GymChampion.service.UserService;
 import com.gymchampion.GymChampion.util.UserBirthDateOnly;
-import com.gymchampion.GymChampion.util.UserGenderOnly;
 import com.gymchampion.GymChampion.util.UserNicknameOnly;
 import com.gymchampion.GymChampion.util.UserWeightOnly;
 import org.apache.log4j.Logger;
@@ -107,9 +106,17 @@ public class UserController {
     }
 
     @PatchMapping("/gender/{login}")
-    public ResponseEntity<?> setUserGender(@RequestBody UserGenderOnly userGenderOnly,
+    public ResponseEntity<?> setUserGender(@RequestBody Gender gender,
                                              @PathVariable("login") String login) {
-        logger.info(String.format("Setting user %s gender to %s.", login, userGenderOnly.getUserGender().getSex()));
+        logger.info(String.format("Setting user %s gender to %s.", login, gender.getSex()));
+
+        Gender genderFromDB = this.genderService.getGenderById(gender.getGenderId());
+        if (genderFromDB == null) {
+            logger.error(String.format("Unable to set gender. Gender with id %d not found.", gender.getGenderId()));
+            return new ResponseEntity<>(new ResourceDoesNotExistException("Unable to set gender. Gender with id " +
+                    gender.getGenderId() + " not found.").getMessage(),
+                    HttpStatus.NOT_FOUND);
+        }
         User user = this.userService.getUserByLogin(login);
         if (user == null) {
             logger.error(String.format("Unable to set gender. User with login %s not found.", login));
@@ -117,7 +124,7 @@ public class UserController {
                     login + " not found.").getMessage(),
                     HttpStatus.NOT_FOUND);
         }
-        user.setGender(userGenderOnly.getUserGender());
+        user.setGender(gender);
         this.userService.updateUser(user);
         return new ResponseEntity<>(user, HttpStatus.OK);
     }

@@ -3,7 +3,6 @@ package com.gymchampion.GymChampion.restcontroller;
 import com.gymchampion.GymChampion.GymChampionApplication;
 import com.gymchampion.GymChampion.exceptions.ResourceDoesNotExistException;
 import com.gymchampion.GymChampion.model.SetScheme;
-import com.gymchampion.GymChampion.model.User;
 import com.gymchampion.GymChampion.service.SetSchemeService;
 import com.gymchampion.GymChampion.service.TrainingService;
 import com.gymchampion.GymChampion.util.TrainingDaysCount;
