@@ -24,8 +24,8 @@ public class SetSchemeService {
 
     }
 
-    public List<SetScheme> addSchemeListToRepository(List<SetScheme> schemeList) {
-        return this.setSchemeRepository.saveAll(schemeList);
+    public void addSchemeListToRepository(List<SetScheme> schemeList) {
+        this.setSchemeRepository.saveAll(schemeList);
     }
 
     public List<SetScheme> getAllSetSchemes() {

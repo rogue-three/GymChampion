@@ -31,9 +31,7 @@ public class FilterHelper {
         }
         String login = actualSession.getUser().getLogin();
         return this.loginDataService.getLoginDataByLogin(login);
-
     }
-
 
     public String getToken(ServletRequest servletRequest) throws ServletException {
 

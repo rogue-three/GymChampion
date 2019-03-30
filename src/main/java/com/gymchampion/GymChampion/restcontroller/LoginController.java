@@ -1,6 +1,5 @@
 package com.gymchampion.GymChampion.restcontroller;
 
-
 import com.gymchampion.GymChampion.GymChampionApplication;
 import com.gymchampion.GymChampion.exceptions.ResourceDoesNotExistException;
 import com.gymchampion.GymChampion.model.LoginData;
@@ -33,6 +32,7 @@ public class LoginController {
         this.loginDataService = loginDataService;
         this.sessionService = sessionService;
     }
+
     /* user will login by example login_data json with only login and password:
         {
     "loginId": 1,
@@ -50,9 +50,8 @@ public class LoginController {
         "roleName": "USER"
     },
     "archivized": false
-}
+}*/
 
-     */
     @GetMapping
     public ResponseEntity<?> getTokenForUser(@RequestBody LoginData userLoginData, HttpServletResponse response) {
         String userLogin = userLoginData.getUser().getLogin();

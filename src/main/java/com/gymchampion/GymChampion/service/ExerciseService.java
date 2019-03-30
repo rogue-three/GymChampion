@@ -28,7 +28,7 @@ public class ExerciseService {
 
     public Exercise getExerciseById(int id) {
         Optional<Exercise> optionalExercise = this.exerciseRepository.findById(id);
-        return optionalExercise.orElseGet(null);
+        return optionalExercise.orElse(null);
     }
 
     public Exercise getExerciseByName(String name) {
@@ -47,8 +47,8 @@ public class ExerciseService {
         return this.exerciseRepository.findAllByEquipment_EquipmentName(equipment);
     }
 
-    public Exercise addExercise(Exercise exercise) {
-        return this.exerciseRepository.save(exercise);
+    public void addExercise(Exercise exercise) {
+        this.exerciseRepository.save(exercise);
     }
 
     public void updateExercise(Exercise exercise) {

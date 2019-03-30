@@ -22,7 +22,6 @@ public class AdminFilter implements javax.servlet.Filter {
         this.helper = helper;
     }
 
-
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain)
             throws IOException, ServletException {

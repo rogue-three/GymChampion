@@ -34,7 +34,7 @@ public class LoginDataService {
 
     public LoginData getLoginDataById(int id) {
         Optional<LoginData> optionalLoginData = this.loginDataRepository.findById(id);
-        return optionalLoginData.orElseGet(null);
+        return optionalLoginData.orElse(null);
     }
 
     public LoginData getLoginDataByLogin(String login) {

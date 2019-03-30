@@ -1,6 +1,5 @@
 package com.gymchampion.GymChampion.access_filters;
 
-
 import com.gymchampion.GymChampion.model.LoginData;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
@@ -35,6 +34,4 @@ public class UserFilter implements javax.servlet.Filter {
         servletRequest.setAttribute("claims", claims);
         filterChain.doFilter(servletRequest,servletResponse);
     }
-
-
 }
