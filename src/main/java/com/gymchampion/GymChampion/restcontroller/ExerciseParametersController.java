@@ -2,6 +2,7 @@ package com.gymchampion.GymChampion.restcontroller;
 
 import com.gymchampion.GymChampion.GymChampionApplication;
 import com.gymchampion.GymChampion.exceptions.ResourceAlreadyExistsException;
+import com.gymchampion.GymChampion.exceptions.ResourceDoesNotExistException;
 import com.gymchampion.GymChampion.model.BodyPart;
 import com.gymchampion.GymChampion.model.Equipment;
 import com.gymchampion.GymChampion.model.ExerciseScheme;
@@ -67,22 +68,60 @@ public class ExerciseParametersController {
         return new ResponseEntity<>(bodyParts, HttpStatus.OK);
     }
 
-    // getbyid
-
-    //getbyname
-
-    //update name
-
-    //remove
-
-    @GetMapping("/body_part/{id}")
-    public BodyPart getBodyPartById(@PathVariable("id") int id) {
-        return this.bodyPartService.getBodyPartById(id);
+    @GetMapping("/body_part/id/{id}")
+    public ResponseEntity<?> getBodyPartById(@PathVariable("id") int id) {
+        logger.info(String.format("Fetching Body part with id %d.", id));
+        BodyPart bodyPart = this.bodyPartService.getBodyPartById(id);
+        if (bodyPart == null) {
+            logger.error(String.format("Body part with id %d not found.", id));
+            return new ResponseEntity<>(new ResourceDoesNotExistException("Body part with id" + id
+                    + " not found.").getMessage(), HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(bodyPart, HttpStatus.OK);
     }
 
-    @PostMapping("/body_part/admin")
-    public BodyPart addBodyPart(@RequestBody BodyPart bodyPart) {
-        return this.bodyPartService.addBodyPart(bodyPart);
+    @GetMapping("/body_part/name/{name}")
+    public ResponseEntity<?> getBodyPartByName(@PathVariable("name") String bodyPartName) {
+        logger.info(String.format("Fetching Body part with name %s.", bodyPartName));
+        BodyPart bodyPart = this.bodyPartService.getBodyPartByName(bodyPartName);
+        if (bodyPart == null) {
+            logger.error(String.format("Body part with name %s not found.", bodyPartName));
+            return new ResponseEntity<>(new ResourceDoesNotExistException("Body part with name" +
+                    bodyPartName + " not found.").getMessage(), HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(bodyPart, HttpStatus.OK);
+    }
+
+    @PatchMapping("/body_part")
+    public ResponseEntity<?> updateBodyPartName(@RequestBody BodyPart bodyPart) {
+        logger.info(String.format("Updating Body part with id %d name to %s.",
+                bodyPart.getBodyPartId(),
+                bodyPart.getBodyPartName()));
+        BodyPart bodyPartFromDB = this.bodyPartService.getBodyPartById(bodyPart.getBodyPartId());
+        if (bodyPartFromDB == null) {
+            logger.error(String.format("Unable to update body part name. Body part with id %d not found.",
+                    bodyPart.getBodyPartId()));
+            return new ResponseEntity<>(new ResourceDoesNotExistException("Unable to update. " +
+                    "Body part with id " + bodyPart.getBodyPartId() + " not found.").getMessage(),
+                    HttpStatus.NOT_FOUND);
+        }
+        bodyPartFromDB.setBodyPartName(bodyPart.getBodyPartName());
+        this.bodyPartService.updateBodyPart(bodyPartFromDB);
+        return new ResponseEntity<>(bodyPart, HttpStatus.OK);
+    }
+
+    @DeleteMapping("/body_part/{id}")
+    public ResponseEntity<?> removeBodyPartById(@PathVariable("id") int id) {
+        logger.info(String.format("Fetching & Deleting Body part with id %d.", id));
+        BodyPart bodyPart = this.bodyPartService.getBodyPartById(id);
+        if (bodyPart == null) {
+            logger.error(String.format("Unable to delete. Body part with id %d not found.", id));
+            return new ResponseEntity<>(new ResourceDoesNotExistException("Unable to delete." +
+                    "Body part with id %d " + id + " not found.").getMessage(),
+                    HttpStatus.NOT_FOUND);
+        }
+        this.bodyPartService.removeBodyPart(bodyPart);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
     /*
@@ -116,22 +155,60 @@ public class ExerciseParametersController {
         return new ResponseEntity<>(equipments, HttpStatus.OK);
     }
 
-    // getbyid
-
-    //getbyname
-
-    //update name
-
-    //remove
-
-    @GetMapping("/equipment/{id}")
-    public Equipment getEquipmentById(@PathVariable("id") int id) {
-        return this.equipmentService.getEquipmentById(id);
+    @GetMapping("/equipment/id/{id}")
+    public ResponseEntity<?> getEquipmentById(@PathVariable("id") int id) {
+        logger.info(String.format("Fetching Equipment with id %d.", id));
+        Equipment equipment = this.equipmentService.getEquipmentById(id);
+        if (equipment == null) {
+            logger.error(String.format("Equipment with id %d not found.", id));
+            return new ResponseEntity<>(new ResourceDoesNotExistException("Equipment with id" + id
+                    + " not found.").getMessage(), HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(equipment, HttpStatus.OK);
     }
 
-    @PostMapping("/equipment/admin")
-    public Equipment addEquipment(@RequestBody Equipment equipment) {
-        return this.equipmentService.addEquipment(equipment);
+    @GetMapping("/equipment/name/{name}")
+    public ResponseEntity<?> getEquipmentByName(@PathVariable("name") String equipmentName) {
+        logger.info(String.format("Fetching Equipment with name %s.", equipmentName));
+        Equipment equipment = this.equipmentService.getEquipmentByName(equipmentName);
+        if (equipment == null) {
+            logger.error(String.format("Equipment with name %s not found.", equipmentName));
+            return new ResponseEntity<>(new ResourceDoesNotExistException("Equipment with name" +
+                    equipmentName + " not found.").getMessage(), HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(equipment, HttpStatus.OK);
+    }
+
+    @PatchMapping("/equipment")
+    public ResponseEntity<?> updateEquipmentName(@RequestBody Equipment equipment) {
+        logger.info(String.format("Updating Equipment with id %d name to %s.",
+                equipment.getEquipmentId(),
+                equipment.getEquipmentName()));
+        Equipment equipmentFromDB = this.equipmentService.getEquipmentById(equipment.getEquipmentId());
+        if (equipmentFromDB == null) {
+            logger.error(String.format("Unable to update equipment name. Equipment with id %d not found.",
+                    equipment.getEquipmentId()));
+            return new ResponseEntity<>(new ResourceDoesNotExistException("Unable to update. " +
+                    "Equipment with id " + equipment.getEquipmentId() + " not found.").getMessage(),
+                    HttpStatus.NOT_FOUND);
+        }
+        equipmentFromDB.setEquipmentName(equipment.getEquipmentName());
+        this.equipmentService.updateEquipment(equipment);
+        return new ResponseEntity<>(equipment, HttpStatus.OK);
+    }
+
+    @DeleteMapping("/equipment/{id}")
+    public ResponseEntity<?> removeEquipmentById(@PathVariable("id") int id) {
+        logger.info(String.format("Fetching & Deleting Equipment with id %d.", id));
+        Equipment equipment = this.equipmentService.getEquipmentById(id);
+        if (equipment == null) {
+            logger.error(String.format("Unable to delete. Equipment with id %d not found.", id));
+            return new ResponseEntity<>(new ResourceDoesNotExistException("Unable to delete." +
+                    "Equipment with id %d " + id + " not found.").getMessage(),
+                    HttpStatus.NOT_FOUND);
+        }
+        this.equipmentService.removeEquipment(equipment);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
     /*
@@ -165,21 +242,59 @@ public class ExerciseParametersController {
         return new ResponseEntity<>(exerciseSchemes, HttpStatus.OK);
     }
 
-    // getbyid
-
-    //getbyname
-
-    //update name
-
-    //remove
-
-    @GetMapping("/exercise_scheme/{id}")
-    public ExerciseScheme getExerciseSchemeById(@PathVariable("id") int id) {
-        return this.exerciseSchemeService.getExerciseSchemeById(id);
+    @GetMapping("/exercise_scheme/id/{id}")
+    public ResponseEntity<?> getExerciseSchemeById(@PathVariable("id") int id) {
+        logger.info(String.format("Fetching Exercise sxheme with id %d.", id));
+        ExerciseScheme exerciseScheme = this.exerciseSchemeService.getExerciseSchemeById(id);
+        if (exerciseScheme == null) {
+            logger.error(String.format("Exercise scheme with id %d not found.", id));
+            return new ResponseEntity<>(new ResourceDoesNotExistException("Exercise scheme with id" + id
+                    + " not found.").getMessage(), HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(exerciseScheme, HttpStatus.OK);
     }
 
-    @PostMapping("/exercise_scheme/admin")
-    public ExerciseScheme addExerciseScheme(@RequestBody ExerciseScheme exerciseScheme) {
-        return this.exerciseSchemeService.addExerciseScheme(exerciseScheme);
+    @GetMapping("/exercise_scheme/name/{name}")
+    public ResponseEntity<?> getExerciseSchemeByName(@PathVariable("name") String exerciseSchemeName) {
+        logger.info(String.format("Fetching Exercise scheme with name %s.", exerciseSchemeName));
+        ExerciseScheme exerciseScheme = this.exerciseSchemeService.getExerciseSchemeByName(exerciseSchemeName);
+        if (exerciseScheme == null) {
+            logger.error(String.format("Exercise scheme with name %s not found.", exerciseSchemeName));
+            return new ResponseEntity<>(new ResourceDoesNotExistException("Exercise scheme with name" +
+                    exerciseSchemeName + " not found.").getMessage(), HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(exerciseScheme, HttpStatus.OK);
+    }
+
+    @PatchMapping("/exercise_scheme")
+    public ResponseEntity<?> updateExerciseSchemeName(@RequestBody ExerciseScheme exerciseScheme) {
+        logger.info(String.format("Updating Exercise scheme with id %d name to %s.",
+                exerciseScheme.getExerciseSchemeId(),
+                exerciseScheme.getExerciseSchemeName()));
+        ExerciseScheme exerciseSchemeFromDB = this.exerciseSchemeService.getExerciseSchemeById(exerciseScheme.getExerciseSchemeId());
+        if (exerciseSchemeFromDB == null) {
+            logger.error(String.format("Unable to update exercise scheme name. Exercise scheme with id %d not found.",
+                    exerciseScheme.getExerciseSchemeId()));
+            return new ResponseEntity<>(new ResourceDoesNotExistException("Unable to update. " +
+                    "Exercise scheme with id " + exerciseScheme.getExerciseSchemeId() + " not found.").getMessage(),
+                    HttpStatus.NOT_FOUND);
+        }
+        exerciseSchemeFromDB.setExerciseSchemeName(exerciseScheme.getExerciseSchemeName());
+        this.exerciseSchemeService.updateExerciseScheme(exerciseScheme);
+        return new ResponseEntity<>(exerciseScheme, HttpStatus.OK);
+    }
+
+    @DeleteMapping("/exercise_scheme/{id}")
+    public ResponseEntity<?> removeExerciseSchemeById(@PathVariable("id") int id) {
+        logger.info(String.format("Fetching & Deleting Exercise scheme with id %d.", id));
+        ExerciseScheme exerciseScheme = this.exerciseSchemeService.getExerciseSchemeById(id);
+        if (exerciseScheme == null) {
+            logger.error(String.format("Unable to delete. Exercise scheme with id %d not found.", id));
+            return new ResponseEntity<>(new ResourceDoesNotExistException("Unable to delete." +
+                    "Exercise scheme with id %d " + id + " not found.").getMessage(),
+                    HttpStatus.NOT_FOUND);
+        }
+        this.exerciseSchemeService.removeExerciseScheme(exerciseScheme);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }

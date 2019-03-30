@@ -27,11 +27,23 @@ public class EquipmentService {
         return optionalBodypart.orElseGet(null);
     }
 
-    public Equipment addEquipment(Equipment equipment) {
-        return this.equipmentRepository.save(equipment);
+    public void addEquipment(Equipment equipment) {
+        this.equipmentRepository.save(equipment);
     }
 
     public boolean doesEquipmentExists(Equipment equipment) {
         return this.equipmentRepository.findByEquipmentName(equipment.getEquipmentName()) != null;
+    }
+
+    public Equipment getEquipmentByName(String equipmentName) {
+        return this.equipmentRepository.findByEquipmentName(equipmentName);
+    }
+
+    public void updateEquipment(Equipment equipment) {
+        this.equipmentRepository.save(equipment);
+    }
+
+    public void removeEquipment(Equipment equipment) {
+        this.equipmentRepository.delete(equipment);
     }
 }

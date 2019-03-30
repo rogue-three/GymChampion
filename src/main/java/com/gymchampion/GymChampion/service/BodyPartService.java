@@ -31,7 +31,19 @@ public class BodyPartService {
         return optionalBodypart.orElseGet(null);
     }
 
-    public BodyPart addBodyPart(BodyPart bodyPart) {
-        return this.bodyPartRepository.save(bodyPart);
+    public BodyPart getBodyPartByName(String name) {
+        return this.bodyPartRepository.findByBodyPartName(name);
+    }
+
+    public void addBodyPart(BodyPart bodyPart) {
+        this.bodyPartRepository.save(bodyPart);
+    }
+
+    public void updateBodyPart(BodyPart bodyPart) {
+        this.bodyPartRepository.save(bodyPart);
+    }
+
+    public void removeBodyPart(BodyPart bodyPart) {
+        this.bodyPartRepository.delete(bodyPart);
     }
 }
