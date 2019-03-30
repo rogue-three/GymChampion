@@ -56,7 +56,16 @@ public class ExerciseParametersController {
         return new ResponseEntity<String>(headers, HttpStatus.CREATED);
     }
 
-    // getall
+    @GetMapping("/body_part")
+    public ResponseEntity<List<BodyPart>> getAllBodyParts() {
+        logger.info("Fetching all Body parts.");
+        List<BodyPart> bodyParts = this.bodyPartService.getAllBodyParts();
+        if (bodyParts.isEmpty()) {
+            logger.error("Body parts not found.");
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(bodyParts, HttpStatus.OK);
+    }
 
     // getbyid
 
@@ -65,12 +74,6 @@ public class ExerciseParametersController {
     //update name
 
     //remove
-
-
-    @GetMapping("/body_part")
-    public List<BodyPart> getAllBodyParts() {
-        return this.bodyPartService.getAllBodyParts();
-    }
 
     @GetMapping("/body_part/{id}")
     public BodyPart getBodyPartById(@PathVariable("id") int id) {
@@ -102,7 +105,16 @@ public class ExerciseParametersController {
         return new ResponseEntity<String>(headers, HttpStatus.CREATED);
     }
 
-    // getall
+    @GetMapping("/equipment")
+    public ResponseEntity<List<Equipment>> getAllEquipments() {
+        logger.info("Fetching all Equipments.");
+        List<Equipment> equipments = this.equipmentService.getAllEquipments();
+        if (equipments.isEmpty()) {
+            logger.error("Equipments not found.");
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(equipments, HttpStatus.OK);
+    }
 
     // getbyid
 
@@ -111,11 +123,6 @@ public class ExerciseParametersController {
     //update name
 
     //remove
-
-    @GetMapping("/equipment")
-    public List<Equipment> getAllEquipments() {
-        return this.equipmentService.getAllEquipments();
-    }
 
     @GetMapping("/equipment/{id}")
     public Equipment getEquipmentById(@PathVariable("id") int id) {
@@ -147,7 +154,16 @@ public class ExerciseParametersController {
         return new ResponseEntity<String>(headers, HttpStatus.CREATED);
     }
 
-    // getall
+    @GetMapping("/exercise_scheme")
+    public ResponseEntity<List<ExerciseScheme>> getAllExerciseSchemes() {
+        logger.info("Fetching all Exercise schemes.");
+        List<ExerciseScheme> exerciseSchemes = this.exerciseSchemeService.getAllExerciseSchemes();
+        if (exerciseSchemes.isEmpty()) {
+            logger.error("Exercise schemes not found.");
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(exerciseSchemes, HttpStatus.OK);
+    }
 
     // getbyid
 
@@ -156,11 +172,6 @@ public class ExerciseParametersController {
     //update name
 
     //remove
-
-    @GetMapping("/exercise_scheme")
-    public List<ExerciseScheme> getAllExerciseSchemes() {
-        return this.exerciseSchemeService.getAllExerciseSchemes();
-    }
 
     @GetMapping("/exercise_scheme/{id}")
     public ExerciseScheme getExerciseSchemeById(@PathVariable("id") int id) {
