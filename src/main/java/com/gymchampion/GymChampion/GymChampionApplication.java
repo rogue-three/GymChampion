@@ -1,7 +1,8 @@
 package com.gymchampion.GymChampion;
 
-import com.gymchampion.GymChampion.access.filters.AdminFilter;
-import com.gymchampion.GymChampion.access.filters.UserFilter;
+import org.apache.log4j.Logger;
+import com.gymchampion.GymChampion.access_filters.AdminFilter;
+import com.gymchampion.GymChampion.access_filters.UserFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -12,6 +13,8 @@ import java.util.Collections;
 
 @SpringBootApplication
 public class GymChampionApplication {
+
+	public static Logger logger = Logger.getLogger(GymChampionApplication.class);
 
 	private UserFilter userFilter;
 	private AdminFilter adminFilter;
@@ -24,23 +27,24 @@ public class GymChampionApplication {
 	}
 
 	public static void main(String[] args) {
+		logger.info("Gym Champion REST application starting.");
 		SpringApplication.run(GymChampionApplication.class, args);
 	}
 
-
 	@Bean
 	public FilterRegistrationBean<UserFilter> setUserFilter() {
-
-		FilterRegistrationBean filterRegistrationBean = new FilterRegistrationBean();
+		logger.info("Registering security filter for users.");
+		FilterRegistrationBean<UserFilter> filterRegistrationBean = new FilterRegistrationBean<>();
 		filterRegistrationBean.setFilter(userFilter);
-		filterRegistrationBean.setUrlPatterns(Collections.singleton("/api/*"));
+		filterRegistrationBean.setUrlPatterns(Collections.singleton("/exercise/*"));
 		return filterRegistrationBean;
 	}
 
 	@Bean FilterRegistrationBean<AdminFilter> setAdminFilter() {
-		FilterRegistrationBean filterRegistrationBean = new FilterRegistrationBean();
+		logger.info("Registering security filter for admin.");
+		FilterRegistrationBean<AdminFilter> filterRegistrationBean = new FilterRegistrationBean<>();
 		filterRegistrationBean.setFilter(adminFilter);
-		filterRegistrationBean.setUrlPatterns(Collections.singleton("/admin/*"));
+		filterRegistrationBean.setUrlPatterns(Collections.singleton("/user/*"));
 		return filterRegistrationBean;
 	}
 }

@@ -1,4 +1,4 @@
-package com.gymchampion.GymChampion.access.exceptions;
+package com.gymchampion.GymChampion.exceptions;
 
 public class UserNotExistException extends Exception {
 

@@ -22,13 +22,28 @@ public class BodyPartService {
         return this.bodyPartRepository.findAll();
     }
 
-    public BodyPart getBodyPartById(int id) {
-        Optional<BodyPart> optionalBodypart = this.bodyPartRepository.findById(id);
-
-        return optionalBodypart.orElseGet(BodyPart::new);
+    public boolean doesBodyPartExist(BodyPart bodyPart) {
+        return this.bodyPartRepository.findByBodyPartName(bodyPart.getBodyPartName()) != null;
     }
 
-    public BodyPart addBodyPart(BodyPart bodyPart) {
-        return this.bodyPartRepository.save(bodyPart);
+    public BodyPart getBodyPartById(int id) {
+        Optional<BodyPart> optionalBodypart = this.bodyPartRepository.findById(id);
+        return optionalBodypart.orElseGet(null);
+    }
+
+    public BodyPart getBodyPartByName(String name) {
+        return this.bodyPartRepository.findByBodyPartName(name);
+    }
+
+    public void addBodyPart(BodyPart bodyPart) {
+        this.bodyPartRepository.save(bodyPart);
+    }
+
+    public void updateBodyPart(BodyPart bodyPart) {
+        this.bodyPartRepository.save(bodyPart);
+    }
+
+    public void removeBodyPart(BodyPart bodyPart) {
+        this.bodyPartRepository.delete(bodyPart);
     }
 }

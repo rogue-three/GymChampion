@@ -18,31 +18,25 @@ public class SessionService {
         this.sessionRepository = sessionRepository;
     }
 
+    public boolean doesSessionExist(Session session) {
+        return this.getSessionBySessionKey(session.getSessionKey()) != null;
+    }
+
+    public void addSession(Session session) {
+        this.sessionRepository.save(session);
+    }
+
     public List<Session> getAllSessions() {
         return this.sessionRepository.findAll();
     }
 
+    public Session getSessionBySessionKey(String key) {
+        return this.sessionRepository.findBySessionKey(key);
+    }
+
     public Session getSessionById(int id) {
         Optional<Session> optionalSession = this.sessionRepository.findById(id);
-        return optionalSession.orElseGet(Session::new);
-    }
-
-    public Session getSessionBySessionKey(String key) {
-       return this.sessionRepository.findBySessionKey(key);
-    }
-
-    public Session addSession(Session session) {
-        return this.sessionRepository.save(session);
-    }
-
-    public Session deactivateSession(int id) {
-        Optional<Session> optionalSession = this.sessionRepository.findById(id);
-        if (optionalSession.isPresent()) {
-            Session session =  optionalSession.get();
-            session.setActive(false);
-            return this.sessionRepository.save(session);
-        }
-        return new Session();
+        return optionalSession.orElse(null);
     }
 
     public List<Session> getActiveSessions() {
@@ -53,4 +47,12 @@ public class SessionService {
         return this.sessionRepository.findAllByActive(false);
     }
 
+    public void updateSession(Session session) {
+        this.sessionRepository.save(session);
+    }
+
+    public void removeSessionById(int id) {
+        Optional<Session> optionalSession = this.sessionRepository.findById(id);
+        optionalSession.ifPresent(session -> this.sessionRepository.delete(session));
+    }
 }

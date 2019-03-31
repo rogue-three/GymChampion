@@ -17,3 +17,4 @@ target/
 
 ###Other###
 src/main/resources/application.properties
+gym_champion.log

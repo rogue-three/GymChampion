@@ -1,4 +1,4 @@
-package com.gymchampion.GymChampion.access.filters;
+package com.gymchampion.GymChampion.access_filters;
 
 import com.gymchampion.GymChampion.model.LoginData;
 import com.gymchampion.GymChampion.model.Session;
@@ -30,10 +30,8 @@ public class FilterHelper {
             throw new ServletException("Session terminate or deny access!");
         }
         String login = actualSession.getUser().getLogin();
-        return loginDataService.getLoginDataByLogin(login);
-
+        return this.loginDataService.getLoginDataByLogin(login);
     }
-
 
     public String getToken(ServletRequest servletRequest) throws ServletException {
 

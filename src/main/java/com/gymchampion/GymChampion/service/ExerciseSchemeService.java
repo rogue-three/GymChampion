@@ -24,10 +24,26 @@ public class ExerciseSchemeService {
 
     public ExerciseScheme getExerciseSchemeById(int id) {
         Optional<ExerciseScheme> optionalExerciseScheme = this.exerciseSchemeRepository.findById(id);
-        return optionalExerciseScheme.orElseGet(ExerciseScheme::new);
+        return optionalExerciseScheme.orElseGet(null);
     }
 
-    public ExerciseScheme addExerciseScheme(ExerciseScheme exerciseScheme) {
-        return this.exerciseSchemeRepository.save(exerciseScheme);
+    public void addExerciseScheme(ExerciseScheme exerciseScheme) {
+        this.exerciseSchemeRepository.save(exerciseScheme);
+    }
+
+    public boolean doesExerciseSchemeExist(ExerciseScheme exerciseScheme) {
+        return this.exerciseSchemeRepository.findByExerciseSchemeName(exerciseScheme.getExerciseSchemeName()) != null;
+    }
+
+    public ExerciseScheme getExerciseSchemeByName(String exerciseSchemeName) {
+        return this.exerciseSchemeRepository.findByExerciseSchemeName(exerciseSchemeName);
+    }
+
+    public void updateExerciseScheme(ExerciseScheme exerciseScheme) {
+        this.exerciseSchemeRepository.save(exerciseScheme);
+    }
+
+    public void removeExerciseScheme(ExerciseScheme exerciseScheme) {
+        this.exerciseSchemeRepository.delete(exerciseScheme);
     }
 }
