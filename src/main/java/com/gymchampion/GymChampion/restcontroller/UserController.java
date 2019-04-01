@@ -90,7 +90,7 @@ public class UserController {
     }
 
     @PatchMapping("/birth_date/{login}")
-    public ResponseEntity<?> setUserNickname(@RequestBody UserBirthDateOnly userBirthDateOnly,
+    public ResponseEntity<?> setUserBirthDate(@RequestBody UserBirthDateOnly userBirthDateOnly,
                                              @PathVariable("login") String login) {
         logger.info(String.format("Setting user %s birth date to %s.", login, userBirthDateOnly.getUserBirthDate()));
         User user = this.userService.getUserByLogin(login);
@@ -130,7 +130,7 @@ public class UserController {
     }
 
     @PatchMapping("/weight/{login}")
-    public ResponseEntity<?> setUserNickname(@RequestBody UserWeightOnly userWeightOnly,
+    public ResponseEntity<?> setUserWeight(@RequestBody UserWeightOnly userWeightOnly,
                                              @PathVariable("login") String login) {
         logger.info(String.format("Setting user %s weight to %f.", login, userWeightOnly.getUserWeight()));
         User user = this.userService.getUserByLogin(login);
@@ -164,7 +164,7 @@ public class UserController {
      */
 
     @GetMapping("/gender")
-    public ResponseEntity<List<Gender>> getAllSessions() {
+    public ResponseEntity<List<Gender>> getAllGenders() {
         logger.info("Fetching genders.");
         List<Gender> genders = this.genderService.getAllGenders();
         if (genders.isEmpty()) {

@@ -36,7 +36,7 @@ public class GymChampionApplication {
 		logger.info("Registering security filter for users.");
 		FilterRegistrationBean<UserFilter> filterRegistrationBean = new FilterRegistrationBean<>();
 		filterRegistrationBean.setFilter(userFilter);
-		filterRegistrationBean.setUrlPatterns(Collections.singleton("/exercise/*"));
+		filterRegistrationBean.setUrlPatterns(Collections.singleton("/v1/users"));
 		return filterRegistrationBean;
 	}
 
