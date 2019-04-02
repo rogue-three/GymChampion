@@ -16,6 +16,10 @@ public class Training {
     @Temporal(TemporalType.TIMESTAMP)
     private Date trainingDateStart;
 
+    @Column(name = "training_date_finish")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date trainingDateFinish;
+
     @Column(name = "user_body_weight")
     private double userBodyWeight;
 
@@ -45,6 +49,14 @@ public class Training {
     public Date getTrainingDateStart() { return this.trainingDateStart; }
 
     public void setTrainingDateStart(Date trainingDateStart) { this.trainingDateStart = trainingDateStart; }
+
+    public Date getTrainingDateFinish() {
+        return trainingDateFinish;
+    }
+
+    public void setTrainingDateFinish(Date trainingDateFinish) {
+        this.trainingDateFinish = trainingDateFinish;
+    }
 
     public double getUserBodyWeight() { return this.userBodyWeight; }
 
