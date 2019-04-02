@@ -39,7 +39,7 @@ public class TrainingController {
     @PostMapping
     public ResponseEntity<?> addTraining(@RequestBody Training training, UriComponentsBuilder ucBuilder) {
         logger.info(String.format("Creating Training with date %s for user %s.",
-                training.getTrainingDate(),
+                training.getTrainingDateStart(),
                 training.getUser().getLogin()));
         this.trainingService.addTraining(training);
         HttpHeaders headers = new HttpHeaders();
