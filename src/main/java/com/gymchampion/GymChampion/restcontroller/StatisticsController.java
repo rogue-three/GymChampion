@@ -6,6 +6,7 @@ import com.gymchampion.GymChampion.model.SetScheme;
 import com.gymchampion.GymChampion.service.SetSchemeService;
 import com.gymchampion.GymChampion.service.TrainingService;
 import com.gymchampion.GymChampion.util.TrainingDaysCount;
+import com.gymchampion.GymChampion.util.TrainingDurationCount;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -34,7 +35,8 @@ public class StatisticsController {
         SetScheme setScheme = this.setSchemeService.getSetSchemeWithMaxWeightByExerciseId(exerciseId, login);
         if (setScheme == null) {
             logger.error(String.format("Set scheme with max weight by exercise with id %d not found.", exerciseId));
-            return new ResponseEntity<>(new ResourceDoesNotExistException("Set scheme with max weight by exercise with id " +
+            return new ResponseEntity<>(new ResourceDoesNotExistException(
+                    "Set scheme with max weight by exercise with id " +
                     exerciseId + " not found").getMessage(), HttpStatus.NOT_FOUND);
         }
         return new ResponseEntity<>(setScheme, HttpStatus.OK);
@@ -50,6 +52,20 @@ public class StatisticsController {
                     login + "have trained 0 days.").getMessage(), HttpStatus.NOT_FOUND);
         }
         return new ResponseEntity<>(trainingDaysCount, HttpStatus.OK);
+    }
+
+    @GetMapping("/training_duration/{trainingId}")
+    public ResponseEntity<?> getTrainingDurationInMillisecondsByTrainingId(@PathVariable("trainingId") int trainingId) {
+        logger.info(String.format("Fetching duration of training no. %d", trainingId));
+        TrainingDurationCount trainingDurationCount =
+                this.trainingService.countTrainingDurationInMillisecondsByTrainingID(trainingId);
+        if (trainingDurationCount == null) {
+            logger.error(String.format("Training no. %d not found", trainingId));
+            return new ResponseEntity<>(new ResourceDoesNotExistException("Training no. " +
+                    trainingId + " doesn't exist").getMessage(), HttpStatus.NOT_FOUND);
+        }
+
+        return new ResponseEntity<>(trainingDurationCount, HttpStatus.OK);
     }
 
 

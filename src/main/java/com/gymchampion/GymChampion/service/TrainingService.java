@@ -69,11 +69,11 @@ public class TrainingService {
         return new TrainingDaysCount(trainedDays);
     }
 
-    public TrainingDurationCount countTraininigDurationInMillisecondsByTrainingID(int trainingId) {
+    public TrainingDurationCount countTrainingDurationInMillisecondsByTrainingID(int trainingId) {
         Long trainingStart = getTrainingById(trainingId).getTrainingDateStart().getTime();
         Long trainingFinish = getTrainingById(trainingId).getTrainingDateFinish().getTime();
-        Long training_durration = trainingStart - trainingFinish;
-        return new TrainingDurationCount(training_durration);
+        Long training_duration = trainingFinish - trainingStart;
+        return new TrainingDurationCount(training_duration);
 
     }
 }
