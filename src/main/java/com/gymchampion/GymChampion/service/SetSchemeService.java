@@ -45,6 +45,8 @@ public class SetSchemeService {
         return this.setSchemeRepository.getSetSchemeWithMaxWeightByExerciseId(exerciseId, login);
     }
 
+
+
     public void removeSetScheme(SetScheme setScheme) {
         this.setSchemeRepository.delete(setScheme);
     }

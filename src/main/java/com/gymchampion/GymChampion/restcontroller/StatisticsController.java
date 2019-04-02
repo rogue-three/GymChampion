@@ -51,4 +51,6 @@ public class StatisticsController {
         }
         return new ResponseEntity<>(trainingDaysCount, HttpStatus.OK);
     }
+
+
 }

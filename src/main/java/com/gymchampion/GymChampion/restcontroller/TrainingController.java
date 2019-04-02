@@ -104,6 +104,7 @@ public class TrainingController {
         return new ResponseEntity<>(trainings, HttpStatus.OK);
     }
 
+
     @PatchMapping("/archive/{id}")
     public ResponseEntity<?> archiveTrainingsById(@PathVariable("id") int id) {
         logger.info(String.format("Archiving Training with id %d.", id));

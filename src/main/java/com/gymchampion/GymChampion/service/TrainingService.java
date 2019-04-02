@@ -3,6 +3,7 @@ package com.gymchampion.GymChampion.service;
 import com.gymchampion.GymChampion.model.Training;
 import com.gymchampion.GymChampion.repository.TrainingRepository;
 import com.gymchampion.GymChampion.util.TrainingDaysCount;
+import com.gymchampion.GymChampion.util.TrainingDurationCount;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -66,5 +67,13 @@ public class TrainingService {
     public TrainingDaysCount countTrainingsByUserLogin(String login) {
         int trainedDays = this.getTrainingsByUserLogin(login).size();
         return new TrainingDaysCount(trainedDays);
+    }
+
+    public TrainingDurationCount countTraininigDurationInMillisecondsByTrainingID(int trainingId) {
+        Long trainingStart = getTrainingById(trainingId).getTrainingDateStart().getTime();
+        Long trainingFinish = getTrainingById(trainingId).getTrainingDateFinish().getTime();
+        Long training_durration = trainingStart - trainingFinish;
+        return new TrainingDurationCount(training_durration);
+
     }
 }
