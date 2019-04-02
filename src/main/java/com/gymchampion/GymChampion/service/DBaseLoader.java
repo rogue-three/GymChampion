@@ -189,37 +189,44 @@ public class DBaseLoader implements CommandLineRunner {
 
         tr001 = new Training(false);
         tr001.setTrainingDateStart(new Date(1546512327000L));
+        tr001.setTrainingDateFinish(new Date(1546519218000L));
         tr001.setUser(mihuUser);
         trainingRepository.save(tr001);
 
 
         tr002 = new Training(false);
         tr002.setTrainingDateStart(new Date(1547124927000L));
+        tr002.setTrainingDateFinish(new Date(1547128518000L));
         tr002.setUser(mihuUser);
         trainingRepository.save(tr002);
 
         tr003 = new Training(false);
         tr003.setTrainingDateStart(new Date(1547300727000L));
+        tr003.setTrainingDateFinish(new Date(1547309718000L));
         tr003.setUser(mihuUser);
         trainingRepository.save(tr003);
 
         tr004 = new Training(false);
         tr004.setTrainingDateStart(new Date(1547991137000L));
+        tr004.setTrainingDateFinish(new Date(1547997318000L));
         tr004.setUser(mihuUser);
         trainingRepository.save(tr004);
 
         tr005 = new Training(false);
         tr005.setTrainingDateStart(new Date(1547289927000L));
+        tr005.setTrainingDateFinish(new Date(1547298978000L));
         tr005.setUser(krzychuUser);
         trainingRepository.save(tr005);
 
         tr006 = new Training(false);
         tr006.setTrainingDateStart(new Date(1547549127000L));
+        tr006.setTrainingDateFinish(new Date(1547558178000L));
         tr006.setUser(krzychuUser);
         trainingRepository.save(tr006);
 
         tr007 = new Training(false);
         tr007.setTrainingDateStart(new Date(1550141177000L));
+        tr007.setTrainingDateFinish(new Date(1550146578000L));
         tr007.setUser(krzychuUser);
         trainingRepository.save(tr007);
 
