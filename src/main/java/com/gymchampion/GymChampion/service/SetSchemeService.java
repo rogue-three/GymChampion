@@ -50,7 +50,7 @@ public class SetSchemeService {
     }
 
     public SetScheme getSetSchemeWithHighestExpected1RmaxByExerciseIdAndUserLogin(int exerciseId, String userLogin) {
-        SetScheme highest1rmSetScheme = null;
+        SetScheme highest1rmSetScheme = getSetSchemeByExerciesIdAndUserLogin(exerciseId, userLogin).get(0);
         for(SetScheme setScheme: getSetSchemeByExerciesIdAndUserLogin(exerciseId, userLogin)) {
             if(count1RMax(setScheme)>= count1RMax(highest1rmSetScheme)){
                 highest1rmSetScheme = setScheme;
