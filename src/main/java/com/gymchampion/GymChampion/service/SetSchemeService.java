@@ -41,8 +41,29 @@ public class SetSchemeService {
         return this.setSchemeRepository.findAllByTrainingTrainingId(trainingId);
     }
 
+    public List<SetScheme> getSetSchemeByExerciesIdAndUserLogin(int exerciseId, String userLogin) {
+        return this.setSchemeRepository.getSetSchemeByExercise_ExerciseIdAndTraining_User_Login(exerciseId, userLogin);
+    }
+
     public SetScheme getSetSchemeWithMaxWeightByExerciseId(int exerciseId, String login) {
         return this.setSchemeRepository.getSetSchemeWithMaxWeightByExerciseId(exerciseId, login);
+    }
+
+    public SetScheme getSetSchemeWithHighestExpected1RmaxByExerciseIdAndUserLogin(int exerciseId, String userLogin) {
+        SetScheme highest1rmSetScheme = null;
+        for(SetScheme setScheme: getSetSchemeByExerciesIdAndUserLogin(exerciseId, userLogin)) {
+            if(count1RMax(setScheme)>= count1RMax(highest1rmSetScheme)){
+                highest1rmSetScheme = setScheme;
+            }
+        }
+        return highest1rmSetScheme;
+    }
+
+    private double count1RMax(SetScheme setScheme){
+        if (setScheme.getReps() < 2) {
+            return setScheme.getWeight();
+        }
+        return setScheme.getWeight() * (1 + ((double) setScheme.getReps()/30));
     }
 
 

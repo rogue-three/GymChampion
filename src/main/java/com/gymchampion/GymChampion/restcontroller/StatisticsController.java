@@ -13,6 +13,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/v1/statistics")
 public class StatisticsController {
@@ -66,6 +68,20 @@ public class StatisticsController {
         }
 
         return new ResponseEntity<>(trainingDurationCount, HttpStatus.OK);
+    }
+
+    @GetMapping("/list_all_exercise_sets/{exerciseId}/login/{userLogin}")
+    public ResponseEntity<?> getExpected1RMaxByExerciseIdByUserLogin(@PathVariable("exerciseId") int exerciseId,
+                                                                     @PathVariable("userLogin") String userLogin){
+        logger.info(String.format("Fetching all sets of : " + exerciseId + " of user: " + userLogin + " !"));
+        List<SetScheme> allExercisesByExcersiseId =
+                this.setSchemeService.getSetSchemeByExerciesIdAndUserLogin(exerciseId, userLogin);
+        if(allExercisesByExcersiseId.isEmpty()) {
+            logger.error((String.format("There are no exercises for user: " + userLogin)));
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+
+        return new ResponseEntity<>(allExercisesByExcersiseId, HttpStatus.OK);
     }
 
 
