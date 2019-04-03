@@ -4,7 +4,7 @@ import com.gymchampion.GymChampion.GymChampionApplication;
 import com.gymchampion.GymChampion.model.SetScheme;
 import com.gymchampion.GymChampion.service.SetSchemeService;
 import com.gymchampion.GymChampion.service.TrainingService;
-import com.gymchampion.GymChampion.util.Weight;
+import com.gymchampion.GymChampion.util.DoubleCounter;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -13,8 +13,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/v1/diagnostics")
@@ -47,9 +45,9 @@ public class DiagnosticsController {
         }
 
         double best1Rm = bestSetScheme.getWeight() * (1 + (double) bestSetScheme.getReps()/30);
-        Weight predictedWeight = new Weight(best1Rm);
+        DoubleCounter predictedDoubleCounter = new DoubleCounter(best1Rm);
 
-        return new ResponseEntity<>(predictedWeight, HttpStatus.OK);
+        return new ResponseEntity<>(predictedDoubleCounter, HttpStatus.OK);
     }
 
 

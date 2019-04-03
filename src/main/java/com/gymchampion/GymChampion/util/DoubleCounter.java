@@ -1,10 +1,10 @@
 package com.gymchampion.GymChampion.util;
 
-public class Weight {
+public class DoubleCounter {
 
     private double weight;
 
-    public Weight(double weight) {
+    public DoubleCounter(double weight) {
         this.weight = weight;
     }
 
