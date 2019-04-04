@@ -71,8 +71,8 @@ public class StatisticsController {
     }
 
     @GetMapping("/list_all_exercise_sets/{exerciseId}/login/{userLogin}")
-    public ResponseEntity<?> getExpected1RMaxByExerciseIdByUserLogin(@PathVariable("exerciseId") int exerciseId,
-                                                                     @PathVariable("userLogin") String userLogin){
+    public ResponseEntity<?> getAllSetsOfExerciseByUserLogin(@PathVariable("exerciseId") int exerciseId,
+                                                             @PathVariable("userLogin") String userLogin){
         logger.info(String.format("Fetching all sets of : " + exerciseId + " of user: " + userLogin + " !"));
         List<SetScheme> allExercisesByExcersiseId =
                 this.setSchemeService.getSetSchemeByExerciesIdAndUserLogin(exerciseId, userLogin);
