@@ -7,12 +7,12 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 
 @Service
 public class SetSchemeService {
 
     private SetSchemeRepository setSchemeRepository;
+    private final int R_MAX_CONSTANT = 30;
 
     @Autowired
     public SetSchemeService(SetSchemeRepository repository) {
@@ -63,7 +63,7 @@ public class SetSchemeService {
         if (setScheme.getReps() < 2) {
             return setScheme.getWeight();
         }
-        return setScheme.getWeight() * (1 + ((double) setScheme.getReps()/30));
+        return setScheme.getWeight() * (1 + ((double) setScheme.getReps()/ R_MAX_CONSTANT));
     }
 
 
