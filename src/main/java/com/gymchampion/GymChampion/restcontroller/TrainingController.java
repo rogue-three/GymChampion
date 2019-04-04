@@ -39,7 +39,7 @@ public class TrainingController {
     @PostMapping
     public ResponseEntity<?> addTraining(@RequestBody Training training, UriComponentsBuilder ucBuilder) {
         logger.info(String.format("Creating Training with date %s for user %s.",
-                training.getTrainingDate(),
+                training.getTrainingDateStart(),
                 training.getUser().getLogin()));
         this.trainingService.addTraining(training);
         HttpHeaders headers = new HttpHeaders();
@@ -103,6 +103,7 @@ public class TrainingController {
         }
         return new ResponseEntity<>(trainings, HttpStatus.OK);
     }
+
 
     @PatchMapping("/archive/{id}")
     public ResponseEntity<?> archiveTrainingsById(@PathVariable("id") int id) {

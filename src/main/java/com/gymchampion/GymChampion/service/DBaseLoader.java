@@ -188,73 +188,80 @@ public class DBaseLoader implements CommandLineRunner {
     private void initializeTraining(TrainingRepository trainingRepository) {
 
         tr001 = new Training(false);
-        tr001.setTrainingDate(new Date(1546512327000L));
+        tr001.setTrainingDateStart(new Date(1546512327000L));
+        tr001.setTrainingDateFinish(new Date(1546519218000L));
         tr001.setUser(mihuUser);
         trainingRepository.save(tr001);
 
 
         tr002 = new Training(false);
-        tr002.setTrainingDate(new Date(1547124927000L));
+        tr002.setTrainingDateStart(new Date(1547124927000L));
+        tr002.setTrainingDateFinish(new Date(1547128518000L));
         tr002.setUser(mihuUser);
         trainingRepository.save(tr002);
 
         tr003 = new Training(false);
-        tr003.setTrainingDate(new Date(1547300727000L));
+        tr003.setTrainingDateStart(new Date(1547300727000L));
+        tr003.setTrainingDateFinish(new Date(1547309718000L));
         tr003.setUser(mihuUser);
         trainingRepository.save(tr003);
 
         tr004 = new Training(false);
-        tr004.setTrainingDate(new Date(1547991137000L));
+        tr004.setTrainingDateStart(new Date(1547991137000L));
+        tr004.setTrainingDateFinish(new Date(1547997318000L));
         tr004.setUser(mihuUser);
         trainingRepository.save(tr004);
 
         tr005 = new Training(false);
-        tr005.setTrainingDate(new Date(1547289927000L));
+        tr005.setTrainingDateStart(new Date(1547289927000L));
+        tr005.setTrainingDateFinish(new Date(1547298978000L));
         tr005.setUser(krzychuUser);
         trainingRepository.save(tr005);
 
         tr006 = new Training(false);
-        tr006.setTrainingDate(new Date(1547549127000L));
+        tr006.setTrainingDateStart(new Date(1547549127000L));
+        tr006.setTrainingDateFinish(new Date(1547558178000L));
         tr006.setUser(krzychuUser);
         trainingRepository.save(tr006);
 
         tr007 = new Training(false);
-        tr007.setTrainingDate(new Date(1550141177000L));
+        tr007.setTrainingDateStart(new Date(1550141177000L));
+        tr007.setTrainingDateFinish(new Date(1550146578000L));
         tr007.setUser(krzychuUser);
         trainingRepository.save(tr007);
 
         Training tr008 = new Training(false);
-        tr008.setTrainingDate(new Date(1549795527000L));
+        tr008.setTrainingDateStart(new Date(1549795527000L));
         tr008.setUser(jodlaUser);
         trainingRepository.save(tr008);
 
         Training tr009 = new Training(false);
-        tr009.setTrainingDate(new Date(1547124927000L));
+        tr009.setTrainingDateStart(new Date(1547124927000L));
         tr009.setUser(jodlaUser);
         trainingRepository.save(tr009);
 
         Training tr010 = new Training(false);
-        tr010.setTrainingDate(new Date(1550141127000L));
+        tr010.setTrainingDateStart(new Date(1550141127000L));
         tr010.setUser(jodlaUser);
         trainingRepository.save(tr010);
 
         Training tr011 = new Training(false);
-        tr011.setTrainingDate(new Date(1549968327000L));
+        tr011.setTrainingDateStart(new Date(1549968327000L));
         tr011.setUser(jodlaUser);
         trainingRepository.save(tr011);
 
         Training tr012 = new Training(false);
-        tr012.setTrainingDate(new Date(1547127927000L));
+        tr012.setTrainingDateStart(new Date(1547127927000L));
         tr012.setUser(zosiaUser);
         trainingRepository.save(tr012);
 
         Training tr013 = new Training(false);
-        tr013.setTrainingDate(new Date(1547981127000L));
+        tr013.setTrainingDateStart(new Date(1547981127000L));
         tr013.setUser(zosiaUser);
         trainingRepository.save(tr013);
 
         Training tr014 = new Training(false);
-        tr014.setTrainingDate(new Date(1549795527000L));
+        tr014.setTrainingDateStart(new Date(1549795527000L));
         tr014.setUser(zosiaUser);
         trainingRepository.save(tr014);
     }
