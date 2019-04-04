@@ -5,6 +5,7 @@ import com.gymchampion.GymChampion.exceptions.ResourceDoesNotExistException;
 import com.gymchampion.GymChampion.model.SetScheme;
 import com.gymchampion.GymChampion.service.SetSchemeService;
 import com.gymchampion.GymChampion.service.TrainingService;
+import com.gymchampion.GymChampion.util.DoubleCounter;
 import com.gymchampion.GymChampion.util.IntegerCounter;
 import com.gymchampion.GymChampion.util.LongCounter;
 import org.apache.log4j.Logger;
@@ -82,6 +83,19 @@ public class StatisticsController {
         }
 
         return new ResponseEntity<>(allExercisesByExcersiseId, HttpStatus.OK);
+    }
+
+    @GetMapping("/get_total_load/{trainingId}")
+    public ResponseEntity<?> getTotalLoadByTrainingId(@PathVariable("trainingId") int trainingId) {
+        logger.info(String.format("Fetching total load of training no: %d", trainingId));
+        DoubleCounter totalLoad = this.setSchemeService.getTotalLoadFromTrainingBy(trainingId);
+        if (totalLoad == null) {
+            logger.error(String.format("Training no: %d not found", trainingId));
+            return new ResponseEntity<>(
+                    new ResourceDoesNotExistException(String.format(
+                            "Training no: %d not found", trainingId)).getMessage(), HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(totalLoad, HttpStatus.OK);
     }
 
 
