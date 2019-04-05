@@ -6,6 +6,8 @@ public class UserBirthDateOnly {
 
     private Date userBirthDate;
 
+    public UserBirthDateOnly() {}
+
     public UserBirthDateOnly(Date userBirthDate) {
         this.userBirthDate = userBirthDate;
     }
