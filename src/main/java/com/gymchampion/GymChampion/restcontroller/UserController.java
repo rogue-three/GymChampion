@@ -7,9 +7,6 @@ import com.gymchampion.GymChampion.model.Gender;
 import com.gymchampion.GymChampion.model.User;
 import com.gymchampion.GymChampion.service.GenderService;
 import com.gymchampion.GymChampion.service.UserService;
-import com.gymchampion.GymChampion.util.UserBirthDateOnly;
-import com.gymchampion.GymChampion.util.UserNicknameOnly;
-import com.gymchampion.GymChampion.util.UserWeightOnly;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -73,75 +70,18 @@ public class UserController {
         return new ResponseEntity<>(user, HttpStatus.OK);
     }
 
-    @PatchMapping("/nickname/{login}")
-    public ResponseEntity<?> setUserNickname(@RequestBody UserNicknameOnly userNicknameOnly,
+    @PatchMapping("/patch/{login}")
+    public ResponseEntity<?> patchUserData(@RequestBody User userNewData,
                                              @PathVariable("login") String login) {
-        logger.info(String.format("Setting user %s nickname to %s.", login, userNicknameOnly.getNickname()));
-        User user = this.userService.getUserByLogin(login);
+        logger.info(String.format("Setting user %s nickname to %s.", login, userNewData.getNickname()));
+
+        User user = this.userService.patchUser(userNewData);
         if (user == null) {
             logger.error(String.format("Unable to set nickname. User with login %s not found.", login));
             return new ResponseEntity<>(new ResourceDoesNotExistException("Unable to set nickname. User with login " +
                     login + " not found.").getMessage(),
                     HttpStatus.NOT_FOUND);
         }
-        user.setNickname(userNicknameOnly.getNickname());
-        this.userService.updateUser(user);
-        return new ResponseEntity<>(user, HttpStatus.OK);
-    }
-
-    @PatchMapping("/birth_date/{login}")
-    public ResponseEntity<?> setUserBirthDate(@RequestBody UserBirthDateOnly userBirthDateOnly,
-                                             @PathVariable("login") String login) {
-        logger.info(String.format("Setting user %s birth date to %s.", login, userBirthDateOnly.getUserBirthDate()));
-        User user = this.userService.getUserByLogin(login);
-        if (user == null) {
-            logger.error(String.format("Unable to set birth date. User with login %s not found.", login));
-            return new ResponseEntity<>(new ResourceDoesNotExistException("Unable to set birth date. User with login " +
-                    login + " not found.").getMessage(),
-                    HttpStatus.NOT_FOUND);
-        }
-        user.setBirthDate(userBirthDateOnly.getUserBirthDate());
-        this.userService.updateUser(user);
-        return new ResponseEntity<>(user, HttpStatus.OK);
-    }
-
-    @PatchMapping("/gender/{login}")
-    public ResponseEntity<?> setUserGender(@RequestBody Gender gender,
-                                             @PathVariable("login") String login) {
-        logger.info(String.format("Setting user %s gender to %s.", login, gender.getSex()));
-
-        Gender genderFromDB = this.genderService.getGenderById(gender.getGenderId());
-        if (genderFromDB == null) {
-            logger.error(String.format("Unable to set gender. Gender with id %d not found.", gender.getGenderId()));
-            return new ResponseEntity<>(new ResourceDoesNotExistException("Unable to set gender. Gender with id " +
-                    gender.getGenderId() + " not found.").getMessage(),
-                    HttpStatus.NOT_FOUND);
-        }
-        User user = this.userService.getUserByLogin(login);
-        if (user == null) {
-            logger.error(String.format("Unable to set gender. User with login %s not found.", login));
-            return new ResponseEntity<>(new ResourceDoesNotExistException("Unable to gender date. User with login " +
-                    login + " not found.").getMessage(),
-                    HttpStatus.NOT_FOUND);
-        }
-        user.setGender(gender);
-        this.userService.updateUser(user);
-        return new ResponseEntity<>(user, HttpStatus.OK);
-    }
-
-    @PatchMapping("/weight/{login}")
-    public ResponseEntity<?> setUserWeight(@RequestBody Double userWeightOnly,
-                                             @PathVariable("login") String login) {
-        logger.info(String.format("Setting user %s weight to %f.", login, userWeightOnly));
-        User user = this.userService.getUserByLogin(login);
-        if (user == null) {
-            logger.error(String.format("Unable to set weight. User with login %s not found.", login));
-            return new ResponseEntity<>(new ResourceDoesNotExistException("Unable to set weight. User with login " +
-                    login + " not found.").getMessage(),
-                    HttpStatus.NOT_FOUND);
-        }
-        user.setWeight(userWeightOnly);
-        this.userService.updateUser(user);
         return new ResponseEntity<>(user, HttpStatus.OK);
     }
 
