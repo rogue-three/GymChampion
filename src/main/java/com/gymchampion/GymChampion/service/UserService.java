@@ -43,6 +43,21 @@ public class UserService {
     }
 
     public User patchUser(User userNewData) {
-        
+        User user = getUserByLogin(userNewData.getLogin());
+        if (!userNewData.getNickname().equals(user.getNickname())){
+            user.setNickname(userNewData.getNickname());
+        }
+        if (!userNewData.getBirthDate().equals(user.getBirthDate())){
+            user.setBirthDate(userNewData.getBirthDate());
+        }
+        if (userNewData.getWeight() != user.getWeight()) {
+            user.setWeight(userNewData.getWeight());
+        }
+        if (!userNewData.getGender().equals(user.getGender())){
+            user.setGender(userNewData.getGender());
+        }
+
+        updateUser(user);
+        return user;
     }
 }
