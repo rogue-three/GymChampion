@@ -5,9 +5,6 @@ import com.gymchampion.GymChampion.exceptions.ResourceDoesNotExistException;
 import com.gymchampion.GymChampion.model.SetScheme;
 import com.gymchampion.GymChampion.service.SetSchemeService;
 import com.gymchampion.GymChampion.service.TrainingService;
-import com.gymchampion.GymChampion.util.DoubleCounter;
-import com.gymchampion.GymChampion.util.IntegerCounter;
-import com.gymchampion.GymChampion.util.LongCounter;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -48,7 +45,7 @@ public class StatisticsController {
     @GetMapping("/training_days/{login}")
     public ResponseEntity<?> countTrainingsByUserLogin(@PathVariable("login") String login) {
         logger.info(String.format("Fetching count of trainings for user with login %s.", login));
-        IntegerCounter integerCounter = this.trainingService.countTrainingsByUserLogin(login);
+        Integer integerCounter = this.trainingService.countTrainingsByUserLogin(login);
         if (integerCounter == null) {
             logger.error(String.format("Trainings for user with login %s not found.", login));
             return new ResponseEntity<>(new ResourceDoesNotExistException("User with login " +
@@ -60,7 +57,7 @@ public class StatisticsController {
     @GetMapping("/training_duration/{trainingId}")
     public ResponseEntity<?> getTrainingDurationInMillisecondsByTrainingId(@PathVariable("trainingId") int trainingId) {
         logger.info(String.format("Fetching duration of training no. %d", trainingId));
-        LongCounter longCounter =
+        Long longCounter =
                 this.trainingService.countTrainingDurationInMillisecondsByTrainingID(trainingId);
         if (longCounter == null) {
             logger.error(String.format("Training no. %d not found", trainingId));
@@ -88,7 +85,7 @@ public class StatisticsController {
     @GetMapping("/get_total_load/{trainingId}")
     public ResponseEntity<?> getTotalLoadByTrainingId(@PathVariable("trainingId") int trainingId) {
         logger.info(String.format("Fetching total load of training no: %d", trainingId));
-        DoubleCounter totalLoad = this.setSchemeService.getTotalLoadFromTrainingBy(trainingId);
+        Double totalLoad = this.setSchemeService.getTotalLoadFromTrainingBy(trainingId);
         if (totalLoad == null) {
             logger.error(String.format("Training no: %d not found", trainingId));
             return new ResponseEntity<>(

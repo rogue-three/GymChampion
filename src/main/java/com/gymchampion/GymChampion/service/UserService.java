@@ -41,4 +41,8 @@ public class UserService {
         User user = this.userRepository.findUserByLogin(login);
         this.userRepository.delete(user);
     }
+
+    public User patchUser(User userNewData) {
+        
+    }
 }

@@ -130,9 +130,9 @@ public class UserController {
     }
 
     @PatchMapping("/weight/{login}")
-    public ResponseEntity<?> setUserWeight(@RequestBody UserWeightOnly userWeightOnly,
+    public ResponseEntity<?> setUserWeight(@RequestBody Double userWeightOnly,
                                              @PathVariable("login") String login) {
-        logger.info(String.format("Setting user %s weight to %f.", login, userWeightOnly.getUserWeight()));
+        logger.info(String.format("Setting user %s weight to %f.", login, userWeightOnly));
         User user = this.userService.getUserByLogin(login);
         if (user == null) {
             logger.error(String.format("Unable to set weight. User with login %s not found.", login));
@@ -140,7 +140,7 @@ public class UserController {
                     login + " not found.").getMessage(),
                     HttpStatus.NOT_FOUND);
         }
-        user.setWeight(userWeightOnly.getUserWeight());
+        user.setWeight(userWeightOnly);
         this.userService.updateUser(user);
         return new ResponseEntity<>(user, HttpStatus.OK);
     }

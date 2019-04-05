@@ -4,7 +4,6 @@ import com.gymchampion.GymChampion.GymChampionApplication;
 import com.gymchampion.GymChampion.model.SetScheme;
 import com.gymchampion.GymChampion.service.SetSchemeService;
 import com.gymchampion.GymChampion.service.TrainingService;
-import com.gymchampion.GymChampion.util.DoubleCounter;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -44,8 +43,7 @@ public class DiagnosticsController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
 
-        double best1Rm = bestSetScheme.getWeight() * (1 + (double) bestSetScheme.getReps()/30);
-        DoubleCounter predictedDoubleCounter = new DoubleCounter(best1Rm);
+        Double predictedDoubleCounter = bestSetScheme.getWeight() * (1 + (double) bestSetScheme.getReps()/30);
 
         return new ResponseEntity<>(predictedDoubleCounter, HttpStatus.OK);
     }

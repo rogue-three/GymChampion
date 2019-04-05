@@ -4,6 +4,9 @@ public class UserNicknameOnly {
 
     private String nickname;
 
+    public UserNicknameOnly() {
+    }
+
     public UserNicknameOnly(String nickname) {
         this.nickname = nickname;
     }

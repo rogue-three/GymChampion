@@ -2,7 +2,6 @@ package com.gymchampion.GymChampion.service;
 
 import com.gymchampion.GymChampion.model.SetScheme;
 import com.gymchampion.GymChampion.repository.SetSchemeRepository;
-import com.gymchampion.GymChampion.util.DoubleCounter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -67,12 +66,12 @@ public class SetSchemeService {
         return setScheme.getWeight() * (1 + ((double) setScheme.getReps()/ R_MAX_CONSTANT));
     }
 
-    public DoubleCounter getTotalLoadFromTrainingBy(int trainingId) {
+    public Double getTotalLoadFromTrainingBy(int trainingId) {
         double totalLoad = 0;
         for(SetScheme exerciseSet: getSchemesByTrainingId(trainingId)) {
             totalLoad += exerciseSet.getWeight() * exerciseSet.getReps();
         }
-        return new DoubleCounter(totalLoad);
+        return totalLoad;
     }
 
 
