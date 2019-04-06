@@ -70,7 +70,7 @@ public class UserController {
         return new ResponseEntity<>(user, HttpStatus.OK);
     }
 
-    @PatchMapping("/patch/{login}")
+    @PatchMapping("/{login}")
     public ResponseEntity<?> patchUserData(@RequestBody User userNewData,
                                              @PathVariable("login") String login) {
         logger.info(String.format("Setting user %s nickname to %s.", login, userNewData.getNickname()));
