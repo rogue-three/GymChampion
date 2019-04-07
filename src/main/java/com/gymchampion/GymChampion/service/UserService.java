@@ -56,8 +56,7 @@ public class UserService {
         if (!userNewData.getGender().equals(user.getGender())){
             user.setGender(userNewData.getGender());
         }
-
-        updateUser(user);
+        this.updateUser(user);
         return user;
     }
 }

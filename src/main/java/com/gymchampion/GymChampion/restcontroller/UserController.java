@@ -70,15 +70,15 @@ public class UserController {
         return new ResponseEntity<>(user, HttpStatus.OK);
     }
 
-    @PatchMapping("/patch/{login}")
+    @PatchMapping("/{login}")
     public ResponseEntity<?> patchUserData(@RequestBody User userNewData,
                                              @PathVariable("login") String login) {
-        logger.info(String.format("Setting user %s nickname to %s.", login, userNewData.getNickname()));
+        logger.info(String.format("Updating user %s.", login));
 
         User user = this.userService.patchUser(userNewData);
         if (user == null) {
-            logger.error(String.format("Unable to set nickname. User with login %s not found.", login));
-            return new ResponseEntity<>(new ResourceDoesNotExistException("Unable to set nickname. User with login " +
+            logger.error(String.format("Unable update user. User with login %s not found.", login));
+            return new ResponseEntity<>(new ResourceDoesNotExistException("Unable to update user. User with login " +
                     login + " not found.").getMessage(),
                     HttpStatus.NOT_FOUND);
         }

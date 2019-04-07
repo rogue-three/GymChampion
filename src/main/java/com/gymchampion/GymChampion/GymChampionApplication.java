@@ -36,7 +36,7 @@ public class GymChampionApplication {
 		logger.info("Registering security filter for users.");
 		FilterRegistrationBean<UserFilter> filterRegistrationBean = new FilterRegistrationBean<>();
 		filterRegistrationBean.setFilter(userFilter);
-		filterRegistrationBean.setUrlPatterns(Collections.singleton("/v1/users"));
+		filterRegistrationBean.setUrlPatterns(Collections.singleton("/v2/*"));
 		return filterRegistrationBean;
 	}
 
@@ -44,7 +44,7 @@ public class GymChampionApplication {
 		logger.info("Registering security filter for admin.");
 		FilterRegistrationBean<AdminFilter> filterRegistrationBean = new FilterRegistrationBean<>();
 		filterRegistrationBean.setFilter(adminFilter);
-		filterRegistrationBean.setUrlPatterns(Collections.singleton("/user/*"));
+		filterRegistrationBean.setUrlPatterns(Collections.singleton("/v2/*"));
 		return filterRegistrationBean;
 	}
 }
