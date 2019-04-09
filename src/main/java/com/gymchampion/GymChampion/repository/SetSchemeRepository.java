@@ -21,4 +21,6 @@ public interface SetSchemeRepository extends JpaRepository<SetScheme, Integer> {
     SetScheme getSetSchemeWithMaxWeightByExerciseId( @Param("exerciseId") int exerciseId, @Param("login") String userLogin);
 
     List<SetScheme> getSetSchemeByExercise_ExerciseIdAndTraining_User_Login(int exerciseId, String userLogin);
+
+    List<SetScheme> getAllByTraining_User_Login(String userLogin);
 }

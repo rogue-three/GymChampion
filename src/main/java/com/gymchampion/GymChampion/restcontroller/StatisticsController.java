@@ -95,5 +95,19 @@ public class StatisticsController {
         return new ResponseEntity<>(totalLoad, HttpStatus.OK);
     }
 
+    @GetMapping("/get_total_load_by_user/{userLogin}")
+    public ResponseEntity<?>  getTotalLoadByUser(@PathVariable("userLogin") String userLogin) {
+        logger.info(String.format("Fetching total load from all trainings of user: %s", userLogin));
+        Double totalLoad = this.setSchemeService.getTotalLoadFromAllTrainingsByUser(userLogin);
+        if(totalLoad == null) {
+            logger.error(String.format("User: %s not found", userLogin));
+            return new ResponseEntity<>(
+                    new ResourceDoesNotExistException(String.format(
+                            "User: %s not found", userLogin)).getMessage(), HttpStatus.NOT_FOUND);
+        }
+
+        return new ResponseEntity<>(totalLoad, HttpStatus.OK);
+    }
+
 
 }

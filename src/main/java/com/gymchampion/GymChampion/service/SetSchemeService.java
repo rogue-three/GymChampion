@@ -41,6 +41,10 @@ public class SetSchemeService {
         return this.setSchemeRepository.findAllByTrainingTrainingId(trainingId);
     }
 
+    public List<SetScheme> getAllSetSchemesByUser(String userLogin) {
+        return this.setSchemeRepository.getAllByTraining_User_Login(userLogin);
+    }
+
     public List<SetScheme> getSetSchemeByExerciesIdAndUserLogin(int exerciseId, String userLogin) {
         return this.setSchemeRepository.getSetSchemeByExercise_ExerciseIdAndTraining_User_Login(exerciseId, userLogin);
     }
@@ -69,6 +73,14 @@ public class SetSchemeService {
     public Double getTotalLoadFromTrainingBy(int trainingId) {
         double totalLoad = 0;
         for(SetScheme exerciseSet: getSchemesByTrainingId(trainingId)) {
+            totalLoad += exerciseSet.getWeight() * exerciseSet.getReps();
+        }
+        return totalLoad;
+    }
+
+    public Double getTotalLoadFromAllTrainingsByUser(String userLogin) {
+        double totalLoad = 0;
+        for(SetScheme exerciseSet: getAllSetSchemesByUser(userLogin)) {
             totalLoad += exerciseSet.getWeight() * exerciseSet.getReps();
         }
         return totalLoad;
