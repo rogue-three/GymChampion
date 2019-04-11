@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class TrainingService {
@@ -36,6 +37,11 @@ public class TrainingService {
 
     public List<Training> getAllTrainingsFromActiveUsers() {
         return this.trainingRepository.findTrainingsByArchived(false);
+    }
+
+    public List<Training> getNotRemovedTrainingsFromUserByLogin(String login) {
+        List<Training> userTrainings = this.trainingRepository.findAllByUser_Login(login);
+        return userTrainings.stream().filter(training -> !training.isArchived()).collect(Collectors.toList());
     }
 
     public List<Training> getAllArchivedTrainings() {
