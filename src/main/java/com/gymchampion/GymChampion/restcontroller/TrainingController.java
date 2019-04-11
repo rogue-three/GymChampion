@@ -93,6 +93,17 @@ public class TrainingController {
         return new ResponseEntity<>(trainings, HttpStatus.OK);
     }
 
+    @GetMapping("/active/{login}")
+    public ResponseEntity<List<Training>> getNotRemovedTrainingsFromUserByLogin(@PathVariable("login") String login) {
+        logger.info(String.format("Fetching not removed Trainings for user %s.", login));
+        List<Training> trainings = this.trainingService.getNotRemovedTrainingsFromUserByLogin(login);
+        if (trainings.isEmpty()) {
+            logger.error(String.format("Not removed Trainings for user %s not found.", login));
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(trainings, HttpStatus.OK);
+    }
+
     @GetMapping("/archived")
     public ResponseEntity<List<Training>> getArchivedTrainings() {
         logger.info("Fetching archived Trainings.");
