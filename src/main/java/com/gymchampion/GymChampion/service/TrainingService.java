@@ -76,6 +76,13 @@ public class TrainingService {
         Long trainingStart = getTrainingById(trainingId).getTrainingDateStart().getTime();
         Long trainingFinish = getTrainingById(trainingId).getTrainingDateFinish().getTime();
         return trainingFinish - trainingStart;
+    }
 
+    public Long countTotalDurationOfAllTrainingsByUser(String userLogin) {
+        Long totalDuration = 0L;
+        for (Training training: getTrainingsByUserLogin(userLogin)) {
+            totalDuration += training.getTrainingDateFinish().getTime() - training.getTrainingDateStart().getTime();
+        }
+        return totalDuration;
     }
 }
