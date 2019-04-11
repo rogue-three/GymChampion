@@ -28,18 +28,33 @@ public class StatisticsController {
         this.setSchemeService = setSchemeService;
     }
 
+//    @GetMapping("/max_weight_pulled/{exerciseId}/login/{login}")
+//    public ResponseEntity<?> getSetSchemeWithMaxWeightByExerciseId(@PathVariable("exerciseId") int exerciseId,
+//                                                                   @PathVariable("login") String login) {
+//        logger.info(String.format("Fetching Set scheme with max weight by exercise with id %d", exerciseId));
+//        SetScheme setScheme = this.setSchemeService.getSetSchemeWithMaxWeightByExerciseId(exerciseId, login);
+//        if (setScheme == null) {
+//            logger.error(String.format("Set scheme with max weight by exercise with id %d not found.", exerciseId));
+//            return new ResponseEntity<>(new ResourceDoesNotExistException(
+//                    "Set scheme with max weight by exercise with id " +
+//                    exerciseId + " not found").getMessage(), HttpStatus.NOT_FOUND);
+//        }
+//        return new ResponseEntity<>(setScheme, HttpStatus.OK);
+//    }
+
     @GetMapping("/max_weight_pulled/{exerciseId}/login/{login}")
     public ResponseEntity<?> getSetSchemeWithMaxWeightByExerciseId(@PathVariable("exerciseId") int exerciseId,
                                                                    @PathVariable("login") String login) {
         logger.info(String.format("Fetching Set scheme with max weight by exercise with id %d", exerciseId));
         SetScheme setScheme = this.setSchemeService.getSetSchemeWithMaxWeightByExerciseId(exerciseId, login);
+        Double maxWeight = setScheme.getWeight();
         if (setScheme == null) {
             logger.error(String.format("Set scheme with max weight by exercise with id %d not found.", exerciseId));
             return new ResponseEntity<>(new ResourceDoesNotExistException(
                     "Set scheme with max weight by exercise with id " +
-                    exerciseId + " not found").getMessage(), HttpStatus.NOT_FOUND);
+                            exerciseId + " not found").getMessage(), HttpStatus.NOT_FOUND);
         }
-        return new ResponseEntity<>(setScheme, HttpStatus.OK);
+        return new ResponseEntity<>(maxWeight, HttpStatus.OK);
     }
 
     @GetMapping("/training_days/{login}")
