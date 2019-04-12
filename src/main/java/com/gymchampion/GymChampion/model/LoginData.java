@@ -21,8 +21,8 @@ public class LoginData {
     @JoinColumn(name = "user_login")
     private User user;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "user_role")
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "role_id")
     private Role userRole;
 
     @Column(name = "archived")
@@ -36,6 +36,12 @@ public class LoginData {
         this.email = email;
         this.user = user;
         this.userRole = userRole;
+        this.isArchived = isArchived;
+    }
+
+    public LoginData(String password, String email, boolean isArchived) {
+        this.password = password;
+        this.email = email;
         this.isArchived = isArchived;
     }
 

@@ -23,6 +23,7 @@ public class DBaseLoader implements CommandLineRunner {
     private  SetSchemeRepository setSchemeRepository;
     private  BodyPartRepository bodyPartRepository;
     private RoleRepository roleRepository;
+    private final LoginDataRepository loginDataRepository;
 
     private ExerciseScheme upperBodyExScheme = new ExerciseScheme("upper_body");
     private ExerciseScheme lowerBodyExScheme = new ExerciseScheme("lower_body");
@@ -70,7 +71,8 @@ public class DBaseLoader implements CommandLineRunner {
                        ExerciseSchemeRepository exerciseSchemeRepository, EquipmentRepository equipmentRepository,
                        UserRepository userRepository, TrainingRepository trainingRepository,
                        ExerciseRepository exerciseRepository, SetSchemeRepository setSchemeRepository,
-                       BodyPartRepository bodyPartRepository, RoleRepository roleRepository) {
+                       BodyPartRepository bodyPartRepository, RoleRepository roleRepository,
+                       LoginDataRepository loginDataRepository) {
         this.gymChampionApplication = gymChampionApplication;
         this.genderRepository = genderRepository;
         this.exerciseSchemeRepository = exerciseSchemeRepository;
@@ -81,6 +83,7 @@ public class DBaseLoader implements CommandLineRunner {
         this.setSchemeRepository = setSchemeRepository;
         this.bodyPartRepository = bodyPartRepository;
         this.roleRepository = roleRepository;
+        this.loginDataRepository = loginDataRepository;
     }
 
     @Override
@@ -94,6 +97,7 @@ public class DBaseLoader implements CommandLineRunner {
         initializeTraining(trainingRepository);
         initializeSetSchemeTable(setSchemeRepository);
         initializeRoles(roleRepository);
+        initializeLoginDataRepository(loginDataRepository);
     }
 
     private void initializeGenderTableContent(GenderRepository genderRepository){
@@ -405,5 +409,14 @@ public class DBaseLoader implements CommandLineRunner {
         setSchemeRepository.save(set4Tr3KrzychuChest);
 
     }
+
+    public void initializeLoginDataRepository(LoginDataRepository loginDataRepository) {
+        LoginData mihuLogin = new LoginData("champion", "mihu123", false);
+        mihuLogin.setUser(mihuUser);
+        mihuLogin.setUserRole(user);
+        loginDataRepository.save(mihuLogin);
+    }
+
+
 
 }
