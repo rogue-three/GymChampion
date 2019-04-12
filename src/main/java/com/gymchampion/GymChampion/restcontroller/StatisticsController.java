@@ -83,6 +83,16 @@ public class StatisticsController {
         return new ResponseEntity<>(longCounter, HttpStatus.OK);
     }
 
+    @GetMapping("/total_duration_of_all_trainings/{userLogin}")
+    public ResponseEntity<?> getTotalDurationOfAllTrainings(@PathVariable("userLogin") String userLogin) {
+        logger.info(String.format("Fetching duration of trainings of user:  %s", userLogin));
+        //TODO
+        Long totalTime = this.trainingService.countTotalDurationOfAllTrainingsByUser(userLogin);
+        Long totalTimeInminutes = totalTime/60000;
+
+        return new ResponseEntity<>(totalTimeInminutes, HttpStatus.OK);
+    }
+
     @GetMapping("/list_all_exercise_sets/{exerciseId}/login/{userLogin}")
     public ResponseEntity<?> getAllSetsOfExerciseByUserLogin(@PathVariable("exerciseId") int exerciseId,
                                                              @PathVariable("userLogin") String userLogin){
