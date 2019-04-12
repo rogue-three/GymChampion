@@ -17,11 +17,11 @@ public class LoginData {
     @Column(name = "user_email", nullable = false, length = 30, unique = true)
     private String email;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne
     @JoinColumn(name = "user_login")
     private User user;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "role_id")
     private Role userRole;
 

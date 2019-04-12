@@ -151,8 +151,8 @@ public class DBaseLoader implements CommandLineRunner {
 
     private void initializeRoles(RoleRepository roleRepository) {
         user = new Role("USER");
-        admin = new Role("ADMIN");
         roleRepository.save(user);
+        admin = new Role("ADMIN");
         roleRepository.save(admin);
     }
 
@@ -410,11 +410,26 @@ public class DBaseLoader implements CommandLineRunner {
 
     }
 
-    public void initializeLoginDataRepository(LoginDataRepository loginDataRepository) {
+    private void initializeLoginDataRepository(LoginDataRepository loginDataRepository) {
         LoginData mihuLogin = new LoginData("champion", "mihu123", false);
         mihuLogin.setUser(mihuUser);
         mihuLogin.setUserRole(user);
         loginDataRepository.save(mihuLogin);
+
+        LoginData krzychuLogin = new LoginData("krzychu1", "lololo", false);
+        krzychuLogin.setUser(krzychuUser);
+        krzychuLogin.setUserRole(user);
+        loginDataRepository.save(krzychuLogin);
+
+        LoginData jodlaLogin = new LoginData("jodla1", "dupsko", false);
+        jodlaLogin.setUser(jodlaUser);
+        jodlaLogin.setUserRole(admin);
+        loginDataRepository.save(jodlaLogin);
+
+        LoginData zosiaLogin = new LoginData("zosia1", "twojaStara", false);
+        zosiaLogin.setUser(zosiaUser);
+        zosiaLogin.setUserRole(user);
+        loginDataRepository.save(zosiaLogin);
     }
 
 
