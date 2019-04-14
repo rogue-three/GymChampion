@@ -6,7 +6,7 @@ import com.gymchampion.GymChampion.exceptions.ResourceDoesNotExistException;
 import com.gymchampion.GymChampion.model.Gender;
 import com.gymchampion.GymChampion.model.User;
 import com.gymchampion.GymChampion.service.GenderService;
-import com.gymchampion.GymChampion.service.UserService;
+import com.gymchampion.GymChampion.service.UserServiceImpl;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -21,12 +21,12 @@ import java.util.List;
 @RequestMapping("/v1/users")
 public class UserController {
 
-    private UserService userService;
+    private UserServiceImpl userService;
     private GenderService genderService;
     private static Logger logger = GymChampionApplication.logger;
 
     @Autowired
-    public UserController(UserService userService,
+    public UserController(UserServiceImpl userService,
                           GenderService genderService) {
         this.userService = userService;
         this.genderService = genderService;

@@ -1,8 +1,11 @@
 package com.gymchampion.GymChampion.model;
 
+import lombok.Data;
+
 import javax.persistence.*;
 import java.util.Date;
 
+@Data
 @Entity
 @Table(name = "gym_user")
 public class User {
@@ -40,45 +43,6 @@ public class User {
         this.weight = weight;
     }
 
-    public String getLogin() {
-        return login;
-    }
-
-    public void setLogin(String login) {
-        this.login = login;
-    }
-
-    public String getNickname() {
-        return this.nickname;
-    }
-
-    public void setNickname(String nickname) {
-        this.nickname = nickname;
-    }
-
-    public Date getBirthDate() {
-        return this.birthDate;
-    }
-
-    public void setBirthDate(Date birthdayDate) {
-        this.birthDate = birthdayDate;
-    }
-
-    public double getWeight() {
-        return this.weight;
-    }
-
-    public void setWeight(double weight) {
-        this.weight = weight;
-    }
-
-    public Gender getGender() {
-        return this.gender;
-    }
-
-    public void setGender(Gender gender) {
-        this.gender = gender;
-    }
 }
 
 
